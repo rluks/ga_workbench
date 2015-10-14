@@ -36,23 +36,23 @@ public class MenuScreen extends ScreenAdapter {
 		stage = workbench.getStage();
 		this.camera = new OrthographicCamera();
 		
-		this.font = new BitmapFont(Gdx.files.internal("arial_black_32/arial_black_32.fnt"));
-		this.style = new Label.LabelStyle(font, Color.WHITE);
-		String text = "hello world";
-		this.label = new Label(text, style);
-		this.label.setAlignment(Align.center);
-		label.addAction(Actions.sequence());
-		
-		stage.addActor(label);
-		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 		
 	}
 	
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		super.show();
+		this.font = new BitmapFont(Gdx.files.internal("arial_black_32/arial_black_32.fnt"));
+		this.style = new Label.LabelStyle(font, Color.WHITE);
+		
+		String text = "hello world";
+		this.label = new Label(text, style);
+		this.label.setPosition(0, 0, Align.center);
+		label.addAction(Actions.sequence(Actions.delay(5.5f)));
+		
+		stage.addActor(label);
+		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
+		
 	}
 
 
@@ -67,15 +67,13 @@ public class MenuScreen extends ScreenAdapter {
 
 	@Override
 	public void resize(int width, int height) {
-		float ar = (float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
-		camera.setToOrtho(false, Workbench.V_WIDTH, Workbench.V_WIDTH / ar);
-		camera.position.set(0, 0, 0);
-		camera.update();
+		stage.getViewport().getCamera().position.set(0, 0, 0);
+		stage.getViewport().update(width, height, false);
 	}
 
 	@Override
 	public void hide() {
-		dispose();
+		super.hide();
 	}
 
 	@Override

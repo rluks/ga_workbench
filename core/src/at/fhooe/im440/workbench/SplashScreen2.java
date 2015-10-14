@@ -97,7 +97,7 @@ public class SplashScreen2 extends ScreenAdapter implements InputProcessor {
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0, BG_COL.a);
+		Gdx.gl.glClearColor(0, 0, 1, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		stage.act();
