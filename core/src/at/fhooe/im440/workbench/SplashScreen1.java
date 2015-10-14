@@ -19,7 +19,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class SplashScreen1 extends ScreenAdapter {
 
 	private static final Color BG_COL = new Color(1f, 0.38f, 0.22f, 1f);
-	private static final float DISPLAY_TIME = 1.0f;
+	private static final float DISPLAY_TIME = 0.25f;
 
 	private SpriteBatch batch;
 	private Workbench workbench;
