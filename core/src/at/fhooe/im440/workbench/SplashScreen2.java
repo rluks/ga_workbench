@@ -26,8 +26,8 @@ public class SplashScreen2 extends ScreenAdapter implements InputProcessor {
 
 //	private static final Color BG_COL = new Color(1f, 1f,  0.62f, 1f);
 	private static final Color BG_COL = new Color(0.75f, 0.92f,  0.62f, 1f);
-	private static final float FADE_TIME = 1f;
-	private static final float DISPLAY_TIME = 10;
+	private static final float FADE_TIME = 0.1f;
+	private static final float DISPLAY_TIME = 0.1f;
 	private Workbench workbench;
 	private Texture texture;
 	private Stage stage;
