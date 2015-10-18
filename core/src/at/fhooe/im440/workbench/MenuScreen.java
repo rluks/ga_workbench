@@ -9,6 +9,8 @@
 package at.fhooe.im440.workbench;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-public class MenuScreen extends ScreenAdapter {
+public class MenuScreen extends ScreenAdapter implements InputProcessor {
 
 	private Workbench workbench;
 	private BitmapFont font;
@@ -56,13 +58,13 @@ public class MenuScreen extends ScreenAdapter {
 		
 		this.exitLabel = new Label("Exit", style);
 		this.exitLabel.setPosition(2*300, 0, Align.center);
-
 		
 		stage.addActor(label);
 		stage.addActor(splashLabel);
 		stage.addActor(exitLabel);
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 		
+		Gdx.input.setInputProcessor(this);//required for InputProcessor
 	}
 
 
@@ -90,6 +92,63 @@ public class MenuScreen extends ScreenAdapter {
 	public void dispose() {
 		font.dispose();
 		stage.clear();
+	}
+	
+	/////////////////////////////////////////////////
+	/////// Interface InputProcessor
+	/////////////////////////////////////////////////
+
+	@Override
+	public boolean keyDown(int keycode) {	
+		return true;
+	}
+	
+	@Override
+	public boolean keyUp(int keycode) {
+		if(keycode == Keys.LEFT){
+			
+		}
+		if(keycode == Keys.RIGHT){
+			
+		}
+		System.out.println(keycode);	
+		return false;
+	}
+	
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		return true;
+	}
+	
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		System.out.println(amount);		
+		return true;
 	}
 
 }
