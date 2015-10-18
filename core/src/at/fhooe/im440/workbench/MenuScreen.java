@@ -28,6 +28,7 @@ public class MenuScreen extends ScreenAdapter {
 	private LabelStyle style;
 	private Label label;
 	private Label splashLabel;
+	private Label exitLabel;
 	private Stage stage;
 	
 	private OrthographicCamera camera;
@@ -46,17 +47,20 @@ public class MenuScreen extends ScreenAdapter {
 		this.font = new BitmapFont(Gdx.files.internal("arial_black_32/arial_black_32.fnt"));
 		this.style = new Label.LabelStyle(font, Color.WHITE);
 		
-		this.label = new Label("hello world", style);
-		this.label.setPosition(0, 0, Align.center);
+		this.label = new Label("Play", style);
+		this.label.setPosition(0*300, 0, Align.center);
 		//label.addAction(Actions.sequence(Actions.delay(5.5f)));
 		
 		this.splashLabel = new Label("Splash", style);
-		System.out.println();
-		this.splashLabel.setPosition(40, 0, Align.center);
+		this.splashLabel.setPosition(300, 0, Align.center);
+		
+		this.exitLabel = new Label("Exit", style);
+		this.exitLabel.setPosition(2*300, 0, Align.center);
 
 		
 		stage.addActor(label);
 		stage.addActor(splashLabel);
+		stage.addActor(exitLabel);
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 		
 	}
