@@ -33,7 +33,14 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	private Label exitLabel;
 	private Stage stage;
 	private int labelDistance = 300; 
+
+	
+	public enum MenuItem {
+	    Play, Splash, Exit
+	};
+	
 	private int currentMenuPosX = 0;
+	private MenuItem currentMenuItem = MenuItem.Play;
 	
 	private OrthographicCamera camera;
 	
@@ -51,18 +58,18 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		this.font = new BitmapFont(Gdx.files.internal("arial_black_32/arial_black_32.fnt"));
 		this.style = new Label.LabelStyle(font, Color.WHITE);
 		
-		this.label = new Label("Play", style);
-		this.label.setPosition(0*labelDistance, 0, Align.center);
-		this.label.setName("Play");
+		this.label = new Label(MenuItem.Play.name(), style);
+		this.label.setPosition(MenuItem.Play.ordinal()*labelDistance, 0, Align.center);
+		this.label.setName(MenuItem.Play.name());
 		//label.addAction(Actions.sequence(Actions.delay(5.5f)));
 		
-		this.splashLabel = new Label("Splash", style);
-		this.splashLabel.setPosition(1*labelDistance, 0, Align.center);
-		this.splashLabel.setName("Splash");
+		this.splashLabel = new Label(MenuItem.Splash.name(), style);
+		this.splashLabel.setPosition(MenuItem.Splash.ordinal()*labelDistance, 0, Align.center);
+		this.splashLabel.setName(MenuItem.Splash.name());
 		
-		this.exitLabel = new Label("Exit", style);
-		this.exitLabel.setPosition(2*labelDistance, 0, Align.center);
-		this.exitLabel.setName("Exit");
+		this.exitLabel = new Label(MenuItem.Exit.name(), style);
+		this.exitLabel.setPosition(MenuItem.Exit.ordinal()*labelDistance, 0, Align.center);
+		this.exitLabel.setName(MenuItem.Exit.name());
 		
 		stage.addActor(label);
 		stage.addActor(splashLabel);
@@ -152,6 +159,9 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub
+		//currentMenuItem
+		//if(currentMenuItem > 0)
+		//	currentMenuItem = 0;
 		
 		currentMenuPosX += amount*labelDistance;
 		if(currentMenuPosX > 0)
