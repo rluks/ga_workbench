@@ -33,6 +33,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	private Label exitLabel;
 	private Stage stage;
 	private int labelDistance = 300; 
+	private int currentMenuPosX = 0;
 	
 	private OrthographicCamera camera;
 	
@@ -151,8 +152,16 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub
-		System.out.println(amount);	
-		stage.getRoot().setPosition(amount*labelDistance, 0);
+		
+		currentMenuPosX += amount*labelDistance;
+		if(currentMenuPosX > 0)
+			currentMenuPosX = 0;
+		else if(currentMenuPosX < -2*labelDistance)
+			currentMenuPosX = -2*labelDistance;
+		
+		System.out.println(currentMenuPosX);
+		
+		stage.getRoot().setPosition(currentMenuPosX, 0);
 		return true;
 	}
 
