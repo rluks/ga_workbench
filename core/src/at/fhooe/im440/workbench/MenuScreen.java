@@ -68,6 +68,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	public MenuScreen(Workbench workbench) {
 		this.workbench = workbench;
 		stage = workbench.getStage();
+		//stage.clear();
 		this.camera = new OrthographicCamera();
 		
 		
@@ -96,6 +97,8 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		stage.addActor(splashLabel);
 		stage.addActor(exitLabel);
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
+		
+		updateMenu();
 		
 		Gdx.input.setInputProcessor(this);//required for InputProcessor
 	}
@@ -146,8 +149,6 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	
 	@Override
 	public boolean keyUp(int keycode) {
-
-
 		return false;
 	}
 	
@@ -188,23 +189,28 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		else
 			currentMenuItem = currentMenuItem.getPrevious();
 		
-		System.out.println(currentMenuItem);
-		
 		updateMenu();
 		
 		return false;
 	}
 	
 	private void updateMenu(){
-		//causes sprite to show up, why?
-//		for(Actor actor : stage.getRoot().getChildren()) {
-//			assert(actor != null);
-//	        actor.setColor(Color.WHITE);
-//		}
+		//causes sprite to show up, why? 
+		//because we use stage from workbench which has sprite in it
+//      for(Actor actor : stage.getRoot().getChildren()) {
+//      assert(actor != null);
+//      actor.setColor(Color.WHITE);
+//  }
+
+		for(MenuItem item : MenuItem.values()) {
+	        stage.getRoot().findActor(item.name()).setColor(Color.WHITE);
+		}
 		
 		Actor selectedItem = stage.getRoot().findActor(currentMenuItem.name());
 		assert(selectedItem != null);
 		selectedItem.setColor(Color.RED);
+		
+		System.out.println(currentMenuItem);
 		
 		//1 <=  => -1
 		currentMenuPosX = -1*currentMenuItem.ordinal()*labelDistance;
