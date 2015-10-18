@@ -28,7 +28,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	private Workbench workbench;
 	private BitmapFont font;
 	private LabelStyle style;
-	private Label label;
+	private Label playLabel;
 	private Label splashLabel;
 	private Label exitLabel;
 	private Stage stage;
@@ -36,8 +36,27 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 
 	
 	public enum MenuItem {
-	    Play, Splash, Exit
-	};
+	    Play, Splash, Exit;
+		
+		//http://digitaljoel.nerd-herders.com/2011/04/05/get-the-next-value-in-a-java-enum/
+	    public MenuItem getNext() {
+	        return this.ordinal() < MenuItem.values().length - 1 //if not last item
+	            ? MenuItem.values()[this.ordinal() + 1]
+	            : MenuItem.values()[0];
+	    }
+	    
+	    public MenuItem getPrevious() {
+	        return this.ordinal() > 0
+	            ? MenuItem.values()[this.ordinal() - 1]
+	            : getLast();
+	    }
+	    
+	    private MenuItem getLast(){
+	    	return MenuItem.values()[MenuItem.values().length - 1];
+	    }
+	}
+	
+
 	
 	private int currentMenuPosX = 0;
 	private MenuItem currentMenuItem = MenuItem.Play;
@@ -58,9 +77,9 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		this.font = new BitmapFont(Gdx.files.internal("arial_black_32/arial_black_32.fnt"));
 		this.style = new Label.LabelStyle(font, Color.WHITE);
 		
-		this.label = new Label(MenuItem.Play.name(), style);
-		this.label.setPosition(MenuItem.Play.ordinal()*labelDistance, 0, Align.center);
-		this.label.setName(MenuItem.Play.name());
+		this.playLabel = new Label(MenuItem.Play.name(), style);
+		this.playLabel.setPosition(MenuItem.Play.ordinal()*labelDistance, 0, Align.center);
+		this.playLabel.setName(MenuItem.Play.name());
 		//label.addAction(Actions.sequence(Actions.delay(5.5f)));
 		
 		this.splashLabel = new Label(MenuItem.Splash.name(), style);
@@ -71,7 +90,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		this.exitLabel.setPosition(MenuItem.Exit.ordinal()*labelDistance, 0, Align.center);
 		this.exitLabel.setName(MenuItem.Exit.name());
 		
-		stage.addActor(label);
+		stage.addActor(playLabel);
 		stage.addActor(splashLabel);
 		stage.addActor(exitLabel);
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
@@ -162,14 +181,21 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		//currentMenuItem
 		//if(currentMenuItem > 0)
 		//	currentMenuItem = 0;
+		if(amount < 0)
+			currentMenuItem = currentMenuItem.getNext();
+		else
+			currentMenuItem = currentMenuItem.getPrevious();
 		
+		System.out.println(currentMenuItem);
+		
+		//1 <=  => -1
 		currentMenuPosX += amount*labelDistance;
 		if(currentMenuPosX > 0)
 			currentMenuPosX = 0;
-		else if(currentMenuPosX < -2*labelDistance)
-			currentMenuPosX = -2*labelDistance;
+		else if(currentMenuPosX < -1*MenuItem.Exit.ordinal()*labelDistance)
+			currentMenuPosX = -1*MenuItem.Exit.ordinal()*labelDistance;
 		
-		System.out.println(currentMenuPosX);
+		
 		
 		stage.getRoot().setPosition(currentMenuPosX, 0);
 		return true;
