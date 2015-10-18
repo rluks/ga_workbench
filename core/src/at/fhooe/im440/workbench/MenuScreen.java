@@ -132,19 +132,22 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	/////////////////////////////////////////////////
 
 	@Override
-	public boolean keyDown(int keycode) {	
-		return true;
+	public boolean keyDown(int keycode) {
+		if(keycode == Keys.LEFT){
+			currentMenuItem = currentMenuItem.getPrevious();
+		}
+		if(keycode == Keys.RIGHT){			
+			currentMenuItem = currentMenuItem.getNext();
+		}
+		updateMenu();
+		
+		return false;
 	}
 	
 	@Override
 	public boolean keyUp(int keycode) {
-		if(keycode == Keys.LEFT){
-			
-		}
-		if(keycode == Keys.RIGHT){
-			
-		}
-		System.out.println(keycode);	
+
+
 		return false;
 	}
 	
@@ -186,11 +189,18 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 			currentMenuItem = currentMenuItem.getPrevious();
 		
 		System.out.println(currentMenuItem);
-				
-		for(Actor actor : stage.getRoot().getChildren()) {
-			assert(actor != null);
-	        actor.setColor(Color.WHITE);
-	      }
+		
+		updateMenu();
+		
+		return false;
+	}
+	
+	private void updateMenu(){
+		//causes sprite to show up, why?
+//		for(Actor actor : stage.getRoot().getChildren()) {
+//			assert(actor != null);
+//	        actor.setColor(Color.WHITE);
+//		}
 		
 		Actor selectedItem = stage.getRoot().findActor(currentMenuItem.name());
 		assert(selectedItem != null);
@@ -200,7 +210,6 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		currentMenuPosX = -1*currentMenuItem.ordinal()*labelDistance;
 		
 		stage.getRoot().setPosition(currentMenuPosX, 0);
-		return true;
 	}
 
 }
