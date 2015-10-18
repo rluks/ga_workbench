@@ -16,6 +16,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -184,14 +186,17 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 			currentMenuItem = currentMenuItem.getPrevious();
 		
 		System.out.println(currentMenuItem);
+				
+		for(Actor actor : stage.getRoot().getChildren()) {
+			assert(actor != null);
+	        actor.setColor(Color.WHITE);
+	      }
+		
+		Actor selectedItem = stage.getRoot().findActor(currentMenuItem.name());
+		assert(selectedItem != null);
+		selectedItem.setColor(Color.RED);
 		
 		//1 <=  => -1
-		//currentMenuPosX += amount*labelDistance;
-		//if(currentMenuPosX > 0)
-		//	currentMenuPosX = 0;
-		//else if(currentMenuPosX < -1*MenuItem.Exit.ordinal()*labelDistance)
-		//	currentMenuPosX = -1*MenuItem.Exit.ordinal()*labelDistance;		
-		
 		currentMenuPosX = -1*currentMenuItem.ordinal()*labelDistance;
 		
 		stage.getRoot().setPosition(currentMenuPosX, 0);
