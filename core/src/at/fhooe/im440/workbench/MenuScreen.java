@@ -177,10 +177,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	
 	@Override
 	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
-		//currentMenuItem
-		//if(currentMenuItem > 0)
-		//	currentMenuItem = 0;
+
 		if(amount < 0)
 			currentMenuItem = currentMenuItem.getNext();
 		else
@@ -189,13 +186,13 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		System.out.println(currentMenuItem);
 		
 		//1 <=  => -1
-		currentMenuPosX += amount*labelDistance;
-		if(currentMenuPosX > 0)
-			currentMenuPosX = 0;
-		else if(currentMenuPosX < -1*MenuItem.Exit.ordinal()*labelDistance)
-			currentMenuPosX = -1*MenuItem.Exit.ordinal()*labelDistance;
+		//currentMenuPosX += amount*labelDistance;
+		//if(currentMenuPosX > 0)
+		//	currentMenuPosX = 0;
+		//else if(currentMenuPosX < -1*MenuItem.Exit.ordinal()*labelDistance)
+		//	currentMenuPosX = -1*MenuItem.Exit.ordinal()*labelDistance;		
 		
-		
+		currentMenuPosX = -1*currentMenuItem.ordinal()*labelDistance;
 		
 		stage.getRoot().setPosition(currentMenuPosX, 0);
 		return true;
