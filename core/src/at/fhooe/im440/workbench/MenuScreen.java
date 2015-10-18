@@ -32,6 +32,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	private Label splashLabel;
 	private Label exitLabel;
 	private Stage stage;
+	private int labelDistance = 300; 
 	
 	private OrthographicCamera camera;
 	
@@ -50,14 +51,17 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		this.style = new Label.LabelStyle(font, Color.WHITE);
 		
 		this.label = new Label("Play", style);
-		this.label.setPosition(0*300, 0, Align.center);
+		this.label.setPosition(0*labelDistance, 0, Align.center);
+		this.label.setName("Play");
 		//label.addAction(Actions.sequence(Actions.delay(5.5f)));
 		
 		this.splashLabel = new Label("Splash", style);
-		this.splashLabel.setPosition(300, 0, Align.center);
+		this.splashLabel.setPosition(1*labelDistance, 0, Align.center);
+		this.splashLabel.setName("Splash");
 		
 		this.exitLabel = new Label("Exit", style);
-		this.exitLabel.setPosition(2*300, 0, Align.center);
+		this.exitLabel.setPosition(2*labelDistance, 0, Align.center);
+		this.exitLabel.setName("Exit");
 		
 		stage.addActor(label);
 		stage.addActor(splashLabel);
@@ -147,7 +151,8 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	@Override
 	public boolean scrolled(int amount) {
 		// TODO Auto-generated method stub
-		System.out.println(amount);		
+		System.out.println(amount);	
+		stage.getRoot().setPosition(amount*labelDistance, 0);
 		return true;
 	}
 
