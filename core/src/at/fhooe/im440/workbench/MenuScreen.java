@@ -8,6 +8,9 @@
 
 package at.fhooe.im440.workbench;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -35,6 +38,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	private Label exitLabel;
 	private Stage stage;
 	private int labelDistance = 300; 
+	private List<Label> menuLabels;
 
 	
 	public enum MenuItem {
@@ -92,7 +96,17 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		this.font = new BitmapFont(Gdx.files.internal("arial_black_32/arial_black_32.fnt"));
 		this.style = new Label.LabelStyle(font, Color.WHITE);
 		
-		this.playLabel = new Label(MenuItem.Play.name(), style);
+		menuLabels = new ArrayList<Label>();
+		
+		for(MenuItem item : MenuItem.values()) {
+			Label l = new Label(item.name(), style);
+			l.setPosition(item.ordinal()*labelDistance, 0, Align.center);
+			l.setName(item.name());
+			menuLabels.add(l);
+			stage.addActor(l);
+		}
+		
+		/*this.playLabel = new Label(MenuItem.Play.name(), style);
 		this.playLabel.setPosition(MenuItem.Play.ordinal()*labelDistance, 0, Align.center);
 		this.playLabel.setName(MenuItem.Play.name());
 		//label.addAction(Actions.sequence(Actions.delay(5.5f)));
@@ -105,9 +119,12 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		this.exitLabel.setPosition(MenuItem.Exit.ordinal()*labelDistance, 0, Align.center);
 		this.exitLabel.setName(MenuItem.Exit.name());
 		
-		stage.addActor(playLabel);
+				stage.addActor(playLabel);
 		stage.addActor(splashLabel);
 		stage.addActor(exitLabel);
+		*/
+		
+
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 		
 		updateMenu();
