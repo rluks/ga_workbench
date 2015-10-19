@@ -36,6 +36,7 @@ public class SplashScreen2 extends ScreenAdapter implements InputProcessor {
 	public SplashScreen2(Workbench workbench) {
 		this.workbench = workbench;
 		stage = workbench.getStage();
+		stage.clear();
 	}
 
 	@Override

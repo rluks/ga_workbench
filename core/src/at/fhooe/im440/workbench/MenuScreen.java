@@ -56,7 +56,19 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	    private MenuItem getLast(){
 	    	return MenuItem.values()[MenuItem.values().length - 1];
 	    }
+	    
+	    
 	}
+	
+	public ScreenAdapter getScreen(MenuItem item){
+    	switch(item){
+    	case Play: return new SplashScreen2(workbench);
+    	case Splash: return new SplashScreen2(workbench);
+    	case Exit: return new SplashScreen2(workbench);
+    	default: return new SplashScreen2(workbench);
+    	}
+    	
+    }
 	
 
 	
@@ -68,7 +80,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	public MenuScreen(Workbench workbench) {
 		this.workbench = workbench;
 		stage = workbench.getStage();
-		//stage.clear();
+		stage.clear();
 		this.camera = new OrthographicCamera();
 		
 		
@@ -130,6 +142,11 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		stage.clear();
 	}
 	
+	private void endOfState() {
+		//dead = true;
+		workbench.setScreen(getScreen(currentMenuItem));
+	}
+	
 	/////////////////////////////////////////////////
 	/////// Interface InputProcessor
 	/////////////////////////////////////////////////
@@ -143,6 +160,10 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 			currentMenuItem = currentMenuItem.getNext();
 		}
 		updateMenu();
+		
+		if(keycode == Keys.ENTER){
+			endOfState();
+		}
 		
 		return false;
 	}
