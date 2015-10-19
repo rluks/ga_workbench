@@ -36,7 +36,6 @@ public class SplashScreen2 extends ScreenAdapter implements InputProcessor {
 	public SplashScreen2(Workbench workbench) {
 		this.workbench = workbench;
 		stage = workbench.getStage();
-		stage.clear();
 	}
 
 	@Override
@@ -48,7 +47,11 @@ public class SplashScreen2 extends ScreenAdapter implements InputProcessor {
 		Texture texture = new Texture("splash.png");
 		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		// assemble stage
+		// cleanup
+		stage.clear();
+		stage.getRoot().setPosition(0, 0);
+		
+		//assemble stage
 		Actor img = new Image(texture);
 		img.setPosition(0,  0, Align.center);
 		img.getColor().a = 0;
