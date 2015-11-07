@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import at.fhooe.im440.workbench.entitysystem.Entity;
+import at.fhooe.im440.workbench.entitysystem.EntitySystem;
 import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
 import at.fhooe.im440.workbench.entitysystem.TransformComponent;
 
@@ -68,10 +69,8 @@ public class TestESScreen extends ScreenAdapter {
 		stage.addActor(img);
 		
 		
-		Entity e = new Entity()
-				.Name("x")
-				.AddComponent(new TransformComponent())
-				.AddComponent(new SpriteComponent(new Texture("x.png")));
+		EntitySystem.Init();
+		Entity e = EntitySystem.GetTest();
 		
 		SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
 		TransformComponent tc = (TransformComponent) e.GetComponent("TransformComponent");
