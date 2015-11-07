@@ -12,6 +12,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import at.fhooe.im440.workbench.entitysystem.*;
+
 public class Workbench extends Game {
 	
 	public static final float V_WIDTH = 1366;
@@ -27,7 +29,9 @@ public class Workbench extends Game {
 		batch = new SpriteBatch();
 		stage = new Stage();
 		setScreen(new SplashScreen2(this));
-		Entity e = new Entity().Name("x");
+		Entity e = new Entity()
+				.Name("x")
+				.AddComponent(new TransformComponent());
 	}
 
 	@Override

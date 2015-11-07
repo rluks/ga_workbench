@@ -1,4 +1,4 @@
-package at.fhooe.im440.workbench;
+package at.fhooe.im440.workbench.entitysystem;
 
 import java.util.LinkedHashMap;
 
