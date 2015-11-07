@@ -6,4 +6,13 @@ public class TransformComponent extends Component {
 	public Vector2 Position;
 	public Vector2 Scale;
 	public float Rotation;//Angle
+	
+	public TransformComponent() {
+		super();
+		Position = new Vector2();
+		Scale = new Vector2();
+		Rotation = 0;
+	}
+	
+	
 }

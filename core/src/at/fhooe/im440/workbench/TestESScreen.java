@@ -13,6 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import at.fhooe.im440.workbench.entitysystem.Entity;
+import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
+import at.fhooe.im440.workbench.entitysystem.TransformComponent;
+
 public class TestESScreen extends ScreenAdapter {
 
 	private static final Color BG_COL = new Color(1.00f, 0.00f,  0.5f, 1f);
@@ -32,6 +36,8 @@ public class TestESScreen extends ScreenAdapter {
 	public void show() {
 		// initialize control variables
 		dead = false;
+		
+		
 		
 		// load resources
 		Texture texture = new Texture("splash.png");
@@ -60,6 +66,21 @@ public class TestESScreen extends ScreenAdapter {
 				));
 
 		stage.addActor(img);
+		
+		
+		Entity e = new Entity()
+				.Name("x")
+				.AddComponent(new TransformComponent())
+				.AddComponent(new SpriteComponent(new Texture("x.png")));
+		
+		SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
+		TransformComponent tc = (TransformComponent) e.GetComponent("TransformComponent");
+		Actor ent = new Image(sc.Texture);
+		ent.setPosition(tc.Position.x,  tc.Position.y, Align.center);
+		ent.setName(e.Name);
+		stage.addActor(ent);
+		
+		
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 	}
 	

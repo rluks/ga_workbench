@@ -9,6 +9,7 @@
 package at.fhooe.im440.workbench;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -29,9 +30,7 @@ public class Workbench extends Game {
 		batch = new SpriteBatch();
 		stage = new Stage();
 		setScreen(new SplashScreen2(this));
-		Entity e = new Entity()
-				.Name("x")
-				.AddComponent(new TransformComponent());
+		
 	}
 
 	@Override

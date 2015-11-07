@@ -247,7 +247,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		assert(selectedItem != null);
 		selectedItem.setColor(Color.RED);
 		
-		System.out.println(currentMenuItem);
+		//System.out.println(currentMenuItem);
 		
 		//1 <=  => -1
 		currentMenuPosX = -1*currentMenuItem.ordinal()*labelDistance;
