@@ -42,7 +42,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 
 	
 	public enum MenuItem {
-	    Play, Splash, Exit;
+	    Play, Splash, Exit, Test;
 		
 		//http://digitaljoel.nerd-herders.com/2011/04/05/get-the-next-value-in-a-java-enum/
 	    public MenuItem getNext() {
