@@ -33,18 +33,16 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	private Workbench workbench;
 	private BitmapFont font;
 	private LabelStyle style;
-	private Label playLabel;
-	private Label splashLabel;
-	private Label exitLabel;
+
 	private Stage stage;
 	private int labelDistance = 300; 
 	private List<Label> menuLabels;
 
 	
 	public enum MenuItem {
-	    Play, Splash, Exit, Test;
+	    TestES, Play, Splash, Exit;
 		
-		//http://digitaljoel.nerd-herders.com/2011/04/05/get-the-next-value-in-a-java-enum/
+		//source: http://digitaljoel.nerd-herders.com/2011/04/05/get-the-next-value-in-a-java-enum/
 	    public MenuItem getNext() {
 	        return this.ordinal() < MenuItem.values().length - 1 //if not last item
 	            ? MenuItem.values()[this.ordinal() + 1]
@@ -66,6 +64,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 	
 	public ScreenAdapter getScreen(MenuItem item){
     	switch(item){
+    	case TestES: return new TestESScreen(workbench);
     	case Play: return new SplashScreen2(workbench);
     	case Splash: return new SplashScreen2(workbench);
     	case Exit: return new SplashScreen2(workbench);
@@ -77,15 +76,15 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 
 	
 	private int currentMenuPosX = 0;
-	private MenuItem currentMenuItem = MenuItem.Play;
+	private MenuItem currentMenuItem = MenuItem.TestES;
 	
-	private OrthographicCamera camera;
+	//private OrthographicCamera camera;
 	
 	public MenuScreen(Workbench workbench) {
 		this.workbench = workbench;
 		stage = workbench.getStage();
 		stage.clear();
-		this.camera = new OrthographicCamera();
+		//this.camera = new OrthographicCamera();
 		
 		
 	}
