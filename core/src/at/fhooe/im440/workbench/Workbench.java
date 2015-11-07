@@ -27,6 +27,7 @@ public class Workbench extends Game {
 		batch = new SpriteBatch();
 		stage = new Stage();
 		setScreen(new SplashScreen2(this));
+		Entity e = new Entity().Name("x");
 	}
 
 	@Override
