@@ -41,4 +41,6 @@ public class EntitySystem {
 		return Entities.getOrDefault(0, e);
 	}
 	
+	//TODO remove entity
+	
 }

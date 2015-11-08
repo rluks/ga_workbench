@@ -14,7 +14,7 @@ import at.fhooe.im440.workbench.entitysystem.EntitySystem;
 import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
 
 
-public class RenderSystem {
+public class RenderSystem extends BaseSystem{
 
 	static List<SpriteComponent> sprites;
 	static private SpriteBatch batch;

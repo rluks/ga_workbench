@@ -41,20 +41,14 @@ public class TestESScreen extends ScreenAdapter {
 		stage.clear();
 		stage.getRoot().setPosition(0, 0);
 		
+		ServiceLocator.Init();
+		
 		EntitySystem.Init();
 		RenderSystem.Init();
 		PhysicsSystem.Init();
-		//Entity e = EntitySystem.GetTest();
 		
-		//SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
-		//TransformComponent tc = (TransformComponent) e.GetComponent("TransformComponent");
-		//Actor ent = new Image(sc.Texture);
-		//ent.setPosition(tc.Position.x,  tc.Position.y, Align.center);
-		//ent.setName(e.Name);
-		
-		//assemble stage - where should i do this?
-		//stage.addActor(ent);		
-		//stage.addActor(img);//order of adding matters
+		FakeSystem fs = new FakeSystem();		
+		ServiceLocator.Register(fs);
 		
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 	}
@@ -68,6 +62,8 @@ public class TestESScreen extends ScreenAdapter {
 	public void render(float delta) {	
 		PhysicsSystem.Update(delta);
 		RenderSystem.Render(stage, BG_COL);
+		
+		((FakeSystem)ServiceLocator.Get("FakeSystem")).Foo();
 	}
 
 	@Override
