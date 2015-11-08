@@ -139,6 +139,8 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		
 		stage.act();
 		stage.draw();
+		
+		workbench.setScreen(getScreen(currentMenuItem));//JUMP immediately
 	}
 
 	@Override
