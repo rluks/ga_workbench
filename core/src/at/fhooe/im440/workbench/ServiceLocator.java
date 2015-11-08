@@ -10,14 +10,14 @@ public class ServiceLocator {
 	//TODO singleton?
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
-
+		Register(new RenderSystem());
 	}
 	
 	//TODO should we update all of systems here?
-	public static void Update(){
+	public static void Update(float delta){
 		for(Entry<String, BaseSystem> entry: systems.entrySet()){
 			BaseSystem system = entry.getValue();
-			system.Update();
+			system.Update(delta);
 		}
 	}
 	

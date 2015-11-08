@@ -41,14 +41,15 @@ public class TestESScreen extends ScreenAdapter {
 		stage.clear();
 		stage.getRoot().setPosition(0, 0);
 		
-		ServiceLocator.Init();
+		
 		
 		EntitySystem.Init();
-		RenderSystem.Init();
+		//RenderSystem.Init();
 		PhysicsSystem.Init();
 		
-		FakeSystem fs = new FakeSystem();		
-		ServiceLocator.Register(fs);
+		ServiceLocator.Init();
+			
+		//ServiceLocator.Register(new FakeSystem());
 		
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 	}
@@ -61,9 +62,10 @@ public class TestESScreen extends ScreenAdapter {
 	@Override
 	public void render(float delta) {	
 		PhysicsSystem.Update(delta);
-		RenderSystem.Render();
+		//RenderSystem.Render();
+		ServiceLocator.Update(delta);
 		
-		((FakeSystem)ServiceLocator.Get("FakeSystem")).Foo();
+		//((FakeSystem)ServiceLocator.Get("FakeSystem")).Foo();
 	}
 
 	@Override

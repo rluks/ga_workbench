@@ -7,7 +7,7 @@ public class FakeSystem extends BaseSystem{
 	}
 
 	@Override
-	public void Update() {
+	public void Update(float delta) {
 		Foo();
 	}
 }

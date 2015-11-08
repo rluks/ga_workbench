@@ -16,11 +16,11 @@ import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
 
 public class RenderSystem extends BaseSystem{
 
-	static List<SpriteComponent> sprites;
-	static private SpriteBatch batch;
+	 List<SpriteComponent> sprites;
+	 private SpriteBatch batch;
 
 	
-	public static void Init(){
+	public RenderSystem(){
 		sprites = new ArrayList<SpriteComponent>();
 		SpriteComponent sc = (SpriteComponent) EntitySystem.GetTest().GetComponent("SpriteComponent");
 		sprites.add(sc);
@@ -28,7 +28,7 @@ public class RenderSystem extends BaseSystem{
 	}
 	
 
-	public static void Render() {
+	public void Render() {
 		Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
 		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -50,7 +50,7 @@ public class RenderSystem extends BaseSystem{
 
 
 	@Override
-	public void Update() {
+	public void Update(float delta) {
 		Render();	
 	}
 
