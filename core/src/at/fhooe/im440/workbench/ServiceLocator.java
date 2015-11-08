@@ -11,6 +11,7 @@ public class ServiceLocator {
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
 		Register(new RenderSystem());
+		Register(new PhysicsSystem());
 	}
 	
 	//TODO should we update all of systems here?

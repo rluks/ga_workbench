@@ -1,28 +1,13 @@
 package at.fhooe.im440.workbench;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
-import at.fhooe.im440.workbench.entitysystem.Entity;
 import at.fhooe.im440.workbench.entitysystem.EntitySystem;
-import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
-import at.fhooe.im440.workbench.entitysystem.TransformComponent;
 
 public class TestESScreen extends ScreenAdapter {
 
-	private static final Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
-	//private static final float FADE_TIME = 0.1f;
-	//private static final float DISPLAY_TIME = 0.5f;
 	private Workbench workbench;
 	private Stage stage;//where should stage be? in some system? passed around?
 	private boolean dead;
@@ -45,7 +30,7 @@ public class TestESScreen extends ScreenAdapter {
 		
 		EntitySystem.Init();
 		//RenderSystem.Init();
-		PhysicsSystem.Init();
+		//PhysicsSystem.Init();
 		
 		ServiceLocator.Init();
 			
@@ -61,7 +46,7 @@ public class TestESScreen extends ScreenAdapter {
 	
 	@Override
 	public void render(float delta) {	
-		PhysicsSystem.Update(delta);
+		//PhysicsSystem.Update(delta);
 		//RenderSystem.Render();
 		ServiceLocator.Update(delta);
 		
