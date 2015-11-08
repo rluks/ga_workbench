@@ -20,7 +20,7 @@ import at.fhooe.im440.workbench.entitysystem.TransformComponent;
 
 public class TestESScreen extends ScreenAdapter {
 
-	private static final Color BG_COL = new Color(1.00f, 0.00f,  0.5f, 1f);
+	private static final Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
 	//private static final float FADE_TIME = 0.1f;
 	//private static final float DISPLAY_TIME = 0.5f;
 	private Workbench workbench;
