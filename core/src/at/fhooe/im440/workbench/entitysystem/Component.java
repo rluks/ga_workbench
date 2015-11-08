@@ -8,7 +8,7 @@ abstract public class Component {
 	public Component() {
 		maxId++;//TODO might theoretically overflow - is this safe?
 		Id = maxId;
-		
+		//System.out.println("Component: Id:" + Id);
 		Active = true;
 	}
 	

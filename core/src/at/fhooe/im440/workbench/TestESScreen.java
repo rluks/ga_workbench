@@ -70,6 +70,7 @@ public class TestESScreen extends ScreenAdapter {
 		
 		
 		EntitySystem.Init();
+		RenderSystem.Init();
 		Entity e = EntitySystem.GetTest();
 		
 		SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
@@ -108,11 +109,13 @@ public class TestESScreen extends ScreenAdapter {
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		//Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
+		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		stage.act();
-		stage.draw();
+		RenderSystem.Render(stage, BG_COL);
+		
+		//stage.act();
+		//stage.draw();
 	}
 
 	@Override
