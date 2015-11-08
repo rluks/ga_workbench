@@ -22,8 +22,10 @@ public class SpriteComponent extends Component {
 
 	public void Render(Batch batch){
 		if(Active){
-			float degrees = ((TransformComponent)this.Entity().GetComponent(TransformComponent.NAME)).Rotation;//TODO hell xD
+			TransformComponent tc = (TransformComponent)this.Entity().GetComponent(TransformComponent.NAME);
+			float degrees = tc.Rotation;
 			//this.Sprite.setAlpha(0.1f);
+			this.Sprite.setPosition(tc.Position.x, tc.Position.y);
 			this.Sprite.setRotation(degrees);
 			this.Sprite.draw(batch);
 		}
