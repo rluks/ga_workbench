@@ -11,7 +11,7 @@ public class PhysicsComponent extends Component{
 			tc.Rotation += this.AngularVelocity * delta;
 			//TODO 360 if 0
 			//System.out.println("PhysicsComponent: AngularVelocity:" + AngularVelocity);
-			System.out.println("PhysicsComponent: Rotation:" + tc.Rotation);
+			//System.out.println("PhysicsComponent: Rotation:" + tc.Rotation);
 		}
 		
 		
