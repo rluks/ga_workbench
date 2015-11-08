@@ -13,6 +13,7 @@ public class EntitySystem {
 		 e = new Entity()
 				.Name("x")
 				.AddComponent(new TransformComponent())
+				.AddComponent(new PhysicsComponent())
 				.AddComponent(new SpriteComponent(new Texture("x.png")));
 		Entities.put(e.Id, e);
 	}

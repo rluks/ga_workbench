@@ -10,8 +10,8 @@ public class SpriteComponent extends Component {
 	public Sprite Sprite;
 	
 	public SpriteComponent(com.badlogic.gdx.graphics.Texture texture) {
-		Texture = texture;
-		Sprite = new Sprite(texture);
+		this.Texture = texture;
+		this.Sprite = new Sprite(texture);
 	}
 
 	public void Render(Batch batch){

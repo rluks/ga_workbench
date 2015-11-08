@@ -43,6 +43,7 @@ public class TestESScreen extends ScreenAdapter {
 		
 		EntitySystem.Init();
 		RenderSystem.Init();
+		PhysicsSystem.Init();
 		Entity e = EntitySystem.GetTest();
 		
 		SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
@@ -64,7 +65,8 @@ public class TestESScreen extends ScreenAdapter {
 	}
 	
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {	
+		PhysicsSystem.Update(delta);
 		RenderSystem.Render(stage, BG_COL);
 	}
 
