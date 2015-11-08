@@ -12,7 +12,8 @@ public class PhysicsSystem extends BaseSystem {
 	
 	public PhysicsSystem(){
 		physics = new ArrayList<PhysicsComponent>();
-		PhysicsComponent pc = (PhysicsComponent) EntitySystem.GetTest().GetComponent("PhysicsComponent");
+		EntitySystem es = (EntitySystem)ServiceLocator.Get("EntitySystem");
+		PhysicsComponent pc = (PhysicsComponent) es.GetTest().GetComponent("PhysicsComponent");
 		physics.add(pc);
 	}
 	

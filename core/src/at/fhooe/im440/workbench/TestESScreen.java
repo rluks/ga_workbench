@@ -25,8 +25,6 @@ public class TestESScreen extends ScreenAdapter {
 		// cleanup
 		stage.clear();
 		stage.getRoot().setPosition(0, 0);
-			
-		EntitySystem.Init();
 		
 		ServiceLocator.Init();
 		

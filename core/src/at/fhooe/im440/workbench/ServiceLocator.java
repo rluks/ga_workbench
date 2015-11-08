@@ -5,11 +5,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import at.fhooe.im440.workbench.entitysystem.EntitySystem;
+
 public class ServiceLocator {
 	static LinkedHashMap<String, BaseSystem> systems;
 	//TODO singleton?
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
+		Register(new EntitySystem());
 		Register(new RenderSystem());
 		Register(new PhysicsSystem());
 	}

@@ -22,7 +22,8 @@ public class RenderSystem extends BaseSystem{
 	
 	public RenderSystem(){
 		sprites = new ArrayList<SpriteComponent>();
-		SpriteComponent sc = (SpriteComponent) EntitySystem.GetTest().GetComponent("SpriteComponent");
+		EntitySystem es = (EntitySystem)ServiceLocator.Get("EntitySystem");
+		SpriteComponent sc = (SpriteComponent) es.GetTest().GetComponent("SpriteComponent");
 		sprites.add(sc);
 		batch = new SpriteBatch();
 	}

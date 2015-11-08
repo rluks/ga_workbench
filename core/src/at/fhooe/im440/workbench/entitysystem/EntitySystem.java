@@ -2,15 +2,16 @@ package at.fhooe.im440.workbench.entitysystem;
 
 import java.util.LinkedHashMap;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
-public class EntitySystem {
-	public static LinkedHashMap<Long, Entity> Entities;
-	static Entity e;
+import at.fhooe.im440.workbench.BaseSystem;
+
+public class EntitySystem extends BaseSystem {
+	public LinkedHashMap<Long, Entity> Entities;
+	Entity e;
 	
-	public static void Init(){
+	public EntitySystem(){
 		
 		TextureAtlas ta = new TextureAtlas("atlas.pack");
 		AtlasRegion cogTex = ta.findRegion("cog1");
@@ -33,14 +34,24 @@ public class EntitySystem {
 		Entities.put(e2.Id, e2);
 	}
 	
-	public static Entity GetEntity(long id){
+	public Entity GetEntity(long id){
 		return Entities.get(id);
 	}
 	
-	public static Entity GetTest(){
-		return Entities.getOrDefault(0, e);
+	public void RemoveEntity(long id){
+		Entities.remove(id);
 	}
 	
-	//TODO remove entity
+	public Entity GetTest(){
+		return Entities.getOrDefault(0, e);
+	}
+
+	@Override
+	public void Update(float delta) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 	
 }
