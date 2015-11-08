@@ -5,4 +5,9 @@ public class FakeSystem extends BaseSystem{
 	public void Foo(){
 		System.out.println("Bar");
 	}
+
+	@Override
+	public void Update() {
+		Foo();
+	}
 }

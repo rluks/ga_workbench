@@ -1,5 +1,7 @@
 package at.fhooe.im440.workbench;
 
-public class BaseSystem {
+abstract public class BaseSystem {
+
+	public abstract void Update();
 
 }

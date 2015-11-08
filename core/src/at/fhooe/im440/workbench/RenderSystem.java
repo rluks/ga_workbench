@@ -28,7 +28,8 @@ public class RenderSystem extends BaseSystem{
 	}
 	
 
-	public static void Render(Stage stage, Color BG_COL) {
+	public static void Render() {
+		Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
 		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -45,6 +46,12 @@ public class RenderSystem extends BaseSystem{
         
 		//stage.act();
 		//stage.draw();
+	}
+
+
+	@Override
+	public void Update() {
+		Render();	
 	}
 
 }

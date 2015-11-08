@@ -61,7 +61,7 @@ public class TestESScreen extends ScreenAdapter {
 	@Override
 	public void render(float delta) {	
 		PhysicsSystem.Update(delta);
-		RenderSystem.Render(stage, BG_COL);
+		RenderSystem.Render();
 		
 		((FakeSystem)ServiceLocator.Get("FakeSystem")).Foo();
 	}

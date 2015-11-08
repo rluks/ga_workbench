@@ -3,15 +3,23 @@ package at.fhooe.im440.workbench;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 public class ServiceLocator {
 	static LinkedHashMap<String, BaseSystem> systems;
 	//TODO singleton?
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
+
 	}
 	
 	//TODO should we update all of systems here?
+	public static void Update(){
+		for(Entry<String, BaseSystem> entry: systems.entrySet()){
+			BaseSystem system = entry.getValue();
+			system.Update();
+		}
+	}
 	
 	//TODO where will i initialize systems? 
 	//TODO from wheere i call register?
