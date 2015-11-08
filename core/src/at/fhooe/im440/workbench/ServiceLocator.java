@@ -12,9 +12,13 @@ public class ServiceLocator {
 	//TODO singleton?
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
+		Register(new PhysicsSystem());
 		Register(new EntitySystem());
 		Register(new RenderSystem());
-		Register(new PhysicsSystem());
+		//TODO order of registering components to their systems causes null pointer exception - init systems, then create entities
+		
+		
+		
 	}
 	
 	//TODO should we update all of systems here?
@@ -26,7 +30,7 @@ public class ServiceLocator {
 	}
 	
 	//TODO where will i initialize systems? 
-	//TODO from wheere i call register?
+	//TODO from where i call register?
 	public static void Register(BaseSystem system){
 		System.out.println("ServiceLocator Register:" + system.getClass().getSimpleName());
 		systems.put(system.getClass().getSimpleName(), system);

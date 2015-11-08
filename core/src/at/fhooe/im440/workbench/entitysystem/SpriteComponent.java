@@ -4,6 +4,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
+import at.fhooe.im440.workbench.RenderSystem;
+import at.fhooe.im440.workbench.ServiceLocator;
+
 
 public class SpriteComponent extends Component {
 
@@ -25,5 +28,19 @@ public class SpriteComponent extends Component {
 			this.Sprite.draw(batch);
 		}
 	}
+
+	@Override
+	void Register() {
+		RenderSystem rs = (RenderSystem)ServiceLocator.Get("RenderSystem");
+		rs.Register(this);	
+	}
+
+	@Override
+	void Unregister() {
+		RenderSystem rs = (RenderSystem)ServiceLocator.Get("RenderSystem");
+		rs.Unregister(this);		
+	}
+	
+	
 	
 }

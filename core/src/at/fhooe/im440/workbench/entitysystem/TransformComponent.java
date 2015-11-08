@@ -15,6 +15,18 @@ public class TransformComponent extends Component {
 		Scale = new Vector2();
 		Rotation = 0;
 	}
+
+	@Override
+	void Register() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void Unregister() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

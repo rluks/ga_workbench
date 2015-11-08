@@ -1,5 +1,8 @@
 package at.fhooe.im440.workbench.entitysystem;
 
+import at.fhooe.im440.workbench.PhysicsSystem;
+import at.fhooe.im440.workbench.ServiceLocator;
+
 public class PhysicsComponent extends Component{
 
 	public float AngularVelocity;
@@ -14,6 +17,18 @@ public class PhysicsComponent extends Component{
 			//System.out.println("PhysicsComponent: Rotation:" + tc.Rotation);
 		}
 		
+		
+	}
+
+	@Override
+	void Register() {
+		PhysicsSystem s = (PhysicsSystem)ServiceLocator.Get("PhysicsSystem");
+		s.Register(this);	
+	}
+
+	@Override
+	void Unregister() {
+		// TODO Auto-generated method stub
 		
 	}
 }

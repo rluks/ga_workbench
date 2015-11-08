@@ -10,6 +10,7 @@ abstract public class Component {
 		Id = maxId;
 		//System.out.println("Component: Id:" + Id);
 		Active = true;
+		Register();
 	}
 	
 	public Component SetActive(boolean activeState){
@@ -26,10 +27,14 @@ abstract public class Component {
 		this.entity = entity;		
 	}
 	
-	//TODO make this visible only to Entity?
+	//TODO make this visible only to Entity? - same package
 	protected void RemoveEntity() {
 		this.entity = null;	
+		//TODO when to call Unregister();?
 	}
+	
+	abstract void Register();
+	abstract void Unregister();
 	
 	static private long maxId = 0;
 

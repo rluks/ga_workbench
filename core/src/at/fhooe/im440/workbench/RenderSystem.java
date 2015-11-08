@@ -10,21 +10,21 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import at.fhooe.im440.workbench.entitysystem.Component;
 import at.fhooe.im440.workbench.entitysystem.EntitySystem;
 import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
 
 
-public class RenderSystem extends BaseSystem{
+public class RenderSystem extends BaseSystem implements IComponentSystem{
 
-	 List<SpriteComponent> sprites;
-	 private SpriteBatch batch;
-
+	List<SpriteComponent> sprites;
+	private SpriteBatch batch;
 	
 	public RenderSystem(){
 		sprites = new ArrayList<SpriteComponent>();
-		EntitySystem es = (EntitySystem)ServiceLocator.Get("EntitySystem");
-		SpriteComponent sc = (SpriteComponent) es.GetTest().GetComponent("SpriteComponent");
-		sprites.add(sc);
+		//EntitySystem es = (EntitySystem)ServiceLocator.Get("EntitySystem");
+		//SpriteComponent sc = (SpriteComponent) es.GetTest().GetComponent("SpriteComponent");
+		//sprites.add(sc);
 		batch = new SpriteBatch();
 	}
 	
@@ -53,6 +53,18 @@ public class RenderSystem extends BaseSystem{
 	@Override
 	public void Update(float delta) {
 		Render();	
+	}
+
+
+	@Override
+	public void Register(Component component) {
+		sprites.add((SpriteComponent) component);
+	}
+
+
+	@Override
+	public void Unregister(Component component) {
+		sprites.remove((SpriteComponent) component);
 	}
 
 }

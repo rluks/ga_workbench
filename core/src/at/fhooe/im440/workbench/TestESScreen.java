@@ -27,6 +27,8 @@ public class TestESScreen extends ScreenAdapter {
 		stage.getRoot().setPosition(0, 0);
 		
 		ServiceLocator.Init();
+		EntitySystem es = (EntitySystem) ServiceLocator.Get("EntitySystem");
+		es.InitTestEntities();
 		
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 	}

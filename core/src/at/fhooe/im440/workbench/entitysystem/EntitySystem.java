@@ -11,11 +11,13 @@ public class EntitySystem extends BaseSystem {
 	public LinkedHashMap<Long, Entity> Entities;
 	Entity e;
 	
-	public EntitySystem(){
+	public EntitySystem(){	
 		
+	}
+	
+	public void InitTestEntities(){
 		TextureAtlas ta = new TextureAtlas("atlas.pack");
 		AtlasRegion cogTex = ta.findRegion("cog1");
-		
 		Entities = new LinkedHashMap<Long, Entity>();
 		 e = new Entity()
 				.Name("Red cog wheel")
@@ -30,8 +32,9 @@ public class EntitySystem extends BaseSystem {
 				.Name("Another cog")
 				.AddComponent(new TransformComponent())
 				.AddComponent(new PhysicsComponent())
-				.AddComponent(new SpriteComponent(cogNTex));
-		Entities.put(e2.Id, e2);
+				//.AddComponent(new SpriteComponent(cogNTex))
+				;
+		//Entities.put(e2.Id, e2);
 	}
 	
 	public Entity GetEntity(long id){
