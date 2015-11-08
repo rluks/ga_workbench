@@ -11,10 +11,10 @@ public class EntitySystem {
 	public static void Init(){
 		Entities = new LinkedHashMap<Long, Entity>();
 		 e = new Entity()
-				.Name("x")
+				.Name("Colored Fan")
 				.AddComponent(new TransformComponent())
 				.AddComponent(new PhysicsComponent())
-				.AddComponent(new SpriteComponent(new Texture("x.png")));
+				.AddComponent(new SpriteComponent(new Texture("colored_fan.png")));
 		Entities.put(e.Id, e);
 	}
 	public static Entity GetEntity(long id){

@@ -32,10 +32,13 @@ public class RenderSystem {
 		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		//batch.enableBlending();
+		//batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		batch.begin();
        
 		for(SpriteComponent sc: sprites){
 			sc.Render(batch);
+			//batch.draw(sc.Texture, 0, 0, 480, 320);
 		}
 		
 		 batch.end();

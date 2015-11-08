@@ -18,7 +18,7 @@ public class PhysicsSystem {
 	
 	public static void Update(float delta){
 		for(PhysicsComponent pc: physics){
-			pc.AngularVelocity=0.1f;
+			pc.AngularVelocity=14.5f;
 			pc.Update(delta);
 		}
 	}

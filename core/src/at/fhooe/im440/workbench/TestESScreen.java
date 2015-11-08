@@ -21,8 +21,8 @@ import at.fhooe.im440.workbench.entitysystem.TransformComponent;
 public class TestESScreen extends ScreenAdapter {
 
 	private static final Color BG_COL = new Color(1.00f, 0.00f,  0.5f, 1f);
-	private static final float FADE_TIME = 0.1f;
-	private static final float DISPLAY_TIME = 0.5f;
+	//private static final float FADE_TIME = 0.1f;
+	//private static final float DISPLAY_TIME = 0.5f;
 	private Workbench workbench;
 	private Stage stage;//where should stage be? in some system? passed around?
 	private boolean dead;
@@ -44,13 +44,13 @@ public class TestESScreen extends ScreenAdapter {
 		EntitySystem.Init();
 		RenderSystem.Init();
 		PhysicsSystem.Init();
-		Entity e = EntitySystem.GetTest();
+		//Entity e = EntitySystem.GetTest();
 		
-		SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
-		TransformComponent tc = (TransformComponent) e.GetComponent("TransformComponent");
-		Actor ent = new Image(sc.Texture);
-		ent.setPosition(tc.Position.x,  tc.Position.y, Align.center);
-		ent.setName(e.Name);
+		//SpriteComponent sc = (SpriteComponent) e.GetComponent("SpriteComponent");
+		//TransformComponent tc = (TransformComponent) e.GetComponent("TransformComponent");
+		//Actor ent = new Image(sc.Texture);
+		//ent.setPosition(tc.Position.x,  tc.Position.y, Align.center);
+		//ent.setName(e.Name);
 		
 		//assemble stage - where should i do this?
 		//stage.addActor(ent);		
