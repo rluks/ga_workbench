@@ -22,10 +22,9 @@ public class TestESScreen extends ScreenAdapter {
 
 	private static final Color BG_COL = new Color(1.00f, 0.00f,  0.5f, 1f);
 	private static final float FADE_TIME = 0.1f;
-	private static final float DISPLAY_TIME = 0.1f;
+	private static final float DISPLAY_TIME = 0.5f;
 	private Workbench workbench;
-	private Texture texture;
-	private Stage stage;
+	private Stage stage;//where should stage be? in some system? passed around?
 	private boolean dead;
 	
 	public TestESScreen(Workbench workbench) {
@@ -38,36 +37,9 @@ public class TestESScreen extends ScreenAdapter {
 		// initialize control variables
 		dead = false;
 		
-		
-		
-		// load resources
-		Texture texture = new Texture("splash.png");
-		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
 		// cleanup
 		stage.clear();
 		stage.getRoot().setPosition(0, 0);
-		
-		//assemble stage
-		Actor img = new Image(texture);
-		img.setPosition(0,  0, Align.center);
-		img.getColor().a = 0;
-		img.setName("splash");
-		
-		img.addAction(Actions.sequence(
-				Actions.delay(0.5f),
-				Actions.fadeIn(FADE_TIME),
-				Actions.delay(DISPLAY_TIME),
-				Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						fadeOut();
-					}
-				})
-				));
-
-		stage.addActor(img);
-		
 		
 		EntitySystem.Init();
 		RenderSystem.Init();
@@ -78,29 +50,13 @@ public class TestESScreen extends ScreenAdapter {
 		Actor ent = new Image(sc.Texture);
 		ent.setPosition(tc.Position.x,  tc.Position.y, Align.center);
 		ent.setName(e.Name);
-		stage.addActor(ent);
 		
+		//assemble stage - where should i do this?
+		//stage.addActor(ent);		
+		//stage.addActor(img);//order of adding matters
 		
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 	}
-	
-	private void fadeOut() {
-		if (dead) return;
-		dead = true;
-
-		Actor img = stage.getRoot().findActor("splash");
-		assert(img != null);
-		img.clearActions();
-		img.addAction(Actions.sequence(
-				Actions.fadeOut(FADE_TIME),
-				Actions.run(new Runnable() {
-					@Override
-					public void run() {
-						//endOfState();
-					}
-				})));
-	}
-	
 	
 	private void endOfState() {
 		dead = true;
@@ -108,14 +64,8 @@ public class TestESScreen extends ScreenAdapter {
 	}
 	
 	@Override
-	public void render(float delta) {
-		//Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+	public void render(float delta) {		
 		RenderSystem.Render(stage, BG_COL);
-		
-		//stage.act();
-		//stage.draw();
 	}
 
 	@Override
@@ -125,7 +75,6 @@ public class TestESScreen extends ScreenAdapter {
 
 	@Override
 	public void dispose() {
-		texture.dispose();
 		stage.clear();
 	}
 
