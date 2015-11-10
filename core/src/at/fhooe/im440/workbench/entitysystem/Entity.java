@@ -29,11 +29,11 @@ public class Entity {
 	
 	public Entity AddComponent(Component component){
 		component.AddEntity(this);//TODO or some other way to inject reference?
-		components.put(component.getClass().getSimpleName(), component);
+		components.put(component.getClass().getSimpleName(), component);//what if there is already same type?
 		return this;
 	}
 	
-	public Component GetComponent(String type){
+	public Component GetComponent(String type){		
 		return components.get(type);
 	}
 	

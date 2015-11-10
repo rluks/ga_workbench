@@ -9,7 +9,9 @@ import at.fhooe.im440.workbench.entitysystem.EntitySystem;
 
 public class ServiceLocator {
 	static LinkedHashMap<String, BaseSystem> systems;
-	//TODO singleton?
+	//TODO singleton? 
+	static{}//TODO static constructor
+	
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
 		Register(new PhysicsSystem());
