@@ -32,6 +32,8 @@ public class Workbench extends Game {
 		setScreen(new SplashScreen2(this));
 		
 	}
+	
+	//TODO java style is small letters(); of methods
 
 	@Override
 	public void render () {

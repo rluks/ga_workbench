@@ -63,8 +63,11 @@ public class EntitySystem extends BaseSystem {
 		return Entities.get(id);
 	}
 	
+	//TODO create Entitz
+	
 	public void RemoveEntity(long id){
-		Entities.remove(id);
+		Entities.remove(id);//TODO deactive entity and its componenets / unregister in systteems
+		//dont do this during update, postpone until finish
 	}
 	
 	public Entity GetTest(){

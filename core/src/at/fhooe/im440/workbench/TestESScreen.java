@@ -27,6 +27,8 @@ public class TestESScreen extends ScreenAdapter {
 		stage.getRoot().setPosition(0, 0);
 		
 		ServiceLocator.Init();
+		//TODO init services and put them to service
+		Service.register(systems..)
 		EntitySystem es = (EntitySystem) ServiceLocator.Get("EntitySystem");
 		es.InitTestEntities();
 		

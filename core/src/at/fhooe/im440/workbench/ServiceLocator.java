@@ -23,7 +23,7 @@ public class ServiceLocator {
 		
 	}
 	
-	//TODO should we update all of systems here?
+	//TODO should we update all of systems here? yy
 	public static void Update(float delta){
 		for(Entry<String, BaseSystem> entry: systems.entrySet()){
 			BaseSystem system = entry.getValue();

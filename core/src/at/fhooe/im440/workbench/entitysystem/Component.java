@@ -6,7 +6,7 @@ abstract public class Component {
 	private Entity entity;
 	
 	public Component() {
-		maxId++;//TODO might theoretically overflow - is this safe?
+		maxId++;//TODO might theoretically overflow - is this safe? y
 		Id = maxId;
 		//System.out.println("Component: Id:" + Id);
 		Active = true;
@@ -23,12 +23,11 @@ abstract public class Component {
 	}
 	
 	//TODO make this visible only to Entity? (same package visible to entitysystem)
-	protected void AddEntity(Entity entity) {
+	 void AddEntity(Entity entity) {//nothing package modifier
 		this.entity = entity;		
 	}
 	
-	//TODO make this visible only to Entity? - same package
-	protected void RemoveEntity() {
+	void RemoveEntity() {
 		this.entity = null;	
 		//TODO when to call Unregister();?
 	}
