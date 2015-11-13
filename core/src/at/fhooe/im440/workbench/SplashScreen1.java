@@ -36,7 +36,7 @@ public class SplashScreen1 extends ScreenAdapter {
 		this.workbench = workbench;
 		this.batch = workbench.getBatch();
 		this.camera = new OrthographicCamera();
-		viewport = new FitViewport(800, 480, camera);
+		this.viewport = new FitViewport(800, 480, camera);
 	}
 
 	@Override

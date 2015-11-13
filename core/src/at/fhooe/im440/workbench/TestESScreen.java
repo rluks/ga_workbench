@@ -1,20 +1,22 @@
 package at.fhooe.im440.workbench;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import at.fhooe.im440.workbench.entitysystem.EntitySystem;
 
 public class TestESScreen extends ScreenAdapter {
 
 	private Workbench workbench;
-	private Stage stage;//where should stage be? in some system? passed around?
+	//private Stage stage;//TODO is stage useful in Workbench at all? if so...where should stage be? in some system? passed around?
 	private boolean dead;
 	
 	public TestESScreen(Workbench workbench) {
 		this.workbench = workbench;
-		stage = workbench.getStage();
+		//stage = workbench.getStage();
 	}
 
 	@Override
@@ -23,8 +25,8 @@ public class TestESScreen extends ScreenAdapter {
 		dead = false;
 		
 		// cleanup
-		stage.clear();
-		stage.getRoot().setPosition(0, 0);
+		//stage.clear();
+		//stage.getRoot().setPosition(0, 0);
 		
 		//Note: init systems, then create entities		
 		ServiceLocator.Init();
@@ -35,7 +37,7 @@ public class TestESScreen extends ScreenAdapter {
 		
 		es.InitTestEntities();
 		
-		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
+		//stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
 	}
 	
 	private void endOfState() {
@@ -55,13 +57,14 @@ public class TestESScreen extends ScreenAdapter {
 
 	@Override
 	public void dispose() {
-		stage.clear();
+		//stage.clear();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().getCamera().position.set(0, 0, 0);
-		stage.getViewport().update(width, height, false);
+		//stage.getViewport().getCamera().position.set(0, 0, 0);
+		//stage.getViewport().update(width, height, false);
+		((RenderSystem)ServiceLocator.Get("RenderSystem")).resize(width, height);
 	}
 
 }

@@ -6,9 +6,12 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 import at.fhooe.im440.workbench.entitysystem.Component;
 import at.fhooe.im440.workbench.entitysystem.EntitySystem;
@@ -20,12 +23,15 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 	List<SpriteComponent> sprites;
 	private SpriteBatch batch;
 	
+	private OrthographicCamera camera;
+	private Viewport viewport;
+	
 	public RenderSystem(){
 		sprites = new ArrayList<SpriteComponent>();
-		//EntitySystem es = (EntitySystem)ServiceLocator.Get("EntitySystem");
-		//SpriteComponent sc = (SpriteComponent) es.GetTest().GetComponent("SpriteComponent");
-		//sprites.add(sc);
 		batch = new SpriteBatch();
+		
+		this.camera = new OrthographicCamera();
+		this.viewport = new FitViewport(800, 480, camera);
 	}
 	
 
@@ -34,25 +40,31 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		batch.setProjectionMatrix(camera.combined);
 		//batch.enableBlending();
 		//batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		batch.begin();
        
 		for(SpriteComponent sc: sprites){
 			sc.Render(batch);
-			//batch.draw(sc.Texture, 0, 0, 480, 320);
 		}
 		
 		 batch.end();
-        
-		//stage.act();
-		//stage.draw();
+
 	}
 
 
 	@Override
 	public void Update(float delta) {
 		Render();	
+	}
+	
+	public void resize(int width, int height) {
+		float ar = (float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
+		camera.setToOrtho(false, Workbench.V_WIDTH, Workbench.V_WIDTH / ar);
+		camera.position.set(0, 0, 0);
+		camera.update();
+		viewport.update(width, height);
 	}
 
 
