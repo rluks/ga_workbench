@@ -16,17 +16,12 @@ public class TestESScreen extends ScreenAdapter {
 	
 	public TestESScreen(Workbench workbench) {
 		this.workbench = workbench;
-		//stage = workbench.getStage();
 	}
 
 	@Override
 	public void show() {
 		// initialize control variables
 		dead = false;
-		
-		// cleanup
-		//stage.clear();
-		//stage.getRoot().setPosition(0, 0);
 		
 		//Note: init systems, then create entities		
 		ServiceLocator.Init();
@@ -35,9 +30,7 @@ public class TestESScreen extends ScreenAdapter {
 		ServiceLocator.Register(es);
 		ServiceLocator.Register(new RenderSystem());
 		
-		es.InitTestEntities();
-		
-		//stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));
+		es.InitTestEntities();		
 	}
 	
 	private void endOfState() {
@@ -57,13 +50,10 @@ public class TestESScreen extends ScreenAdapter {
 
 	@Override
 	public void dispose() {
-		//stage.clear();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		//stage.getViewport().getCamera().position.set(0, 0, 0);
-		//stage.getViewport().update(width, height, false);
 		(ServiceLocator.Get(RenderSystem.class)).resize(width, height);
 	}
 
