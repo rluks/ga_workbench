@@ -47,6 +47,7 @@ public class EntitySystem extends BaseSystem {
 				.Name("Another cog")
 				.AddComponent(tf2)
 				.AddComponent(new PhysicsComponent())
+				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogNTex))
 				;
 		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?		
@@ -56,6 +57,7 @@ public class EntitySystem extends BaseSystem {
 				.Name("Third wheel")
 				.AddComponent(tf3)
 				.AddComponent(new PhysicsComponent())
+				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogSTex))
 				;
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?

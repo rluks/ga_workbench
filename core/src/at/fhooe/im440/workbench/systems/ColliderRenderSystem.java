@@ -41,11 +41,12 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 		
 		renderer.setProjectionMatrix(cam.camera.combined);
 	    renderer.begin(ShapeType.Line);
-	    renderer.setColor(this.color);
+	    
 	    //renderer.scale(1f, 1f, 1f);
 	    for(ColliderComponent cc: colliders){
 			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
 				CircleColliderComponent ccc = CircleColliderComponent.class.cast(cc);
+				renderer.setColor(this.color);
 				renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
 				renderer.setColor(Color.RED);
 				renderer.point(ccc.getPosition().x, ccc.getPosition().y, 0);
