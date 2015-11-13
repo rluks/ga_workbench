@@ -3,6 +3,9 @@ package at.fhooe.im440.workbench;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.badlogic.gdx.math.Vector2;
+
+import at.fhooe.im440.workbench.entitysystem.CircleColliderComponent;
 import at.fhooe.im440.workbench.entitysystem.ColliderComponent;
 import at.fhooe.im440.workbench.entitysystem.Component;
 import at.fhooe.im440.workbench.entitysystem.PhysicsComponent;
@@ -17,10 +20,6 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 	
 	@Override
 	public void Update(float delta) {
-		/*for(PhysicsComponent pc: physics){
-			pc.AngularVelocity=14.5f;
-			pc.Update(delta);
-		}*/
 
 	}
 	
@@ -33,6 +32,15 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 	@Override
 	public void Unregister(Component component) {
 		colliders.remove((ColliderComponent) component);
+	}
+
+	public void test(Vector2 origin2d) {
+		for(ColliderComponent cc: colliders){
+			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
+				CircleColliderComponent.class.cast(cc).isHit(origin2d);
+			}
+		}
+		
 	}
 
 }

@@ -49,7 +49,8 @@ public class ServiceLocator {
 				return systemType.cast(system);
 		}
 		
-		return null;
+		throw new IllegalArgumentException("ServiceLocator>>System not found");
+		//return null;
 		
 	}
 }

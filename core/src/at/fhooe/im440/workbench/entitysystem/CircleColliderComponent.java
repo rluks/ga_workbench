@@ -23,7 +23,9 @@ public class CircleColliderComponent extends ColliderComponent {
 		Vector2 c = tc.Position;//center of the circle
 		double distance = Math.sqrt((c.x - p.x)*(c.x - p.x) + (c.y - p.y)*(c.y - p.y));
 		//distance from the center
-		return (distance <= this.radius);
+		boolean result = (distance <= this.radius);
+		System.out.println(result);
+		return result;
 	}
 	
 	@Override
