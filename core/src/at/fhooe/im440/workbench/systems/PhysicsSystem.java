@@ -3,10 +3,10 @@ package at.fhooe.im440.workbench.systems;
 import java.util.ArrayList;
 import java.util.List;
 
-import at.fhooe.im440.workbench.entitysystem.Component;
-import at.fhooe.im440.workbench.entitysystem.EntitySystem;
-import at.fhooe.im440.workbench.entitysystem.PhysicsComponent;
-import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
+import at.fhooe.im440.workbench.systems.entity.Component;
+import at.fhooe.im440.workbench.systems.entity.EntitySystem;
+import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
+import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 
 public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	

@@ -10,12 +10,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import at.fhooe.im440.workbench.entitysystem.EntitySystem;
 import at.fhooe.im440.workbench.systems.CameraSystem;
 import at.fhooe.im440.workbench.systems.ColliderRenderSystem;
 import at.fhooe.im440.workbench.systems.CollisionSystem;
 import at.fhooe.im440.workbench.systems.PhysicsSystem;
 import at.fhooe.im440.workbench.systems.RenderSystem;
+import at.fhooe.im440.workbench.systems.entity.EntitySystem;
 
 public class TestESScreen extends ScreenAdapter implements InputProcessor {
 

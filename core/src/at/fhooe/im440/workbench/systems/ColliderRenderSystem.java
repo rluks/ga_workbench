@@ -10,10 +10,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import at.fhooe.im440.workbench.ServiceLocator;
-import at.fhooe.im440.workbench.entitysystem.CircleColliderComponent;
-import at.fhooe.im440.workbench.entitysystem.ColliderComponent;
-import at.fhooe.im440.workbench.entitysystem.Component;
-import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
+import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
+import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
+import at.fhooe.im440.workbench.systems.entity.Component;
+import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 
 public class ColliderRenderSystem extends BaseSystem implements IComponentSystem{
 

@@ -1,6 +1,6 @@
 package at.fhooe.im440.workbench.systems;
 
-import at.fhooe.im440.workbench.entitysystem.Component;
+import at.fhooe.im440.workbench.systems.entity.Component;
 
 abstract public class BaseSystem {
 	public abstract void Update(float delta);

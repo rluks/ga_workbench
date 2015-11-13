@@ -1,4 +1,4 @@
-package at.fhooe.im440.workbench.entitysystem;
+package at.fhooe.im440.workbench.systems.entity;
 
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.ColliderRenderSystem;

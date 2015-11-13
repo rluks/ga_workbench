@@ -5,10 +5,10 @@ import java.util.List;
 
 import com.badlogic.gdx.math.Vector2;
 
-import at.fhooe.im440.workbench.entitysystem.CircleColliderComponent;
-import at.fhooe.im440.workbench.entitysystem.ColliderComponent;
-import at.fhooe.im440.workbench.entitysystem.Component;
-import at.fhooe.im440.workbench.entitysystem.PhysicsComponent;
+import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
+import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
+import at.fhooe.im440.workbench.systems.entity.Component;
+import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
 
 public class CollisionSystem extends BaseSystem implements IComponentSystem {
 

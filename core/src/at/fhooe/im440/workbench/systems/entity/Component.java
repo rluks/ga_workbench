@@ -1,4 +1,4 @@
-package at.fhooe.im440.workbench.entitysystem;
+package at.fhooe.im440.workbench.systems.entity;
 
 abstract public class Component {
 	

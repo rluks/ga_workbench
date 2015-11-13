@@ -15,9 +15,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import at.fhooe.im440.workbench.ServiceLocator;
-import at.fhooe.im440.workbench.entitysystem.Component;
-import at.fhooe.im440.workbench.entitysystem.EntitySystem;
-import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
+import at.fhooe.im440.workbench.systems.entity.Component;
+import at.fhooe.im440.workbench.systems.entity.EntitySystem;
+import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 
 
 public class RenderSystem extends BaseSystem implements IComponentSystem{
