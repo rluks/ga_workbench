@@ -35,6 +35,7 @@ public class EntitySystem extends BaseSystem {
 				.Name("Red cog wheel")
 				.AddComponent(tf1)
 				.AddComponent(new PhysicsComponent())
+				.AddComponent(new CircleCollider())
 				.AddComponent(new SpriteComponent(cogTex));
 		Entities.put(e.Id, e);
 			

@@ -2,14 +2,19 @@ package at.fhooe.im440.workbench.entitysystem;
 
 import com.badlogic.gdx.math.Vector2;
 
-public class CircleCollider extends Collider {
+public class CircleCollider extends ColliderComponent {
 
-	public String name;
+	public String name = "CircleCollider";
 	public float radius = 1.0f;
 	//TODO offset from origin of entity
 	
 	public CircleCollider setRadius(float r){
 		this.radius = r;
+		return this;
+	}
+	
+	public CircleCollider setName(String n){
+		this.name = n;
 		return this;
 	}
 	
@@ -22,7 +27,7 @@ public class CircleCollider extends Collider {
 	}
 	
 	@Override
-	public boolean isHit(Collider otherCollider) {	
+	public boolean isHit(ColliderComponent otherCollider) {	
 		System.out.println(name + " CircleCollider:isHit(Collider)");
 		
 		System.out.println("this: " + this.getClass().getSimpleName());

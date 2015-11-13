@@ -1,11 +1,11 @@
 package at.fhooe.im440.workbench.entitysystem;
 
-public class BoxCollider extends Collider {
+public class BoxCollider extends ColliderComponent {
 
 	public String name;
 	
 	@Override
-	public boolean isHit(Collider otherCollider) {
+	public boolean isHit(ColliderComponent otherCollider) {
 		System.out.println(name + " BoxCollider:isHit(Collider)");
 		
 		System.out.println("this: " + this.getClass().getSimpleName());
