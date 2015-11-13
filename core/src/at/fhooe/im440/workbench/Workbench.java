@@ -9,6 +9,7 @@
 package at.fhooe.im440.workbench;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,8 +18,8 @@ import at.fhooe.im440.workbench.entitysystem.*;
 
 public class Workbench extends Game {
 	
-	public static final float V_WIDTH = 1366;
-	public static final float V_HEIGHT = 768;
+	public static final float V_WIDTH = 1920;
+	public static final float V_HEIGHT = 1080;
 	public static final String VERSION = "1.0.0";
 	public static final String APP_TITLE = "Workbench";
 
@@ -31,6 +32,9 @@ public class Workbench extends Game {
 		stage = new Stage();
 		setScreen(new SplashScreen2(this));
 		
+		Gdx.graphics.setDisplayMode((int)V_WIDTH, (int)V_HEIGHT, false);
+
+
 	}
 	
 	//TODO java style is small letters(); of methods

@@ -12,8 +12,8 @@ public class CameraSystem extends BaseSystem {
 	
 	
 	public CameraSystem() {
-		this.camera = new OrthographicCamera();
-		this.viewport = new FitViewport(800, 480, camera);
+		this.camera = new OrthographicCamera(Workbench.V_WIDTH, Workbench.V_HEIGHT);
+		this.viewport = new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT, camera);
 	}
 
 
@@ -24,6 +24,7 @@ public class CameraSystem extends BaseSystem {
 	}
 	
 	public void resize(int width, int height) {
+		System.out.println("resize: " + width + ", " + height);
 		float ar = (float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
 		camera.setToOrtho(false, Workbench.V_WIDTH, Workbench.V_WIDTH / ar);
 		camera.position.set(0, 0, 0);

@@ -35,6 +35,8 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
 				CircleColliderComponent ccc = CircleColliderComponent.class.cast(cc);
 				renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
+				renderer.setColor(Color.RED);
+				renderer.point(ccc.getPosition().x, ccc.getPosition().y, 0);
 			}
 		}
 	    
