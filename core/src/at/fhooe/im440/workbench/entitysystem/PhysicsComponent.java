@@ -3,6 +3,11 @@ package at.fhooe.im440.workbench.entitysystem;
 import at.fhooe.im440.workbench.PhysicsSystem;
 import at.fhooe.im440.workbench.ServiceLocator;
 
+/**
+ * Moves objects according to their velocities
+ * @author Roman
+ *
+ */
 public class PhysicsComponent extends Component{
 
 	public float AngularVelocity;

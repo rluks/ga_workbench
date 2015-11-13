@@ -9,13 +9,11 @@ import at.fhooe.im440.workbench.entitysystem.PhysicsComponent;
 import at.fhooe.im440.workbench.entitysystem.SpriteComponent;
 
 public class PhysicsSystem extends BaseSystem implements IComponentSystem {
+	
 	List<PhysicsComponent> physics;
 	
 	public PhysicsSystem(){
 		physics = new ArrayList<PhysicsComponent>();
-		//EntitySystem es = (EntitySystem)ServiceLocator.Get("EntitySystem");
-		//PhysicsComponent pc = (PhysicsComponent) es.GetTest().GetComponent("PhysicsComponent");
-		//physics.add(pc);
 	}
 	
 	@Override
