@@ -19,7 +19,7 @@ public abstract class ColliderComponent extends Component {
 	
 	abstract public boolean isHit(ColliderComponent c);
 
-	abstract public boolean isHitW(CircleCollider circleCollider);
-	abstract public boolean isHitW(BoxCollider circleCollider);
+	abstract public boolean isHitW(CircleColliderComponent circleCollider);
+	abstract public boolean isHitW(BoxColliderComponent circleCollider);
 
 }

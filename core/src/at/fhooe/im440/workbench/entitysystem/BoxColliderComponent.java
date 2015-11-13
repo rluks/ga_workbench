@@ -1,6 +1,6 @@
 package at.fhooe.im440.workbench.entitysystem;
 
-public class BoxCollider extends ColliderComponent {
+public class BoxColliderComponent extends ColliderComponent {
 
 	public String name;
 	
@@ -23,12 +23,12 @@ public class BoxCollider extends ColliderComponent {
 	}
 	
 	@Override
-	public boolean isHitW(CircleCollider otherCollider){
+	public boolean isHitW(CircleColliderComponent otherCollider){
 		System.out.println(name + " BoxCollider:isHit(CircleCollider)");
 		return true;
 	}
 	
-	public boolean isHitW(BoxCollider otherCollider){
+	public boolean isHitW(BoxColliderComponent otherCollider){
 		System.out.println(name + " BoxCollider:isHit(BoxCollider)");
 		return true;
 	}
