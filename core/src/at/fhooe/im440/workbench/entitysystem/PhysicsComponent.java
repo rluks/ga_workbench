@@ -9,7 +9,7 @@ public class PhysicsComponent extends Component{
 	
 	public void Update(float delta){
 		if(Active){
-			TransformComponent tc = (TransformComponent) this.Entity().GetComponent("TransformComponent");
+			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			//TODO check null
 			tc.Rotation += this.AngularVelocity * delta;
 			//TODO 360 if 0

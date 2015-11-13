@@ -33,21 +33,14 @@ public class Entity {
 		return this;
 	}
 	
-	public Component GetComponent(String type){		
+	@Deprecated
+	public Component GetComponent(String type){
 		return components.get(type);
+	}
 		
-		//TODO return specific component without need to cast it
-		/*public static <T extends BaseSystem> T getSystem(Class<T> clazz) 
-		{
-			for (int i = 0; i < _systems.size(); i++)
-			{
-				if (_systems.get(i).getClass().isAssignableFrom(clazz))
-					return clazz.cast(_systems.get(i));
-			}
-			
-			return null;
-			
-		}*/
+	public <T extends Component> T GetComponent(Class<T> componentType){	
+		String type = componentType.getSimpleName();
+		return componentType.cast(components.get(type));
 	}
 	
 	public Component RemoveComponent(String type){

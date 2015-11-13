@@ -10,8 +10,6 @@ import at.fhooe.im440.workbench.ServiceLocator;
 
 public class SpriteComponent extends Component {
 
-	public static final String NAME = "SpriteComponent";
-
 	public AtlasRegion Texture;
 	public Sprite Sprite;
 	
@@ -22,7 +20,7 @@ public class SpriteComponent extends Component {
 
 	public void Render(Batch batch){
 		if(Active){
-			TransformComponent tc = (TransformComponent)this.Entity().GetComponent(TransformComponent.NAME);
+			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			float degrees = tc.Rotation;
 			//this.Sprite.setAlpha(0.1f);
 			this.Sprite.setPosition(tc.Position.x, tc.Position.y);

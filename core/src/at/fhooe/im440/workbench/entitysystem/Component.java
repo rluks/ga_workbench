@@ -1,6 +1,7 @@
 package at.fhooe.im440.workbench.entitysystem;
 
 abstract public class Component {
+	
 	public final long Id;
 	public boolean Active;
 	private Entity entity;
