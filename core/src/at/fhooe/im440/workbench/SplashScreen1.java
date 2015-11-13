@@ -15,16 +15,20 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class SplashScreen1 extends ScreenAdapter {
 
 	private static final Color BG_COL = new Color(1f, 0.38f, 0.22f, 1f);
-	private static final float DISPLAY_TIME = 0.25f;
+	private static final float DISPLAY_TIME = 50.25f;
 
 	private SpriteBatch batch;
 	private Workbench workbench;
 	private Texture texture;
 	private OrthographicCamera camera;
+	private Viewport viewport;
+	
 	private float displayTime;
 	private boolean dead;
 	
@@ -32,6 +36,7 @@ public class SplashScreen1 extends ScreenAdapter {
 		this.workbench = workbench;
 		this.batch = workbench.getBatch();
 		this.camera = new OrthographicCamera();
+		viewport = new FitViewport(800, 480, camera);
 	}
 
 	@Override
@@ -45,7 +50,7 @@ public class SplashScreen1 extends ScreenAdapter {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+		
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		float w = texture.getWidth();
@@ -68,10 +73,17 @@ public class SplashScreen1 extends ScreenAdapter {
 
 	@Override
 	public void resize(int width, int height) {
+		resizeCamera();
+		viewport.update(width, height);
+	}
+	
+	void resizeCamera(){
+		System.out.println("resizeCamera");
 		float ar = (float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
 		camera.setToOrtho(false, Workbench.V_WIDTH, Workbench.V_WIDTH / ar);
 		camera.position.set(0, 0, 0);
 		camera.update();
+		
 	}
 
 	@Override
