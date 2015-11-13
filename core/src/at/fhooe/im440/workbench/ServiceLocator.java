@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import at.fhooe.im440.workbench.entitysystem.EntitySystem;
+import at.fhooe.im440.workbench.systems.BaseSystem;
 
 public class ServiceLocator {
 	static LinkedHashMap<String, BaseSystem> systems;

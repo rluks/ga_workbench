@@ -1,9 +1,9 @@
 package at.fhooe.im440.workbench.entitysystem;
 
-import at.fhooe.im440.workbench.ColliderRenderSystem;
-import at.fhooe.im440.workbench.CollisionSystem;
-import at.fhooe.im440.workbench.RenderSystem;
 import at.fhooe.im440.workbench.ServiceLocator;
+import at.fhooe.im440.workbench.systems.ColliderRenderSystem;
+import at.fhooe.im440.workbench.systems.CollisionSystem;
+import at.fhooe.im440.workbench.systems.RenderSystem;
 
 public abstract class ColliderComponent extends Component {
 

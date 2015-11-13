@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 
-import at.fhooe.im440.workbench.RenderSystem;
 import at.fhooe.im440.workbench.ServiceLocator;
+import at.fhooe.im440.workbench.systems.RenderSystem;
 
 
 public class SpriteComponent extends Component {

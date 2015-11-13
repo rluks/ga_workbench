@@ -1,4 +1,4 @@
-package at.fhooe.im440.workbench;
+package at.fhooe.im440.workbench.systems;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.entitysystem.CircleColliderComponent;
 import at.fhooe.im440.workbench.entitysystem.ColliderComponent;
 import at.fhooe.im440.workbench.entitysystem.Component;

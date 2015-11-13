@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import at.fhooe.im440.workbench.BaseSystem;
+import at.fhooe.im440.workbench.systems.BaseSystem;
 
 public class EntitySystem extends BaseSystem {
 	

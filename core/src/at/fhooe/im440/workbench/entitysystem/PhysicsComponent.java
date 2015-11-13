@@ -1,7 +1,7 @@
 package at.fhooe.im440.workbench.entitysystem;
 
-import at.fhooe.im440.workbench.PhysicsSystem;
 import at.fhooe.im440.workbench.ServiceLocator;
+import at.fhooe.im440.workbench.systems.PhysicsSystem;
 
 /**
  * Moves objects according to their velocities
