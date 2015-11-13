@@ -16,7 +16,13 @@ public class CircleColliderComponent extends ColliderComponent {
 	
 	public Vector2 getPosition(){
 		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-		position = tc.Position;
+		SpriteComponent sc = this.Entity().GetComponent(SpriteComponent.class);
+		
+		float x = tc.Position.x + sc.Sprite.getWidth()/2;
+		float y = tc.Position.y + sc.Sprite.getHeight()/2;
+		Vector2 xy = new Vector2(x, y);
+		position = xy;
+		
 		return position;
 	}
 	
@@ -36,9 +42,10 @@ public class CircleColliderComponent extends ColliderComponent {
 	}
 	
 	public boolean isHit(Vector2 p){
-		setOffset();
-		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-		Vector2 c = tc.Position;//center of the circle
+		getPosition();//TODO maybe constructor? or sth...to init values, just in case 
+		//setOffset();
+		//TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
+		Vector2 c = position;//center of the circle
 		System.out.println("circle center: " + c);
 		double distance = Math.sqrt((c.x - p.x)*(c.x - p.x) + (c.y - p.y)*(c.y - p.y));
 		//distance from the center
