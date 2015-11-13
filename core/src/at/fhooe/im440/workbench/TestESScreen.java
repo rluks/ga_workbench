@@ -26,10 +26,13 @@ public class TestESScreen extends ScreenAdapter {
 		stage.clear();
 		stage.getRoot().setPosition(0, 0);
 		
+		//Note: init systems, then create entities		
 		ServiceLocator.Init();
-		//TODO init services and put them to service
-		Service.register(systems..)
-		EntitySystem es = (EntitySystem) ServiceLocator.Get("EntitySystem");
+		ServiceLocator.Register(new PhysicsSystem());
+		EntitySystem es = new EntitySystem();
+		ServiceLocator.Register(es);
+		ServiceLocator.Register(new RenderSystem());
+		
 		es.InitTestEntities();
 		
 		stage.setViewport(new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT));

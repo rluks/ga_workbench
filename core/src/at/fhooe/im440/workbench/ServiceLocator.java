@@ -14,13 +14,7 @@ public class ServiceLocator {
 	
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
-		Register(new PhysicsSystem());
-		Register(new EntitySystem());
-		Register(new RenderSystem());
-		//TODO order of registering components to their systems causes null pointer exception - init systems, then create entities
-		
-		
-		
+
 	}
 	
 	//TODO should we update all of systems here? yy
