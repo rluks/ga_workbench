@@ -18,19 +18,30 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 
 	List<ColliderComponent> colliders;
 	ShapeRenderer renderer;
+	Color color;
 	
 	public ColliderRenderSystem(){
 		this.colliders = new ArrayList<ColliderComponent>();
 		this.renderer = new ShapeRenderer();
+		this.color = Color.CYAN;
+		this.color.a = 0.3f;
 	}
 	
 	public void Render() {
+		//Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
+		//Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
+		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
+		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		//Gdx.gl.glEnable(GL20.GL_BLEND);
+		
 		renderer.setProjectionMatrix(cam.camera.combined);
-	    renderer.begin(ShapeType.Filled);
-	    renderer.setColor(Color.CYAN);
-	    renderer.scale(1f, 1f, 1f);
+	    renderer.begin(ShapeType.Line);
+	    renderer.setColor(this.color);
+	    //renderer.scale(1f, 1f, 1f);
 	    for(ColliderComponent cc: colliders){
 			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
 				CircleColliderComponent ccc = CircleColliderComponent.class.cast(cc);
@@ -39,6 +50,7 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 				renderer.point(ccc.getPosition().x, ccc.getPosition().y, 0);
 			}
 		}
+	    //Gdx.gl.glDisable(GL20.GL_BLEND);
 	    
 	    renderer.end();
 	}

@@ -12,7 +12,7 @@ public class CameraSystem extends BaseSystem {
 	
 	
 	public CameraSystem() {
-		this.camera = new OrthographicCamera(Workbench.V_WIDTH, Workbench.V_HEIGHT);
+		this.camera = new OrthographicCamera();
 		this.viewport = new FitViewport(Workbench.V_WIDTH, Workbench.V_HEIGHT, camera);
 	}
 

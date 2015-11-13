@@ -18,8 +18,8 @@ import at.fhooe.im440.workbench.entitysystem.*;
 
 public class Workbench extends Game {
 	
-	public static final float V_WIDTH = 1920;
-	public static final float V_HEIGHT = 1080;
+	public static final float V_WIDTH = 1280;
+	public static final float V_HEIGHT = 768;
 	public static final String VERSION = "1.0.0";
 	public static final String APP_TITLE = "Workbench";
 
