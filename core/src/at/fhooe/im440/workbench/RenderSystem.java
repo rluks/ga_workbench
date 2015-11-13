@@ -24,7 +24,7 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 	private SpriteBatch batch;
 	
 	public OrthographicCamera camera;
-	private Viewport viewport;
+	public Viewport viewport;
 	
 	public RenderSystem(){
 		sprites = new ArrayList<SpriteComponent>();

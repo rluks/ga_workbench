@@ -5,8 +5,8 @@ import com.badlogic.gdx.math.Vector2;
 public class CircleColliderComponent extends ColliderComponent {
 
 	public String name = "CircleCollider";
-	public float radius = 1.0f;
-	//TODO offset from origin of entity
+	public float radius = 10.0f;
+	float offset;//TODO better way to calculate this (maybe move anchor to center of entity for tc.pos?)
 	
 	public CircleColliderComponent setRadius(float r){
 		this.radius = r;
@@ -18,9 +18,16 @@ public class CircleColliderComponent extends ColliderComponent {
 		return this;
 	}
 	
+	void setOffset(){
+		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
+		offset = tc.Position.x;//TODO
+	}
+	
 	public boolean isHit(Vector2 p){
+		setOffset();
 		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 		Vector2 c = tc.Position;//center of the circle
+		System.out.println("circle center: " + c);
 		double distance = Math.sqrt((c.x - p.x)*(c.x - p.x) + (c.y - p.y)*(c.y - p.y));
 		//distance from the center
 		boolean result = (distance <= this.radius);

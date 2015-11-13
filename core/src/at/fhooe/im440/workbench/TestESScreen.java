@@ -91,7 +91,8 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
-		Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
+		Vector3 origin3d = rs.camera.unproject(new Vector3(screenX, screenY, 0));
+		//Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		cs.test(origin2d);

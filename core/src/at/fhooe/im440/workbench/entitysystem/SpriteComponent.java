@@ -23,9 +23,13 @@ public class SpriteComponent extends Component {
 			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			float degrees = tc.Rotation;
 			//this.Sprite.setAlpha(0.1f);
-			this.Sprite.setPosition(tc.Position.x, tc.Position.y);
+			float h = this.Sprite.getHeight()/2;
+			float w = this.Sprite.getWidth()/2;
+			this.Sprite.setPosition(tc.Position.x-w, tc.Position.y-h);
 			this.Sprite.setRotation(degrees);
+			//this.Sprite.setOriginCenter();//rotation,scaling
 			this.Sprite.draw(batch);
+			
 		}
 	}
 
