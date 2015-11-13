@@ -36,7 +36,20 @@ public class ServiceLocator {
 		systems.remove(system.getClass().getSimpleName());
 	}
 	
+	@Deprecated
 	public static BaseSystem Get(String systemName){
 		return systems.get(systemName);
+	}
+	
+	public static <T extends BaseSystem> T Get(Class<T> systemType) 
+	{	
+		for(Entry<String, BaseSystem> entry: systems.entrySet()){
+			BaseSystem system = entry.getValue();
+			if (system.getClass().isAssignableFrom(systemType))
+				return systemType.cast(system);
+		}
+		
+		return null;
+		
 	}
 }

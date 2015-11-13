@@ -22,7 +22,7 @@ public class PhysicsComponent extends Component{
 
 	@Override
 	void Register() {
-		PhysicsSystem s = (PhysicsSystem)ServiceLocator.Get("PhysicsSystem");
+		PhysicsSystem s = ServiceLocator.Get(PhysicsSystem.class);
 		s.Register(this);	
 	}
 

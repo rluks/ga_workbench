@@ -64,7 +64,7 @@ public class TestESScreen extends ScreenAdapter {
 	public void resize(int width, int height) {
 		//stage.getViewport().getCamera().position.set(0, 0, 0);
 		//stage.getViewport().update(width, height, false);
-		((RenderSystem)ServiceLocator.Get("RenderSystem")).resize(width, height);
+		(ServiceLocator.Get(RenderSystem.class)).resize(width, height);
 	}
 
 }

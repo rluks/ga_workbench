@@ -33,13 +33,13 @@ public class SpriteComponent extends Component {
 
 	@Override
 	void Register() {
-		RenderSystem rs = (RenderSystem)ServiceLocator.Get("RenderSystem");
+		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
 		rs.Register(this);	
 	}
 
 	@Override
 	void Unregister() {
-		RenderSystem rs = (RenderSystem)ServiceLocator.Get("RenderSystem");
+		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
 		rs.Unregister(this);		
 	}
 	
