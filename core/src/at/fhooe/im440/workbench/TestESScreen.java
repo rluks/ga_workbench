@@ -29,6 +29,7 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 		
 		//Note: init systems, then create entities		
 		ServiceLocator.Init();
+		ServiceLocator.Register(new CameraSystem());
 		ServiceLocator.Register(new PhysicsSystem());
 		EntitySystem es = new EntitySystem();
 		ServiceLocator.Register(es);
@@ -61,7 +62,7 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 
 	@Override
 	public void resize(int width, int height) {
-		(ServiceLocator.Get(RenderSystem.class)).resize(width, height);
+		(ServiceLocator.Get(CameraSystem.class)).resize(width, height);
 	}
 
 	@Override
@@ -91,7 +92,9 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
-		Vector3 origin3d = rs.camera.unproject(new Vector3(screenX, screenY, 0));
+		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
+
+		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
 		//Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);

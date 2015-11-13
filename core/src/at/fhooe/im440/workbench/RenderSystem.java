@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -23,24 +24,19 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 	List<SpriteComponent> sprites;
 	private SpriteBatch batch;
 	
-	public OrthographicCamera camera;
-	public Viewport viewport;
-	
 	public RenderSystem(){
 		sprites = new ArrayList<SpriteComponent>();
 		batch = new SpriteBatch();
-		
-		this.camera = new OrthographicCamera();
-		this.viewport = new FitViewport(800, 480, camera);
 	}
-	
 
 	public void Render() {
 		Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
 		Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		batch.setProjectionMatrix(camera.combined);
+		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
+		
+		batch.setProjectionMatrix(cam.camera.combined);
 		//batch.enableBlending();
 		//batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		batch.begin();
@@ -53,20 +49,10 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 
 	}
 
-
 	@Override
 	public void Update(float delta) {
 		Render();	
 	}
-	
-	public void resize(int width, int height) {
-		float ar = (float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
-		camera.setToOrtho(false, Workbench.V_WIDTH, Workbench.V_WIDTH / ar);
-		camera.position.set(0, 0, 0);
-		camera.update();
-		viewport.update(width, height);
-	}
-
 
 	@Override
 	public void Register(Component component) {
