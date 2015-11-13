@@ -6,7 +6,19 @@ public class CircleColliderComponent extends ColliderComponent {
 
 	public String name = "CircleCollider";
 	public float radius = 10.0f;
-	float offset;//TODO better way to calculate this (maybe move anchor to center of entity for tc.pos?)
+	public float offset;//TODO better way to calculate this (maybe move anchor to center of entity for tc.pos?)
+	Vector2 position;
+	
+	public CircleColliderComponent(){
+		super();
+
+	}
+	
+	public Vector2 getPosition(){
+		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
+		position = tc.Position;
+		return position;
+	}
 	
 	public CircleColliderComponent setRadius(float r){
 		this.radius = r;
@@ -19,8 +31,8 @@ public class CircleColliderComponent extends ColliderComponent {
 	}
 	
 	void setOffset(){
-		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-		offset = tc.Position.x;//TODO
+		//TODO
+		//TODO offset
 	}
 	
 	public boolean isHit(Vector2 p){

@@ -34,6 +34,7 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 		EntitySystem es = new EntitySystem();
 		ServiceLocator.Register(es);
 		ServiceLocator.Register(new RenderSystem());
+		ServiceLocator.Register(new ColliderRenderSystem());
 		ServiceLocator.Register(new CollisionSystem());
 		
 		es.InitTestEntities();	

@@ -1,6 +1,8 @@
 package at.fhooe.im440.workbench.entitysystem;
 
+import at.fhooe.im440.workbench.ColliderRenderSystem;
 import at.fhooe.im440.workbench.CollisionSystem;
+import at.fhooe.im440.workbench.RenderSystem;
 import at.fhooe.im440.workbench.ServiceLocator;
 
 public abstract class ColliderComponent extends Component {
@@ -8,7 +10,9 @@ public abstract class ColliderComponent extends Component {
 	@Override
 	void Register() {
 		CollisionSystem s = ServiceLocator.Get(CollisionSystem.class);
-		s.Register(this);	
+		s.Register(this);
+		ColliderRenderSystem crs = ServiceLocator.Get(ColliderRenderSystem.class);
+		crs.Register(this);
 	}
 
 	@Override
