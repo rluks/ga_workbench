@@ -36,7 +36,8 @@ public class Entity {
 	public Component GetComponent(String type){		
 		return components.get(type);
 		
-		public static <T extends BaseSystem> T getSystem(Class<T> clazz) 
+		//TODO return specific component without need to cast it
+		/*public static <T extends BaseSystem> T getSystem(Class<T> clazz) 
 		{
 			for (int i = 0; i < _systems.size(); i++)
 			{
@@ -46,7 +47,7 @@ public class Entity {
 			
 			return null;
 			
-		}
+		}*/
 	}
 	
 	public Component RemoveComponent(String type){
