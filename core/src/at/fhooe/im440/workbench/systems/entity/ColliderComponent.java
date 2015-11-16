@@ -7,6 +7,8 @@ import at.fhooe.im440.workbench.systems.RenderSystem;
 
 public abstract class ColliderComponent extends Component {
 
+	//TODO bitsets flag, mask for col.filtering
+	
 	@Override
 	void Register() {
 		CollisionSystem s = ServiceLocator.Get(CollisionSystem.class);

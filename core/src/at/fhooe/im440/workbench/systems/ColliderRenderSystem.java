@@ -6,6 +6,7 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -25,7 +26,7 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 		this.colliders = new ArrayList<ColliderComponent>();
 		this.renderer = new ShapeRenderer();
 		this.color = Color.CYAN;
-		this.color.a = 0.3f;
+		this.color.a = 0.2f;
 	}
 	
 	public void Render() {
@@ -36,11 +37,11 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
 		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-		//Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL30.GL_SRC_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
+		Gdx.gl.glEnable(GL30.GL_BLEND);
 		
 		renderer.setProjectionMatrix(cam.camera.combined);
-	    renderer.begin(ShapeType.Line);
+	    renderer.begin(ShapeType.Filled);
 	    
 	    //renderer.scale(1f, 1f, 1f);
 	    for(ColliderComponent cc: colliders){
@@ -52,9 +53,11 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 				renderer.point(ccc.getPosition().x, ccc.getPosition().y, 0);
 			}
 		}
-	    //Gdx.gl.glDisable(GL20.GL_BLEND);
+	    
 	    
 	    renderer.end();
+	    
+	    Gdx.gl.glDisable(GL30.GL_BLEND);
 	}
 	
 	@Override
