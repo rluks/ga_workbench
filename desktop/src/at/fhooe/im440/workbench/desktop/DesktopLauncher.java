@@ -7,6 +7,9 @@ import at.fhooe.im440.workbench.Workbench;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		
+		config.resizable = false;
+		
 		new LwjglApplication(new Workbench(), config);
 	}
 }
