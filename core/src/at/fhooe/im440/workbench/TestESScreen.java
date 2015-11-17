@@ -13,6 +13,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import at.fhooe.im440.workbench.systems.CameraSystem;
 import at.fhooe.im440.workbench.systems.ColliderRenderSystem;
 import at.fhooe.im440.workbench.systems.CollisionSystem;
+import at.fhooe.im440.workbench.systems.EditorSystem;
 import at.fhooe.im440.workbench.systems.InputSystem;
 import at.fhooe.im440.workbench.systems.PhysicsSystem;
 import at.fhooe.im440.workbench.systems.RenderSystem;
@@ -45,6 +46,8 @@ public class TestESScreen extends ScreenAdapter {
 		ServiceLocator.Register(new InputSystem());
 		
 		es.InitTestEntities();	
+		
+		ServiceLocator.Register(new EditorSystem());
 		
 		
 	}

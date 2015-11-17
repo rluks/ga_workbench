@@ -1,5 +1,6 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -76,6 +77,10 @@ public class EntitySystem extends BaseSystem {
 	
 	public Entity GetTest(){
 		return Entities.getOrDefault(0, e);
+	}
+	
+	public Collection<Entity> GetEntities(){
+		return Entities.values();
 	}
 
 	@Override

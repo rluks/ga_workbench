@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import at.fhooe.im440.workbench.ServiceLocator;
+import at.fhooe.im440.workbench.systems.entity.Entity;
 
 public class InputSystem extends BaseSystem implements InputProcessor {
 
@@ -45,8 +46,17 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
 		//Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
+		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
-		cs.test(origin2d);
+		//cs.test(origin2d);
+		Entity clickedEntity = cs.GetEntityByPos(origin2d);
+		
+		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
+		if(clickedEntity != null){			
+			editSys.selected(clickedEntity);
+		}else{
+			editSys.deselectAll();
+		}
 		return false;
 	}
 

@@ -43,6 +43,11 @@ public class Entity {
 		return componentType.cast(components.get(type));
 	}
 	
+	public <T extends ColliderComponent> T GetColliderComponent(Class<T> componentType){	
+		String type = componentType.getSimpleName();
+		return componentType.cast(components.get(type));
+	}
+	
 	public Component RemoveComponent(String type){
 		Component c = components.remove(type);
 		c.RemoveEntity();

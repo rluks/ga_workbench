@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.Component;
+import at.fhooe.im440.workbench.systems.entity.Entity;
 import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
 
 public class CollisionSystem extends BaseSystem implements IComponentSystem {
@@ -41,6 +42,20 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 				CircleColliderComponent.class.cast(cc).isHit(origin2d);
 			}
 		}
+		
+	}
+	
+	public Entity GetEntityByPos(Vector2 origin2d) {
+		System.out.println("testing: " + origin2d);
+		for(ColliderComponent cc: colliders){
+			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
+				if(CircleColliderComponent.class.cast(cc).isHit(origin2d)){
+					return cc.Entity();
+				}
+			}
+		}
+		
+		return null;
 		
 	}
 
