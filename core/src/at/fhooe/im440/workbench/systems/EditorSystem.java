@@ -70,7 +70,8 @@ public class EditorSystem extends BaseSystem {
 		for(Entity e : this.getSelected()){
 			TransformComponent tf = e.GetComponent(TransformComponent.class);
 			
-			tf.Position.add(v);
+			tf.Position = v;
+			//tf.Position.add(v);
 		}
 	}
 	

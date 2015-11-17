@@ -71,11 +71,17 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		
+		System.out.println("drag");
+		System.out.println("drag: origin2d:" + origin2d);
+		
 		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
 		
 		
-		double distance = Math.sqrt(Math.pow(origin2d.x - startingPos.x,2) + Math.pow(origin2d.y - startingPos.y, 2));
+		double distance = Math.sqrt(Math.pow(origin2d.x - startingPos.x, 2) + Math.pow(origin2d.y - startingPos.y, 2));
 		Vector2 deltaPos = origin2d.sub(startingPos).nor().scl((float) distance);
+		
+		System.out.println("drag: distance:" + distance);
+		System.out.println("drag: deltaPos:" + deltaPos);
 		
 		editSys.applyDrag(deltaPos);
 		startingPos = new Vector2(origin2d.x, origin2d.y);
