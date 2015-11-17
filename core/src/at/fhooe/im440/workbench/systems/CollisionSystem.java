@@ -14,14 +14,16 @@ import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
 public class CollisionSystem extends BaseSystem implements IComponentSystem {
 
 	List<ColliderComponent> colliders;
+	List<ColliderComponent> colliding;
 	
 	public CollisionSystem(){
 		colliders = new ArrayList<ColliderComponent>();
+		colliding = new ArrayList<ColliderComponent>();
 	}
 	
 	void HandleCollision(ColliderComponent a, ColliderComponent b){
-		a.isColliding = true;
-		b.isColliding = true;
+		colliding.add(a);
+		colliding.add(b);
 	}
 	
 	void CalculateCollisions(){
@@ -38,20 +40,29 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 		}
 	}
 	
+
 	@Override
 	public void Update(float delta) {
+		ClearCollisons();
 		CalculateCollisions();
+		MarkCollisons();
 	}
 	
+	private void MarkCollisons() {
+		for(ColliderComponent c : colliding){
+			c.isColliding = true;
+		}
+	}
+
 	public void LateUpdate(){
-		ClearCollisonFlags();
+		
 	}
 	
-	private void ClearCollisonFlags() {
-		System.out.println("Clearing collison flags...");
-		for(ColliderComponent c : colliders){
+	private void ClearCollisons() {
+		for(ColliderComponent c : colliding){
 			c.isColliding = false;
-		}		
+		}
+		colliding.clear();
 	}
 
 	@Override

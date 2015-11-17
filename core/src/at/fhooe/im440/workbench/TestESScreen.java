@@ -59,8 +59,10 @@ public class TestESScreen extends ScreenAdapter {
 	
 	@Override
 	public void render(float delta) {	
+		
 		ServiceLocator.Update(delta);	
-		ServiceLocator.LateUpdate();
+		
+		//ServiceLocator.LateUpdate();//TODO where could i call this?
 	}
 
 	@Override

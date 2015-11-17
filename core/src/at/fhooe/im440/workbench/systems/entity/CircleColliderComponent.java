@@ -63,13 +63,13 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		boolean result = otherCollider.isHitW(this);
 		
-		System.out.println("Result:" + result);
+		//System.out.println("Result:" + result);
 		return result;
 	}
 
 	@Override
 	public boolean isHitW(CircleColliderComponent otherCollider) {
-		System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
+		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
 		Vector2 a = this.position;
 		Vector2 b = otherCollider.position;
 		double distance = Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
