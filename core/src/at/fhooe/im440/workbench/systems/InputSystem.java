@@ -43,6 +43,8 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		startingPos = origin2d;
 		
+		System.out.println("touchdown: startingPos:" + startingPos);
+		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		//cs.test(origin2d);
 		Entity clickedEntity = cs.GetEntityByPos(origin2d);
@@ -70,7 +72,13 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		
 		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
-		editSys.applyDrag(startingPos.scl(-1).add(origin2d));
+		
+		
+		double distance = Math.sqrt(Math.pow(origin2d.x - startingPos.x,2) + Math.pow(origin2d.y - startingPos.y, 2));
+		Vector2 deltaPos = origin2d.sub(startingPos).nor().scl((float) distance);
+		
+		editSys.applyDrag(deltaPos);
+		startingPos = new Vector2(origin2d.x, origin2d.y);
 		
 		return false;
 	}

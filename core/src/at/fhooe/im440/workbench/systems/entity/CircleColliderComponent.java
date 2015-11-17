@@ -46,11 +46,11 @@ public class CircleColliderComponent extends ColliderComponent {
 		//setOffset();
 		//TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 		Vector2 c = position;//center of the circle
-		System.out.println("circle center: " + c);
+		//System.out.println("circle center: " + c);
 		double distance = Math.sqrt((c.x - p.x)*(c.x - p.x) + (c.y - p.y)*(c.y - p.y));
 		//distance from the center
 		boolean result = (distance <= this.radius);
-		System.out.println(result);
+		//System.out.println(result);
 		return result;
 	}
 	

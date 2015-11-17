@@ -36,7 +36,7 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 	}
 
 	public void test(Vector2 origin2d) {
-		System.out.println("testing: " + origin2d);
+		//System.out.println("testing: " + origin2d);
 		for(ColliderComponent cc: colliders){
 			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
 				CircleColliderComponent.class.cast(cc).isHit(origin2d);
@@ -46,7 +46,6 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 	}
 	
 	public Entity GetEntityByPos(Vector2 origin2d) {
-		System.out.println("testing: " + origin2d);
 		for(ColliderComponent cc: colliders){
 			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
 				if(CircleColliderComponent.class.cast(cc).isHit(origin2d)){
