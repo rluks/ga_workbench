@@ -39,11 +39,10 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
 		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
-		//Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		startingPos = origin2d;
 		
-		System.out.println("touchdown: startingPos:" + startingPos);
+		//System.out.println("touchdown: startingPos:" + startingPos);
 		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		//cs.test(origin2d);
@@ -72,18 +71,18 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		Vector2 origin_backup = new Vector2(origin3d.x, origin3d.y);
 		
-		System.out.println("drag");
-		System.out.println("drag: origin2d:" + origin2d);
+		//System.out.println("drag");
+		//System.out.println("drag: origin2d:" + origin2d);
 		
 		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
 		
-		System.out.println("drag: startingPos:" + startingPos);
+		//System.out.println("drag: startingPos:" + startingPos);
 		
 		double distance = Math.sqrt(Math.pow(origin2d.x - startingPos.x, 2) + Math.pow(origin2d.y - startingPos.y, 2));
 		Vector2 deltaPos = origin2d.sub(startingPos).nor().scl((float) distance);//this changes the original vector!!!
 		
-		System.out.println("drag: distance:" + distance);
-		System.out.println("drag: deltaPos:" + deltaPos);
+		//System.out.println("drag: distance:" + distance);
+		//System.out.println("drag: deltaPos:" + deltaPos);
 		
 		editSys.applyDrag(deltaPos);
 		startingPos = new Vector2(origin_backup.x, origin_backup.y);//TODO so backup vector is needed, or is there a better way?

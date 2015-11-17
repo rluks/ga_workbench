@@ -66,11 +66,8 @@ public class EditorSystem extends BaseSystem {
 	}
 	
 	public void applyDrag(Vector2 v){
-		//v = v.scl(-1.0f);
 		for(Entity e : this.getSelected()){
-			TransformComponent tf = e.GetComponent(TransformComponent.class);
-			
-			//tf.Position = v;
+			TransformComponent tf = e.GetComponent(TransformComponent.class);		
 			tf.Position.add(v);
 		}
 	}
@@ -99,7 +96,6 @@ public class EditorSystem extends BaseSystem {
 	
 	@Override
 	public void Update(float delta) {
-		// TODO Auto-generated method stub
 		Render();
 	}
 
