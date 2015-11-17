@@ -56,10 +56,10 @@ public class CircleColliderComponent extends ColliderComponent {
 	
 	@Override
 	public boolean isHit(ColliderComponent otherCollider) {	
-		System.out.println(name + " CircleCollider:isHit(Collider)");
+		//System.out.println(name + " CircleCollider:isHit(Collider)");
 		
-		System.out.println("this: " + this.getClass().getSimpleName());
-		System.out.println("other: " + otherCollider.getClass().getSimpleName());
+		//System.out.println("this: " + this.getClass().getSimpleName());
+		//System.out.println("other: " + otherCollider.getClass().getSimpleName());
 		
 		boolean result = otherCollider.isHitW(this);
 		
@@ -69,12 +69,16 @@ public class CircleColliderComponent extends ColliderComponent {
 
 	@Override
 	public boolean isHitW(CircleColliderComponent otherCollider) {
-		System.out.println(name + " CircleCollider:isHit(CircleCollider)");
-		return true;
+		System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
+		Vector2 a = this.position;
+		Vector2 b = otherCollider.position;
+		double distance = Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+		boolean result = (distance >= this.radius+otherCollider.radius) ? false : true;
+		return result;
 	}
 	
 	public boolean isHitW(BoxColliderComponent otherCollider){
-		System.out.println(name + " CircleCollider:isHit(BoxCollider)");
+		//System.out.println(name + " CircleCollider:isHit(BoxCollider)");
 		return true;
 	}
 

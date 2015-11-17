@@ -19,9 +19,28 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 		colliders = new ArrayList<ColliderComponent>();
 	}
 	
+	void HandleCollision(ColliderComponent a, ColliderComponent b){
+		a.isColliding = true;
+		b.isColliding = true;
+	}
+	
+	void CalculateCollisions(){
+		for(int i = 0; i < colliders.size(); ++i){
+			ColliderComponent c1 = colliders.get(i);
+			for(int j = 1; j < colliders.size(); ++j){
+				ColliderComponent c2 = colliders.get(j);
+				if(c1 == c2)
+					continue;
+				if(c1.isHit(c2)){
+					HandleCollision(c1, c2);
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void Update(float delta) {
-
+		CalculateCollisions();
 	}
 	
 	@Override

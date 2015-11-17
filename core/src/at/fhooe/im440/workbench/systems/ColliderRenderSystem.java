@@ -21,22 +21,20 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 	List<ColliderComponent> colliders;
 	ShapeRenderer renderer;
 	Color color;
+	Color collidingColor;
 	
 	public ColliderRenderSystem(){
 		this.colliders = new ArrayList<ColliderComponent>();
 		this.renderer = new ShapeRenderer();
 		this.color = Color.CYAN;
 		this.color.a = 0.2f;
+		this.collidingColor = Color.PURPLE;
+		this.collidingColor.a = 0.2f;
 	}
 	
 	public void Render() {
-		//Color BG_COL = new Color(0.5f, 0.5f,  0.7f, 1f);
-		//Gdx.gl.glClearColor(BG_COL.r, BG_COL.g, BG_COL.b, BG_COL.a);
-		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
-		//Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glBlendFunc(GL30.GL_SRC_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glEnable(GL30.GL_BLEND);
 		
@@ -47,7 +45,7 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 	    for(ColliderComponent cc: colliders){
 			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
 				CircleColliderComponent ccc = CircleColliderComponent.class.cast(cc);
-				renderer.setColor(this.color);
+				setRendererColor(ccc.isColliding);
 				renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
 				renderer.setColor(Color.RED);
 				renderer.point(ccc.getPosition().x, ccc.getPosition().y, 0);
@@ -73,6 +71,13 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 	@Override
 	public void Unregister(Component component) {
 		colliders.remove((ColliderComponent) component);
+	}
+	
+	void setRendererColor(boolean collides){
+		if(collides)
+			this.renderer.setColor(this.collidingColor);
+		else
+			this.renderer.setColor(this.color);
 	}
 
 }
