@@ -66,8 +66,10 @@ public class EditorSystem extends BaseSystem {
 	}
 	
 	public void applyDrag(Vector2 v){
+		//v = v.scl(-1.0f);
 		for(Entity e : this.getSelected()){
 			TransformComponent tf = e.GetComponent(TransformComponent.class);
+			
 			tf.Position = v;
 		}
 	}

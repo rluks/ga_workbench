@@ -10,6 +10,7 @@ import at.fhooe.im440.workbench.systems.entity.Entity;
 
 public class InputSystem extends BaseSystem implements InputProcessor {
 
+	Vector2 startingPos;
 	public InputSystem(){
 		Gdx.input.setInputProcessor(this);//required for InputProcessor
 	}
@@ -34,18 +35,13 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
 		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
 		//Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
+		startingPos = origin2d;
 		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		//cs.test(origin2d);
@@ -61,6 +57,12 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 	}
 
 	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+
+		return false;
+	}
+
+	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
@@ -68,7 +70,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		
 		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
-		editSys.applyDrag(origin2d);
+		editSys.applyDrag(startingPos.scl(-1).add(origin2d));
 		
 		return false;
 	}
