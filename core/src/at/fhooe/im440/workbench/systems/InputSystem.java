@@ -62,7 +62,14 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
+		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
+
+		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
+		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
+		
+		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
+		editSys.applyDrag(origin2d);
+		
 		return false;
 	}
 

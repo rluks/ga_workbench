@@ -10,12 +10,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.Entity;
 import at.fhooe.im440.workbench.systems.entity.EntitySystem;
+import at.fhooe.im440.workbench.systems.entity.TransformComponent;
 
 public class EditorSystem extends BaseSystem {
 
@@ -60,6 +62,13 @@ public class EditorSystem extends BaseSystem {
 	public void deselectAll(){
 		for(Entity e : entities.keySet()){
 			entities.put(e, false);
+		}
+	}
+	
+	public void applyDrag(Vector2 v){
+		for(Entity e : this.getSelected()){
+			TransformComponent tf = e.GetComponent(TransformComponent.class);
+			tf.Position = v;
 		}
 	}
 	
