@@ -13,11 +13,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import at.fhooe.im440.workbench.systems.CameraSystem;
 import at.fhooe.im440.workbench.systems.ColliderRenderSystem;
 import at.fhooe.im440.workbench.systems.CollisionSystem;
+import at.fhooe.im440.workbench.systems.InputSystem;
 import at.fhooe.im440.workbench.systems.PhysicsSystem;
 import at.fhooe.im440.workbench.systems.RenderSystem;
 import at.fhooe.im440.workbench.systems.entity.EntitySystem;
 
-public class TestESScreen extends ScreenAdapter implements InputProcessor {
+public class TestESScreen extends ScreenAdapter {
 
 	private Workbench workbench;
 	//private Stage stage;//TODO is stage useful in Workbench at all? if so...where should stage be? in some system? passed around?
@@ -41,10 +42,11 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 		ServiceLocator.Register(new RenderSystem());
 		ServiceLocator.Register(new ColliderRenderSystem());
 		ServiceLocator.Register(new CollisionSystem());
+		ServiceLocator.Register(new InputSystem());
 		
 		es.InitTestEntities();	
 		
-		Gdx.input.setInputProcessor(this);//required for InputProcessor
+		
 	}
 	
 	private void endOfState() {
@@ -69,61 +71,6 @@ public class TestESScreen extends ScreenAdapter implements InputProcessor {
 	@Override
 	public void resize(int width, int height) {
 		(ServiceLocator.Get(CameraSystem.class)).resize(width, height);
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
-		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
-
-		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));
-		//Vector3 origin3d = rs.camera.getPickRay(screenX, screenY).origin;
-		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
-		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
-		cs.test(origin2d);
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	}	
 
 }
