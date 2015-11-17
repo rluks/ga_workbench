@@ -66,4 +66,10 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 		sprites.remove((SpriteComponent) component);
 	}
 
+	@Override
+	public void LateUpdate() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

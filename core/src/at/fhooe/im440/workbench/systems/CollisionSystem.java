@@ -43,6 +43,17 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 		CalculateCollisions();
 	}
 	
+	public void LateUpdate(){
+		ClearCollisonFlags();
+	}
+	
+	private void ClearCollisonFlags() {
+		System.out.println("Clearing collison flags...");
+		for(ColliderComponent c : colliders){
+			c.isColliding = false;
+		}		
+	}
+
 	@Override
 	public void Register(Component component) {
 		colliders.add((ColliderComponent) component);

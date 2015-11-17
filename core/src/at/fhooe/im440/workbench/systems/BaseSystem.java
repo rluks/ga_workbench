@@ -4,6 +4,7 @@ import at.fhooe.im440.workbench.systems.entity.Component;
 
 abstract public class BaseSystem {
 	public abstract void Update(float delta);
+	public abstract void LateUpdate();
 }
 
 interface IComponentSystem {

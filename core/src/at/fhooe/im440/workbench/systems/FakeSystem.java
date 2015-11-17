@@ -10,4 +10,10 @@ public class FakeSystem extends BaseSystem{
 	public void Update(float delta) {
 		Foo();
 	}
+
+	@Override
+	public void LateUpdate() {
+		// TODO Auto-generated method stub
+		
+	}
 }
