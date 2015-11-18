@@ -78,6 +78,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		
 		//System.out.println("drag: startingPos:" + startingPos);
 		
+		// sqr(xd,yd)
 		double distance = Math.sqrt(Math.pow(origin2d.x - startingPos.x, 2) + Math.pow(origin2d.y - startingPos.y, 2));
 		Vector2 deltaPos = origin2d.sub(startingPos).nor().scl((float) distance);//this changes the original vector!!!
 		

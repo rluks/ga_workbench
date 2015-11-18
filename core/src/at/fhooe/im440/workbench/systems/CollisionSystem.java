@@ -21,15 +21,19 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 		colliding = new ArrayList<ColliderComponent>();
 	}
 	
+	
+	//TODO store latest non colliding position and move it back there
 	void HandleCollision(ColliderComponent a, ColliderComponent b){
 		colliding.add(a);
 		colliding.add(b);
+		//TODO just report that there was a collision
+		//report situation, some collliders will be triggers
 	}
 	
 	void CalculateCollisions(){
 		for(int i = 0; i < colliders.size(); ++i){
 			ColliderComponent c1 = colliders.get(i);
-			for(int j = 1; j < colliders.size(); ++j){
+			for(int j = i+1; j < colliders.size(); ++j){
 				ColliderComponent c2 = colliders.get(j);
 				if(c1 == c2)
 					continue;
@@ -40,9 +44,19 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 		}
 	}
 	
+	float timeaccumulator = 0;
+	float fixedtimestep = //60 fps
 
 	@Override
 	public void Update(float delta) {
+		
+		//fixed timestep implemention / "fix your timestep"
+		timeaccumulator+=delta;
+		while(timeaccumulator >= fixedtimestep){
+			actualUpdate(fixedtimestep);
+			timeaccumulator-=fixedtimestep;
+		}
+		
 		ClearCollisons();
 		CalculateCollisions();
 		MarkCollisons();

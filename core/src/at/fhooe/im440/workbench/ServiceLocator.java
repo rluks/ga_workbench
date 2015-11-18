@@ -34,7 +34,7 @@ public class ServiceLocator {
 	}
 	
 	//TODO where will i initialize systems? 
-	//TODO from where i call register?
+	//TODO from where i call register? - in each screen differently
 	public static void Register(BaseSystem system){
 		System.out.println("ServiceLocator Register:" + system.getClass().getSimpleName());
 		systems.put(system.getClass().getSimpleName(), system);

@@ -23,6 +23,7 @@ public class TestESScreen extends ScreenAdapter {
 
 	private Workbench workbench;
 	//private Stage stage;//TODO is stage useful in Workbench at all? if so...where should stage be? in some system? passed around?
+	//stage just for UI, perhaps
 	private boolean dead;
 	
 	public TestESScreen(Workbench workbench) {
@@ -62,7 +63,8 @@ public class TestESScreen extends ScreenAdapter {
 		
 		ServiceLocator.Update(delta);	
 		
-		//ServiceLocator.LateUpdate();//TODO where could i call this?
+				
+		//ServiceLocator.LateUpdate();//TODO where could i call this? just do the cleanups at the start of new updates
 	}
 
 	@Override
