@@ -19,23 +19,31 @@ public class EntitySystem extends BaseSystem {
 	}
 	
 	public void InitBoxEntities(){
+	
 		TextureAtlas ta = new TextureAtlas("boxes.pack");
-		AtlasRegion ar1 = ta.findRegion("box_white");
-		
+		AtlasRegion ar1 = ta.findRegion("box_white");		
 		TransformComponent tf1 = new TransformComponent();
 		tf1.Rotation = 30;		
-		tf1.Position = new Vector2(-20, 75);
-
-		
-		 e = new Entity()
+		tf1.Position = new Vector2(-20, 75);		
+		Entity e1 = new Entity()
 				.Name("Little red ridding box")
 				.AddComponent(tf1)
 				.AddComponent(new PhysicsComponent().setAngularVelocity(0))
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
-		Entities.put(e.Id, e);
+		Entities.put(e1.Id, e1);
 			
-	
+		AtlasRegion ar2 = ta.findRegion("box_grey");		
+		TransformComponent tf2 = new TransformComponent();
+		tf2.Rotation = 0;		
+		tf2.Position = new Vector2(0, 0);		
+		Entity e2 = new Entity()
+				.Name("basic grey box")
+				.AddComponent(tf2)
+				//.AddComponent(new PhysicsComponent().setAngularVelocity(0))
+				.AddComponent(new BoxColliderComponent())
+				.AddComponent(new SpriteComponent(ar2));
+		Entities.put(e2.Id, e2);
 		
 		
 	}

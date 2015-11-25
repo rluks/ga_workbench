@@ -39,7 +39,7 @@ public class BoxColliderComponent extends ColliderComponent {
 		
 		boolean result = otherCollider.isHitW(this);
 		
-		System.out.println("Result:" + result);
+		//System.out.println("Result:" + result);
 		return result;
 	}
 	
@@ -51,7 +51,7 @@ public class BoxColliderComponent extends ColliderComponent {
 	
 	@Override
 	public boolean isHitW(BoxColliderComponent otherCollider){
-		System.out.println("Box vs Box collisions are not implemented!");
+		//System.out.println("Box vs Box collisions are not implemented!");
 		return false;
 	}
 
