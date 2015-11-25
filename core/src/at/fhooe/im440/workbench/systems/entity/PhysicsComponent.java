@@ -16,10 +16,20 @@ public class PhysicsComponent extends Component{
 		if(Active){
 			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			//TODO check null
-			tc.Rotation += this.AngularVelocity * delta;
-			//TODO 360 if 0
+			
+			float rotation = tc.Rotation + this.AngularVelocity * delta;
+
+			if(rotation > 360.0f){
+				rotation = rotation - 360.0f;
+			}
+			
+			if(rotation < 0.0f){
+				rotation = 360.0f + rotation;
+			}
+			
 			//System.out.println("PhysicsComponent: AngularVelocity:" + AngularVelocity);
-			//System.out.println("PhysicsComponent: Rotation:" + tc.Rotation);
+//			/System.out.println("PhysicsComponent: Rotation:" + tc.Rotation);
+			tc.Rotation = rotation;
 		}
 		
 		
