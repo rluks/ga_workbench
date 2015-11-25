@@ -24,12 +24,11 @@ public class EntitySystem extends BaseSystem {
 		
 		TransformComponent tf1 = new TransformComponent();
 		
-		tf1.Position = new Vector2(0, 0);
+		tf1.Position = new Vector2(-20, 75);
 		
 		 e = new Entity()
 				.Name("Little red ridding box")
 				.AddComponent(tf1)
-				.AddComponent(new PhysicsComponent())
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		Entities.put(e.Id, e);

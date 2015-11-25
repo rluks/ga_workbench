@@ -1,7 +1,7 @@
 package at.fhooe.im440.workbench.systems.entity;
 
 import com.badlogic.gdx.graphics.Color;
-
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;
@@ -71,7 +71,19 @@ public class CircleColliderComponent extends ColliderComponent {
 		V.set(cCenter.sub(bCenter));
 		
 		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
-		vrs.RenderVector(bCenter, V, Color.RED);
+		//vrs.RenderVector(bCenter, V, Color.BLACK);
+		
+		//Clamp it to get projection of the center of the circle
+		//on boundary of the box
+		//clamping is done by half width/height of the box
+		SpriteComponent sc = otherCollider.Entity().GetComponent(SpriteComponent.class);
+		float boxHalfHeight = sc.getHalfHeight();
+		float boxHalfWidth = sc.getHalfWidth();
+		float clmX = MathUtils.clamp(V.x, -boxHalfWidth, boxHalfWidth);
+		float clmY = MathUtils.clamp(V.y, -boxHalfHeight, boxHalfHeight);
+		
+		Vector2 clampedV = new Vector2(bCenter.x+clmX, bCenter.y+clmY);
+		vrs.RenderVector(bCenter, clampedV, Color.GREEN);
 		
 		return false;
 	}

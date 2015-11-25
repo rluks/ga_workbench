@@ -17,14 +17,22 @@ public class SpriteComponent extends Component {
 		this.Texture = texture;
 		this.Sprite = new Sprite(texture);
 	}
+	
+	public float getHalfHeight(){
+		return this.Sprite.getHeight()/2;
+	}
+	
+	public float getHalfWidth(){
+		return this.Sprite.getWidth()/2;
+	}
 
 	public void Render(Batch batch){
 		if(Active){
 			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			float degrees = tc.Rotation;
 			//this.Sprite.setAlpha(0.1f);
-			float h = this.Sprite.getHeight()/2;
-			float w = this.Sprite.getWidth()/2;
+			float h = getHalfHeight();
+			float w = getHalfWidth();
 			this.Sprite.setPosition(tc.Position.x-w, tc.Position.y-h);
 			//this.Sprite.setPosition(tc.Position.x, tc.Position.y);
 			this.Sprite.setRotation(degrees);
