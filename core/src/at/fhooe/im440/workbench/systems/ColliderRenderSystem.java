@@ -41,12 +41,10 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 		renderer.setProjectionMatrix(cam.camera.combined);
 	    renderer.begin(ShapeType.Filled);
 	    renderer.identity();
-	    //renderer.scale(1f, 1f, 1f);
 	    for(ColliderComponent cc: colliders){	    	
 	    	setRendererColor(cc.isColliding);
 	    	cc.Render(renderer);
-		}
-	    
+		}	    
 	    
 	    renderer.end();
 	    
