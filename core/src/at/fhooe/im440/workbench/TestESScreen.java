@@ -17,6 +17,7 @@ import at.fhooe.im440.workbench.systems.EditorSystem;
 import at.fhooe.im440.workbench.systems.InputSystem;
 import at.fhooe.im440.workbench.systems.PhysicsSystem;
 import at.fhooe.im440.workbench.systems.RenderSystem;
+import at.fhooe.im440.workbench.systems.VectorRenderSystem;
 import at.fhooe.im440.workbench.systems.entity.EntitySystem;
 
 public class TestESScreen extends ScreenAdapter {
@@ -45,6 +46,7 @@ public class TestESScreen extends ScreenAdapter {
 		ServiceLocator.Register(new ColliderRenderSystem());
 		ServiceLocator.Register(new CollisionSystem());
 		ServiceLocator.Register(new InputSystem());
+		ServiceLocator.Register(new VectorRenderSystem());
 		
 		es.InitTestEntities();	
 		es.InitBoxEntities();

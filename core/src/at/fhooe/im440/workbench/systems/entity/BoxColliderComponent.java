@@ -29,12 +29,12 @@ public class BoxColliderComponent extends ColliderComponent {
 	@Override
 	public boolean isHitW(CircleColliderComponent otherCollider){
 		System.out.println(name + " BoxCollider:isHit(CircleCollider)");
-		return true;
+		return otherCollider.isHitW(this);
 	}
 	
 	public boolean isHitW(BoxColliderComponent otherCollider){
-		System.out.println(name + " BoxCollider:isHit(BoxCollider)");
-		return true;
+		System.out.println("Box vs Box collisions are not implemented!");
+		return false;
 	}
 
 }

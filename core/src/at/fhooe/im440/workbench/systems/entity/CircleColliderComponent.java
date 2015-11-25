@@ -1,6 +1,11 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import com.badlogic.gdx.graphics.Color;
+
 import com.badlogic.gdx.math.Vector2;
+
+import at.fhooe.im440.workbench.ServiceLocator;
+import at.fhooe.im440.workbench.systems.VectorRenderSystem;
 
 public class CircleColliderComponent extends ColliderComponent {
 
@@ -37,6 +42,10 @@ public class CircleColliderComponent extends ColliderComponent {
 		//System.out.println("this: " + this.getClass().getSimpleName());
 		//System.out.println("other: " + otherCollider.getClass().getSimpleName());
 		
+		//update positions
+		this.getPosition();
+		otherCollider.getPosition();
+		
 		boolean result = otherCollider.isHitW(this);
 		
 		//System.out.println("Result:" + result);
@@ -54,8 +63,20 @@ public class CircleColliderComponent extends ColliderComponent {
 	}
 	
 	public boolean isHitW(BoxColliderComponent otherCollider){
-		//System.out.println(name + " CircleCollider:isHit(BoxCollider)");
-		return true;
+		System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
+		
+		//Vector from center of the circle to center of the bounding box
+		Vector2 V = new Vector2();
+		
+		Vector2 cCenter = position.cpy();
+		Vector2 bCenter = otherCollider.position.cpy();
+		
+		V.set(cCenter.sub(bCenter));
+		
+		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+		vrs.RenderVector(bCenter, V, Color.RED);
+		
+		return false;
 	}
 
 }
