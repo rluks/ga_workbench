@@ -21,15 +21,6 @@ public class BoxColliderComponent extends ColliderComponent {
 		float rotation = this.Entity().GetComponent(TransformComponent.class).Rotation;
 		
 		renderer.rect(x-w2, y-h2, w2, h2, 2*w2, 2*h2, 1.0f, 1.0f, rotation);
-		//renderer.identity();
-		//renderer.translate(x, y, 0.f);
-		//renderer.rotate(0.f, 0.f, 1.f, rotation);
-		
-		//renderer.rect(x-w2, y-h2, 2*w2, 2*h2);
-		//renderer.rotate(0, 0, 1, rotation);
-		
-		//renderer.setColor(Color.RED);
-		//renderer.point(x, y, 0);
 		
 	}
 	
@@ -40,6 +31,7 @@ public class BoxColliderComponent extends ColliderComponent {
 		//System.out.println("this: " + this.getClass().getSimpleName());
 		//System.out.println("other: " + otherCollider.getClass().getSimpleName());
 	
+		//Double dispatch pattern
 		//instead of (possibly multiple) if(c instance of)
 		//we use this approach:
 		//this knows its type, so we will just pass this to other collider
