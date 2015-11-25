@@ -46,7 +46,7 @@ public class RenderSystem extends BaseSystem implements IComponentSystem{
 			sc.Render(batch);
 		}
 		
-		 batch.end();
+		batch.end();
 
 	}
 
