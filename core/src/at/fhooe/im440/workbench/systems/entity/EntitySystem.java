@@ -19,10 +19,10 @@ public class EntitySystem extends BaseSystem {
 	}
 	
 	public void InitTestEntities(){
-		TextureAtlas ta = new TextureAtlas("atlas.pack");
-		AtlasRegion cogTex = ta.findRegion("cog1");
-		AtlasRegion cogNTex = ta.findRegion("cog_n");
-		AtlasRegion cogSTex = ta.findRegion("cog1_shadow");
+		TextureAtlas ta = new TextureAtlas("mycogs.pack");
+		AtlasRegion cogTex = ta.findRegion("cog_red");
+		AtlasRegion cogNTex = ta.findRegion("cog_white");
+		AtlasRegion cogSTex = ta.findRegion("cog_grey");
 		
 		TransformComponent tf1 = new TransformComponent();
 		TransformComponent tf2 = new TransformComponent();
