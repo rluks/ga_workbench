@@ -54,7 +54,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		Vector2 a = getPosition();
 		Vector2 b = otherCollider.getPosition();
-		double distance = Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+		double distance = getDistance(a, b);
 		boolean result = (distance >= this.radius+otherCollider.radius) ? false : true;
 		return result;
 	}
@@ -85,7 +85,17 @@ public class CircleColliderComponent extends ColliderComponent {
 		Vector2 clampedV = new Vector2(bCenter.x+clmX, bCenter.y+clmY);
 		vrs.RenderVector(bCenter, clampedV, Color.GREEN);
 		
-		return false;
+		//distance between clampedV and the center of the circle
+		float distance = getDistance(cCenter, clampedV);
+		
+		//and subtract the radius of the circle
+		distance -= this.radius;
+		
+		System.out.println(distance);
+		
+		return (distance <= 0); 
+		
+		//return false;
 	}
 
 

@@ -32,6 +32,10 @@ public abstract class ColliderComponent extends Component {
 		return this.Entity().GetComponent(TransformComponent.class).Position.cpy();
 
 	}
+	
+	public float getDistance(Vector2 a, Vector2 b){
+		return (float)Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+	}
 
 	abstract public boolean isHit(ColliderComponent c);
 
