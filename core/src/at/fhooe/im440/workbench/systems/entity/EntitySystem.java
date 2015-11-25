@@ -23,13 +23,14 @@ public class EntitySystem extends BaseSystem {
 		AtlasRegion ar1 = ta.findRegion("box_white");
 		
 		TransformComponent tf1 = new TransformComponent();
-		
+		tf1.Rotation = 30;		
 		tf1.Position = new Vector2(-20, 75);
+
 		
 		 e = new Entity()
 				.Name("Little red ridding box")
 				.AddComponent(tf1)
-				.AddComponent(new PhysicsComponent())
+				.AddComponent(new PhysicsComponent().setAngularVelocity(0))
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		Entities.put(e.Id, e);
@@ -57,7 +58,7 @@ public class EntitySystem extends BaseSystem {
 		 e = new Entity()
 				.Name("Red cog wheel")
 				.AddComponent(tf1)
-				.AddComponent(new PhysicsComponent())
+				//.AddComponent(new PhysicsComponent())
 				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogTex));
 		Entities.put(e.Id, e);
@@ -68,7 +69,7 @@ public class EntitySystem extends BaseSystem {
 		Entity e2 = new Entity()
 				.Name("Another cog")
 				.AddComponent(tf2)
-				.AddComponent(new PhysicsComponent())
+				//.AddComponent(new PhysicsComponent())
 				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogNTex))
 				;
@@ -78,7 +79,7 @@ public class EntitySystem extends BaseSystem {
 		Entity e3 = new Entity()
 				.Name("Third wheel")
 				.AddComponent(tf3)
-				.AddComponent(new PhysicsComponent())
+				//.AddComponent(new PhysicsComponent())
 				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogSTex))
 				;

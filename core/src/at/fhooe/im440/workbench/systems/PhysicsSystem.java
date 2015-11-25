@@ -19,7 +19,7 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	@Override
 	public void Update(float delta){
 		for(PhysicsComponent pc: physics){
-			pc.AngularVelocity=14.5f;
+			//pc.AngularVelocity=14.5f;
 			pc.Update(delta);
 		}
 	}

@@ -24,6 +24,11 @@ public class PhysicsComponent extends Component{
 		
 		
 	}
+	
+	public PhysicsComponent setAngularVelocity(float av){
+		this.AngularVelocity = av;
+		return this;
+	}
 
 	@Override
 	void Register() {
