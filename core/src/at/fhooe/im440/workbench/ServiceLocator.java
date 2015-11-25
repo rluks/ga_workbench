@@ -26,13 +26,6 @@ public class ServiceLocator {
 		}
 	}
 	
-	public static void LateUpdate(){
-		for(Entry<String, BaseSystem> entry: systems.entrySet()){
-			BaseSystem system = entry.getValue();
-			system.LateUpdate();
-		}
-	}
-	
 	//TODO where will i initialize systems? 
 	//TODO from where i call register? - in each screen differently
 	public static void Register(BaseSystem system){

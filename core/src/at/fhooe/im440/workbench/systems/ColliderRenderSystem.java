@@ -80,10 +80,4 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 			this.renderer.setColor(this.color);
 	}
 
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

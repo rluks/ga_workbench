@@ -88,12 +88,6 @@ public class EntitySystem extends BaseSystem {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 
 	

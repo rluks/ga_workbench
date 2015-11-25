@@ -99,10 +99,4 @@ public class EditorSystem extends BaseSystem {
 		Render();
 	}
 
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

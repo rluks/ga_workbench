@@ -109,10 +109,4 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 	}
 
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

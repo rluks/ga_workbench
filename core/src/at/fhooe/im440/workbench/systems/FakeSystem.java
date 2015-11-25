@@ -11,9 +11,4 @@ public class FakeSystem extends BaseSystem{
 		Foo();
 	}
 
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
 }

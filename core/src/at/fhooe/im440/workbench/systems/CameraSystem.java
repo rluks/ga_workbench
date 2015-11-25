@@ -34,11 +34,4 @@ public class CameraSystem extends BaseSystem {
 		viewport.update(width, height);
 	}
 
-
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

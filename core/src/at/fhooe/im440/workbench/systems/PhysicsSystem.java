@@ -34,10 +34,4 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	public void Unregister(Component component) {
 		physics.remove((PhysicsComponent) component);
 	}
-
-	@Override
-	public void LateUpdate() {
-		// TODO Auto-generated method stub
-		
-	}
 }
