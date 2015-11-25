@@ -11,7 +11,7 @@ public abstract class ColliderComponent extends Component {
 
 	//TODO bitsets flag, mask for col.filtering
 	public boolean isColliding = false;
-	Vector2 position;
+	Vector2 center;
 	
 	@Override
 	void Register() {
@@ -27,17 +27,7 @@ public abstract class ColliderComponent extends Component {
 
 	}
 	
-	public Vector2 getPosition(){
-		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-		SpriteComponent sc = this.Entity().GetComponent(SpriteComponent.class);
-		
-		float x = tc.Position.x + sc.Sprite.getWidth()/2;
-		float y = tc.Position.y + sc.Sprite.getHeight()/2;
-		Vector2 xy = new Vector2(x, y);
-		position = xy;
-		
-		return position;
-	}
+
 	
 	abstract public boolean isHit(ColliderComponent c);
 
