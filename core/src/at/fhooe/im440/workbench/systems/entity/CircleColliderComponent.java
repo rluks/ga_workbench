@@ -19,9 +19,11 @@ public class CircleColliderComponent extends ColliderComponent {
 	
 	@Override
 	public void Render(ShapeRenderer renderer){	
+		
+		//renderer.translate(this.getPosition().x, this.getPosition().y, 0.f);
 		renderer.circle(this.getPosition().x, this.getPosition().y, this.radius);
-		renderer.setColor(Color.RED);
-		renderer.point(this.getPosition().x, this.getPosition().y, 0);
+		//renderer.setColor(Color.RED);
+		//renderer.point(this.getPosition().x, this.getPosition().y, 0);
 	}
 	
 	public CircleColliderComponent setName(String n){

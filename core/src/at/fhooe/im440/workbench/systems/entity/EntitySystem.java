@@ -20,7 +20,7 @@ public class EntitySystem extends BaseSystem {
 	
 	public void InitBoxEntities(){
 		TextureAtlas ta = new TextureAtlas("boxes.pack");
-		AtlasRegion ar1 = ta.findRegion("box_red");
+		AtlasRegion ar1 = ta.findRegion("box_white");
 		
 		TransformComponent tf1 = new TransformComponent();
 		
