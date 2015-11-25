@@ -64,12 +64,8 @@ public class TestESScreen extends ScreenAdapter {
 	
 	@Override
 	public void render(float delta) {	
-		
-		ServiceLocator.Update(delta);	
-		
-		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
-		//vrs.RenderVector(new Vector2(0, 0), new Vector2(100, 100), Color.GREEN);	
-		//ServiceLocator.LateUpdate();//TODO where could i call this? just do the cleanups at the start of new updates
+	
+		ServiceLocator.Update(delta);		
 	}
 
 	@Override
