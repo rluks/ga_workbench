@@ -20,8 +20,8 @@ public class BoxColliderComponent extends ColliderComponent {
 		float h2 = this.Entity().GetComponent(SpriteComponent.class).getHalfHeight();
 		float rotation = this.Entity().GetComponent(TransformComponent.class).Rotation;
 		//renderer.rect(x-w2, y-h2, 0, 0, 2*w2, 2*h2, 1.0f, 1.0f, rotation);
-		renderer.rect(x, y, 2*w2, 2*h2);
-		renderer.rotate(0, 0, 1, rotation);
+		renderer.rect(x-w2, y-h2, 2*w2, 2*h2);
+		//renderer.rotate(0, 0, 1, rotation);
 		renderer.setColor(Color.RED);
 		renderer.point(x, y, 0);
 		
