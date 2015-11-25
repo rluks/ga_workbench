@@ -2,7 +2,11 @@ package at.fhooe.im440.workbench.systems.entity;
 
 public class BoxColliderComponent extends ColliderComponent {
 
-	public String name;
+	public String name = "BoxCollider";
+	
+	public BoxColliderComponent(){
+		super();
+	}
 	
 	@Override
 	public boolean isHit(ColliderComponent otherCollider) {

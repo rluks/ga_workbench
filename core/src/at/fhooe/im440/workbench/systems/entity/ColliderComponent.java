@@ -1,5 +1,7 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import com.badlogic.gdx.math.Vector2;
+
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.ColliderRenderSystem;
 import at.fhooe.im440.workbench.systems.CollisionSystem;
@@ -9,6 +11,7 @@ public abstract class ColliderComponent extends Component {
 
 	//TODO bitsets flag, mask for col.filtering
 	public boolean isColliding = false;
+	Vector2 position;
 	
 	@Override
 	void Register() {
@@ -22,6 +25,18 @@ public abstract class ColliderComponent extends Component {
 	void Unregister() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public Vector2 getPosition(){
+		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
+		SpriteComponent sc = this.Entity().GetComponent(SpriteComponent.class);
+		
+		float x = tc.Position.x + sc.Sprite.getWidth()/2;
+		float y = tc.Position.y + sc.Sprite.getHeight()/2;
+		Vector2 xy = new Vector2(x, y);
+		position = xy;
+		
+		return position;
 	}
 	
 	abstract public boolean isHit(ColliderComponent c);
