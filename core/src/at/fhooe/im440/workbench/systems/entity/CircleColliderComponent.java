@@ -85,7 +85,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		//and rotate it by the angle of box rotation
 		float rotation = otherCollider.Entity().GetComponent(TransformComponent.class).Rotation;
-		Matrix3 mat = new Matrix3().setToTranslation(translation).setToRotation(rotation);
+		Matrix3 mat = new Matrix3().setToTranslation(translation).rotate(rotation);
 		
 		//now use the matrix to translate, move the center of the circle
 		Vector2 translatedCenter = getPosition();
