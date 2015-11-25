@@ -29,6 +29,7 @@ public class EntitySystem extends BaseSystem {
 		 e = new Entity()
 				.Name("Little red ridding box")
 				.AddComponent(tf1)
+				.AddComponent(new PhysicsComponent())
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		Entities.put(e.Id, e);

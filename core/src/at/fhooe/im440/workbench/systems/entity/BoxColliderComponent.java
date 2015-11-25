@@ -1,5 +1,7 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 public class BoxColliderComponent extends ColliderComponent {
@@ -8,6 +10,21 @@ public class BoxColliderComponent extends ColliderComponent {
 	
 	public BoxColliderComponent(){
 		super();
+	}
+	
+	@Override
+	public void Render(ShapeRenderer renderer){	
+		float x = this.getPosition().x;
+		float y = this.getPosition().y;
+		float w2 = this.Entity().GetComponent(SpriteComponent.class).getHalfWidth();
+		float h2 = this.Entity().GetComponent(SpriteComponent.class).getHalfHeight();
+		float rotation = this.Entity().GetComponent(TransformComponent.class).Rotation;
+		//renderer.rect(x-w2, y-h2, 0, 0, 2*w2, 2*h2, 1.0f, 1.0f, rotation);
+		renderer.rect(x, y, 2*w2, 2*h2);
+		renderer.rotate(0, 0, 1, rotation);
+		renderer.setColor(Color.RED);
+		renderer.point(x, y, 0);
+		
 	}
 	
 	@Override

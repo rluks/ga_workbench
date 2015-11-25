@@ -1,5 +1,6 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;
@@ -36,11 +37,15 @@ public abstract class ColliderComponent extends Component {
 	public float getDistance(Vector2 a, Vector2 b){
 		return (float)Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
 	}
+	
+
 
 	abstract public boolean isHit(ColliderComponent c);
 
 	abstract public boolean isHitW(CircleColliderComponent circleCollider);
 
 	abstract public boolean isHitW(BoxColliderComponent circleCollider);
+
+	public abstract void Render(ShapeRenderer renderer);
 
 }

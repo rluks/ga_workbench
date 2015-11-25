@@ -1,6 +1,7 @@
 package at.fhooe.im440.workbench.systems.entity;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
@@ -14,6 +15,13 @@ public class CircleColliderComponent extends ColliderComponent {
 	
 	public CircleColliderComponent(){
 		super();
+	}
+	
+	@Override
+	public void Render(ShapeRenderer renderer){	
+		renderer.circle(this.getPosition().x, this.getPosition().y, this.radius);
+		renderer.setColor(Color.RED);
+		renderer.point(this.getPosition().x, this.getPosition().y, 0);
 	}
 	
 	public CircleColliderComponent setName(String n){
@@ -91,7 +99,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		//and subtract the radius of the circle
 		distance -= this.radius;
 		
-		System.out.println(distance);
+		//System.out.println(distance);
 		
 		return (distance <= 0); 
 		

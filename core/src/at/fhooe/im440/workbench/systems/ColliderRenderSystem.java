@@ -42,14 +42,9 @@ public class ColliderRenderSystem extends BaseSystem implements IComponentSystem
 	    renderer.begin(ShapeType.Filled);
 	    
 	    //renderer.scale(1f, 1f, 1f);
-	    for(ColliderComponent cc: colliders){
-			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
-				CircleColliderComponent ccc = CircleColliderComponent.class.cast(cc);
-				setRendererColor(ccc.isColliding);
-				renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
-				renderer.setColor(Color.RED);
-				renderer.point(ccc.getPosition().x, ccc.getPosition().y, 0);
-			}
+	    for(ColliderComponent cc: colliders){	    	
+	    	setRendererColor(cc.isColliding);
+	    	cc.Render(renderer);
 		}
 	    
 	    
