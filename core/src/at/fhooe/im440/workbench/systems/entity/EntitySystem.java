@@ -15,6 +15,27 @@ public class EntitySystem extends BaseSystem {
 	Entity e;
 	
 	public EntitySystem(){	
+		Entities = new LinkedHashMap<Long, Entity>();
+	}
+	
+	public void InitBoxEntities(){
+		TextureAtlas ta = new TextureAtlas("boxes.pack");
+		AtlasRegion ar1 = ta.findRegion("box_red");
+		
+		TransformComponent tf1 = new TransformComponent();
+		
+		tf1.Position = new Vector2(0, 0);
+		
+		 e = new Entity()
+				.Name("Little red ridding box")
+				.AddComponent(tf1)
+				.AddComponent(new PhysicsComponent())
+				.AddComponent(new CircleColliderComponent())
+				.AddComponent(new SpriteComponent(ar1));
+		Entities.put(e.Id, e);
+			
+	
+		
 		
 	}
 	
@@ -32,7 +53,7 @@ public class EntitySystem extends BaseSystem {
 		tf2.Position = new Vector2(100, 100);
 		tf3.Position = new Vector2(100, 100);
 		
-		Entities = new LinkedHashMap<Long, Entity>();
+
 		 e = new Entity()
 				.Name("Red cog wheel")
 				.AddComponent(tf1)
