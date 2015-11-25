@@ -68,7 +68,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		Vector2 cCenter = getPosition();
 		Vector2 bCenter = otherCollider.getPosition();
 		
-		V.set(cCenter.sub(bCenter));
+		V.set(cCenter.cpy().sub(bCenter));
 		
 		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
 		//vrs.RenderVector(bCenter, V, Color.BLACK);
