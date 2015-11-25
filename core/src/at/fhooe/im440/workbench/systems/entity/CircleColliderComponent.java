@@ -18,12 +18,8 @@ public class CircleColliderComponent extends ColliderComponent {
 	}
 	
 	@Override
-	public void Render(ShapeRenderer renderer){	
-		
-		//renderer.translate(this.getPosition().x, this.getPosition().y, 0.f);
+	public void Render(ShapeRenderer renderer){			
 		renderer.circle(this.getPosition().x, this.getPosition().y, this.radius);
-		//renderer.setColor(Color.RED);
-		//renderer.point(this.getPosition().x, this.getPosition().y, 0);
 	}
 	
 	public CircleColliderComponent setName(String n){
@@ -31,17 +27,15 @@ public class CircleColliderComponent extends ColliderComponent {
 		return this;
 	}
 	
-	public boolean isHit(Vector2 p){	
+	public boolean isHit(Vector2 p){
+		
 		//center of the circle
 		Vector2 c = getPosition();
-		//System.out.println("circle center: " + c);
-		double distance = Math.sqrt((c.x - p.x)*(c.x - p.x) + (c.y - p.y)*(c.y - p.y));
 		
-		//distance from the center
-		boolean result = (distance <= this.radius);
-		//System.out.println(result);
+		//calculate distance
+		double distance = getDistance(c, p);
 		
-		return result;
+		return (distance <= this.radius);
 	}
 	
 	@Override
@@ -50,8 +44,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		//System.out.println("this: " + this.getClass().getSimpleName());
 		//System.out.println("other: " + otherCollider.getClass().getSimpleName());
-	
-		
+			
 		boolean result = otherCollider.isHitW(this);
 		
 		//System.out.println("Result:" + result);
