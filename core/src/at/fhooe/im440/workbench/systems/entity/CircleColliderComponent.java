@@ -3,6 +3,8 @@ package at.fhooe.im440.workbench.systems.entity;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Matrix3;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;
@@ -27,6 +29,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		return this;
 	}
 	
+	@Override
 	public boolean isHit(Vector2 p){
 		
 		//center of the circle
@@ -65,6 +68,25 @@ public class CircleColliderComponent extends ColliderComponent {
 	@Override
 	public boolean isHitW(BoxColliderComponent otherCollider){
 		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
+		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+		
+		//translate the axis of the circle (aka. move circle to the space of box, so we can use simple axis aligned method)
+		//first create translation matrix using difference between bottom left corner of box and origin 0,0
+		Vector2 btmLeftCorn = otherCollider.getPosition();
+		SpriteComponent scG = otherCollider.Entity().GetComponent(SpriteComponent.class);
+		float boxHalfHeightG = scG.getHalfHeight();
+		float boxHalfWidthG = scG.getHalfWidth();
+		btmLeftCorn.x -= boxHalfWidthG;
+		btmLeftCorn.y -= boxHalfHeightG;
+		
+		Vector2 translation = Vector2.Zero.sub(btmLeftCorn);
+		//and rotate it by the angle of box rotation
+		float rotation = otherCollider.Entity().GetComponent(TransformComponent.class).Rotation;
+		Matrix3 mat = new Matrix3().setToTranslation(translation).setToRotation(rotation);
+		
+		//now use the matrix to translate, move the center of the circle
+		Vector2 translatedCenter = getPosition().mul(mat);
+		vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
 		
 		//Vector from center of the circle to center of the bounding box
 		Vector2 V = new Vector2();
@@ -74,7 +96,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		V.set(cCenter.cpy().sub(bCenter));
 		
-		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+
 		//vrs.RenderVector(bCenter, V, Color.BLACK);
 		
 		//Clamp it to get projection of the center of the circle

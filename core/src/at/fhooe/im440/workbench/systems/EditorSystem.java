@@ -81,11 +81,13 @@ public class EditorSystem extends BaseSystem {
 		renderer.setProjectionMatrix(cam.camera.combined);
 		renderer.setColor(this.color);
 	    renderer.begin(ShapeType.Filled);
+	    renderer.setColor(this.color);
 	    
 	    for(Entity e : getSelected()){
-	    	CircleColliderComponent ccc = e.GetComponent(CircleColliderComponent.class);
-			renderer.setColor(this.color);
-			renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
+	    	ColliderComponent ccc = e.GetComponent(ColliderComponent.class);
+	    	ccc.Render(renderer);
+			//
+			//renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
 	    }
 	    
     	renderer.end();

@@ -104,11 +104,11 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 	
 	public Entity GetEntityByPos(Vector2 origin2d) {
 		for(ColliderComponent cc: colliders){
-			if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
-				if(CircleColliderComponent.class.cast(cc).isHit(origin2d)){
+			//if (cc.getClass().isAssignableFrom(CircleColliderComponent.class)){
+				if(cc.isHit(origin2d)){
 					return cc.Entity();
 				}
-			}
+			//}
 		}
 		
 		return null;

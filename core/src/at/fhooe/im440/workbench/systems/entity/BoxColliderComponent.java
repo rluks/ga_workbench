@@ -55,4 +55,18 @@ public class BoxColliderComponent extends ColliderComponent {
 		return false;
 	}
 
+	@Override
+	public boolean isHit(Vector2 p) {
+		Vector2 pos = getPosition();
+		SpriteComponent sc = this.Entity().GetComponent(SpriteComponent.class);
+		float h2 = sc.getHalfHeight();
+		float w2 = sc.getHalfWidth();
+		if((p.x > pos.x-w2 && p.x < pos.x+w2)
+		   &&(p.y > pos.y-h2 && p.y < pos.y+h2))
+		{
+				return true;
+		}else
+			return false;
+	}
+
 }

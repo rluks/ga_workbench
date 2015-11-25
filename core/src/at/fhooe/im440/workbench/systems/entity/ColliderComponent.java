@@ -27,6 +27,9 @@ public abstract class ColliderComponent extends Component {
 
 	}
 
+	/*
+	 * Returns copy of Position Vector2 from TransformComponent
+	 */
 	public Vector2 getPosition() {
 		return this.Entity().GetComponent(TransformComponent.class).Position.cpy();
 	}
@@ -34,6 +37,8 @@ public abstract class ColliderComponent extends Component {
 	public float getDistance(Vector2 a, Vector2 b){
 		return (float)Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
 	}
+	
+	public abstract void Render(ShapeRenderer renderer);
 
 	abstract public boolean isHit(ColliderComponent c);
 
@@ -41,6 +46,6 @@ public abstract class ColliderComponent extends Component {
 
 	abstract public boolean isHitW(BoxColliderComponent circleCollider);
 
-	public abstract void Render(ShapeRenderer renderer);
+	public abstract boolean isHit(Vector2 p);
 
 }

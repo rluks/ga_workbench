@@ -21,7 +21,7 @@ public class VectorRenderSystem extends BaseSystem {
 	List<Color> cs;
 	
 	ShapeRenderer renderer;
-	float width = 2.0f;
+	float width = 5.0f;
 	
 	public VectorRenderSystem(){
 		origins = new ArrayList<Vector2>();

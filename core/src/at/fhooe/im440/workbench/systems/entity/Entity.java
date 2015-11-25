@@ -30,6 +30,12 @@ public class Entity {
 	public Entity AddComponent(Component component){
 		component.AddEntity(this);//TODO or some other way to inject reference?
 		components.put(component.getClass().getSimpleName(), component);//what if there is already same type?
+		
+		//TODO quick fix to access general collider
+		if(component.getClass().equals(CircleColliderComponent.class) 
+		   || component.getClass().equals(BoxColliderComponent.class) ){
+			components.put(ColliderComponent.class.getSimpleName(), component);
+		}
 		return this;
 	}
 	
@@ -43,11 +49,12 @@ public class Entity {
 		return componentType.cast(components.get(type));
 	}
 	
-	public <T extends ColliderComponent> T GetColliderComponent(Class<T> componentType){	
-		String type = componentType.getSimpleName();
-		return componentType.cast(components.get(type));
-	}
+	//public <T extends ColliderComponent> T GetColliderComponent(Class<T> componentType){	
+	//	String type = componentType.getSimpleName();
+	//	return componentType.cast(components.get(type));
+	//}
 	
+	@Deprecated
 	public Component RemoveComponent(String type){
 		Component c = components.remove(type);
 		c.RemoveEntity();
