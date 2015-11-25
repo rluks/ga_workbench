@@ -12,6 +12,7 @@ public abstract class ColliderComponent extends Component {
 
 	// TODO bitsets flag, mask for col.filtering
 	public boolean isColliding = false;
+	public boolean skipTesting = false;
 
 	@Override
 	void Register() {

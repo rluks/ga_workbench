@@ -67,7 +67,7 @@ public class CircleColliderComponent extends ColliderComponent {
 	
 	@Override
 	public boolean isHitW(BoxColliderComponent otherCollider){
-		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
+		System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
 		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
 		
 		//translate the axis of the circle (aka. move circle to the space of box, so we can use simple axis aligned method)
@@ -78,15 +78,26 @@ public class CircleColliderComponent extends ColliderComponent {
 		float boxHalfWidthG = scG.getHalfWidth();
 		btmLeftCorn.x -= boxHalfWidthG;
 		btmLeftCorn.y -= boxHalfHeightG;
+		vrs.RenderVector(otherCollider.getPosition(), btmLeftCorn, Color.BLUE);
 		
-		Vector2 translation = Vector2.Zero.sub(btmLeftCorn);
+		Vector2 translation = new Vector2(0, 0).sub(btmLeftCorn).scl(-1);
+		vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);
+		
 		//and rotate it by the angle of box rotation
 		float rotation = otherCollider.Entity().GetComponent(TransformComponent.class).Rotation;
 		Matrix3 mat = new Matrix3().setToTranslation(translation).setToRotation(rotation);
 		
 		//now use the matrix to translate, move the center of the circle
-		Vector2 translatedCenter = getPosition().mul(mat);
+		Vector2 translatedCenter = getPosition();
+		translatedCenter.mul(mat);
 		vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
+		
+		//why? how? help ...
+		
+		
+		
+		
+		
 		
 		//Vector from center of the circle to center of the bounding box
 		Vector2 V = new Vector2();

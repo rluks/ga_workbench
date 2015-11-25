@@ -37,6 +37,8 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 				ColliderComponent c2 = colliders.get(j);
 				if(c1 == c2)
 					continue;
+				if(c1.skipTesting || c2.skipTesting)
+					continue;
 				if(c1.isHit(c2)){
 					HandleCollision(c1, c2);
 				}

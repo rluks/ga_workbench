@@ -21,7 +21,7 @@ public class EntitySystem extends BaseSystem {
 	public void InitBoxEntities(){
 	
 		TextureAtlas ta = new TextureAtlas("boxes.pack");
-		AtlasRegion ar1 = ta.findRegion("box_white");		
+		AtlasRegion ar1 = ta.findRegion("box_red");		
 		TransformComponent tf1 = new TransformComponent();
 		tf1.Rotation = 30;		
 		tf1.Position = new Vector2(-20, 75);		
@@ -36,12 +36,14 @@ public class EntitySystem extends BaseSystem {
 		AtlasRegion ar2 = ta.findRegion("box_grey");		
 		TransformComponent tf2 = new TransformComponent();
 		tf2.Rotation = 0;		
-		tf2.Position = new Vector2(0, 0);		
+		tf2.Position = new Vector2(0, 0);
+		BoxColliderComponent bcc2 = new BoxColliderComponent();
+		bcc2.skipTesting = true;
 		Entity e2 = new Entity()
 				.Name("basic grey box")
 				.AddComponent(tf2)
 				//.AddComponent(new PhysicsComponent().setAngularVelocity(0))
-				.AddComponent(new BoxColliderComponent())
+				.AddComponent(bcc2)
 				.AddComponent(new SpriteComponent(ar2));
 		Entities.put(e2.Id, e2);
 		
@@ -58,9 +60,9 @@ public class EntitySystem extends BaseSystem {
 		TransformComponent tf2 = new TransformComponent();
 		TransformComponent tf3 = new TransformComponent();
 		
-		tf1.Position = new Vector2(0, 0);
+		tf1.Position = new Vector2(100, 100);
 		tf2.Position = new Vector2(-100, 100);
-		tf3.Position = new Vector2(100, 100);
+		tf3.Position = new Vector2(200, 100);
 		
 
 		 e = new Entity()
@@ -69,26 +71,30 @@ public class EntitySystem extends BaseSystem {
 				//.AddComponent(new PhysicsComponent())
 				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogTex));
-		Entities.put(e.Id, e);
+		//Entities.put(e.Id, e);
 			
 	
 		
 		//tf2.Position.x += 60.0f;
+		 CircleColliderComponent ccc2 =  new CircleColliderComponent();
+		 ccc2.skipTesting = true;
 		Entity e2 = new Entity()
 				.Name("Another cog")
 				.AddComponent(tf2)
 				//.AddComponent(new PhysicsComponent())
-				.AddComponent(new CircleColliderComponent())
+				.AddComponent(ccc2)
 				.AddComponent(new SpriteComponent(cogNTex))
 				;
 		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?		
 		
 		//tf3.Position.x += 120.0f;
+		CircleColliderComponent ccc3 =  new CircleColliderComponent();
+		 ccc3.skipTesting = true;
 		Entity e3 = new Entity()
 				.Name("Third wheel")
 				.AddComponent(tf3)
 				//.AddComponent(new PhysicsComponent())
-				.AddComponent(new CircleColliderComponent())
+				.AddComponent(ccc3)
 				.AddComponent(new SpriteComponent(cogSTex))
 				;
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
