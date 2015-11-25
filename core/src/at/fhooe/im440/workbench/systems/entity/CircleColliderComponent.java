@@ -16,27 +16,14 @@ public class CircleColliderComponent extends ColliderComponent {
 		super();
 	}
 	
-	public Vector2 getPosition(){
-		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-		SpriteComponent sc = this.Entity().GetComponent(SpriteComponent.class);
-		
-		float x = tc.Position.x + sc.Sprite.getWidth()/2;
-		float y = tc.Position.y + sc.Sprite.getHeight()/2;
-		Vector2 xy = new Vector2(x, y);
-		center = xy;
-		
-		return center;
-	}
-	
 	public CircleColliderComponent setName(String n){
 		this.name = n;
 		return this;
 	}
 	
-	public boolean isHit(Vector2 p){
-		getPosition();//update on demand
-		
-		Vector2 c = center;//center of the circle
+	public boolean isHit(Vector2 p){	
+		//center of the circle
+		Vector2 c = getPosition();
 		//System.out.println("circle center: " + c);
 		double distance = Math.sqrt((c.x - p.x)*(c.x - p.x) + (c.y - p.y)*(c.y - p.y));
 		
@@ -65,12 +52,8 @@ public class CircleColliderComponent extends ColliderComponent {
 	public boolean isHitW(CircleColliderComponent otherCollider) {
 		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
 		
-		//update positions
-		this.getPosition();
-		otherCollider.getPosition();
-		
-		Vector2 a = this.center;
-		Vector2 b = otherCollider.center;
+		Vector2 a = getPosition();
+		Vector2 b = otherCollider.getPosition();
 		double distance = Math.sqrt((a.x - b.x)*(a.x - b.x) + (a.y - b.y)*(a.y - b.y));
 		boolean result = (distance >= this.radius+otherCollider.radius) ? false : true;
 		return result;
@@ -79,15 +62,11 @@ public class CircleColliderComponent extends ColliderComponent {
 	public boolean isHitW(BoxColliderComponent otherCollider){
 		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
 		
-		//update positions
-		this.getPosition();
-		otherCollider.getPosition();
-		
 		//Vector from center of the circle to center of the bounding box
 		Vector2 V = new Vector2();
 		
-		Vector2 cCenter = center.cpy();
-		Vector2 bCenter = otherCollider.center.cpy();
+		Vector2 cCenter = getPosition();
+		Vector2 bCenter = otherCollider.getPosition();
 		
 		V.set(cCenter.sub(bCenter));
 		
@@ -96,5 +75,6 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		return false;
 	}
+
 
 }

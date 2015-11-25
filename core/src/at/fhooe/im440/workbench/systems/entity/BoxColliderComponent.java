@@ -10,18 +10,6 @@ public class BoxColliderComponent extends ColliderComponent {
 		super();
 	}
 	
-	public Vector2 getPosition(){
-		TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-		SpriteComponent sc = this.Entity().GetComponent(SpriteComponent.class);
-		
-		float x = tc.Position.x + sc.Sprite.getWidth()/2;
-		float y = tc.Position.y + sc.Sprite.getHeight()/2;
-		Vector2 xy = new Vector2(x, y);
-		center = xy;
-		
-		return center;
-	}
-	
 	@Override
 	public boolean isHit(ColliderComponent otherCollider) {
 		//System.out.println(name + " BoxCollider:isHit(Collider)");

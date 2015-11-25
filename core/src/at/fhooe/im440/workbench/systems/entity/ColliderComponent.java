@@ -9,10 +9,10 @@ import at.fhooe.im440.workbench.systems.RenderSystem;
 
 public abstract class ColliderComponent extends Component {
 
-	//TODO bitsets flag, mask for col.filtering
+	// TODO bitsets flag, mask for col.filtering
 	public boolean isColliding = false;
-	Vector2 center;
-	
+	// Vector2 center;
+
 	@Override
 	void Register() {
 		CollisionSystem s = ServiceLocator.Get(CollisionSystem.class);
@@ -26,12 +26,17 @@ public abstract class ColliderComponent extends Component {
 		// TODO Auto-generated method stub
 
 	}
-	
 
-	
+	public Vector2 getPosition() {
+		// TODO Auto-generated method stub
+		return this.Entity().GetComponent(TransformComponent.class).Position.cpy();
+
+	}
+
 	abstract public boolean isHit(ColliderComponent c);
 
 	abstract public boolean isHitW(CircleColliderComponent circleCollider);
+
 	abstract public boolean isHitW(BoxColliderComponent circleCollider);
 
 }

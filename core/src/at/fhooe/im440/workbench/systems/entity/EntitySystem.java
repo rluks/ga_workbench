@@ -49,7 +49,7 @@ public class EntitySystem extends BaseSystem {
 		TransformComponent tf2 = new TransformComponent();
 		TransformComponent tf3 = new TransformComponent();
 		
-		tf1.Position = new Vector2(100, 100);
+		tf1.Position = new Vector2(0, 0);
 		tf2.Position = new Vector2(-100, 100);
 		tf3.Position = new Vector2(100, 100);
 		
