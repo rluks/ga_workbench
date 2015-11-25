@@ -47,6 +47,7 @@ public class TestESScreen extends ScreenAdapter {
 		ServiceLocator.Register(new InputSystem());
 		
 		es.InitTestEntities();	
+		es.InitBoxEntities();
 		
 		ServiceLocator.Register(new EditorSystem());
 		
