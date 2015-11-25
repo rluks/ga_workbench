@@ -50,7 +50,7 @@ public class EntitySystem extends BaseSystem {
 		TransformComponent tf3 = new TransformComponent();
 		
 		tf1.Position = new Vector2(100, 100);
-		tf2.Position = new Vector2(100, 100);
+		tf2.Position = new Vector2(-100, 100);
 		tf3.Position = new Vector2(100, 100);
 		
 
@@ -64,7 +64,7 @@ public class EntitySystem extends BaseSystem {
 			
 	
 		
-		tf2.Position.x += 60.0f;
+		//tf2.Position.x += 60.0f;
 		Entity e2 = new Entity()
 				.Name("Another cog")
 				.AddComponent(tf2)
@@ -74,7 +74,7 @@ public class EntitySystem extends BaseSystem {
 				;
 		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?		
 		
-		tf3.Position.x += 120.0f;
+		//tf3.Position.x += 120.0f;
 		Entity e3 = new Entity()
 				.Name("Third wheel")
 				.AddComponent(tf3)

@@ -25,8 +25,8 @@ public class SpriteComponent extends Component {
 			//this.Sprite.setAlpha(0.1f);
 			float h = this.Sprite.getHeight()/2;
 			float w = this.Sprite.getWidth()/2;
-			//this.Sprite.setPosition(tc.Position.x-w, tc.Position.y-h);
-			this.Sprite.setPosition(tc.Position.x, tc.Position.y);
+			this.Sprite.setPosition(tc.Position.x-w, tc.Position.y-h);
+			//this.Sprite.setPosition(tc.Position.x, tc.Position.y);
 			this.Sprite.setRotation(degrees);
 			//this.Sprite.setOriginCenter();//rotation,scaling
 			this.Sprite.draw(batch);

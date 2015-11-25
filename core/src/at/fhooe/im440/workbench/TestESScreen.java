@@ -3,6 +3,7 @@ package at.fhooe.im440.workbench;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -66,7 +67,8 @@ public class TestESScreen extends ScreenAdapter {
 		
 		ServiceLocator.Update(delta);	
 		
-				
+		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+		vrs.RenderVector(new Vector2(0, 0), new Vector2(100, 100), Color.GREEN);	
 		//ServiceLocator.LateUpdate();//TODO where could i call this? just do the cleanups at the start of new updates
 	}
 

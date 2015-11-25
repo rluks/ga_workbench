@@ -24,10 +24,10 @@ public class BoxColliderComponent extends ColliderComponent {
 	
 	@Override
 	public boolean isHit(ColliderComponent otherCollider) {
-		System.out.println(name + " BoxCollider:isHit(Collider)");
+		//System.out.println(name + " BoxCollider:isHit(Collider)");
 		
-		System.out.println("this: " + this.getClass().getSimpleName());
-		System.out.println("other: " + otherCollider.getClass().getSimpleName());
+		//System.out.println("this: " + this.getClass().getSimpleName());
+		//System.out.println("other: " + otherCollider.getClass().getSimpleName());
 	
 		//instead of (possibly multiple) if(c instance of)
 		//we use this approach:
@@ -42,7 +42,7 @@ public class BoxColliderComponent extends ColliderComponent {
 	
 	@Override
 	public boolean isHitW(CircleColliderComponent otherCollider){
-		System.out.println(name + " BoxCollider:isHit(CircleCollider)");
+		//System.out.println(name + " BoxCollider:isHit(CircleCollider)");
 		return otherCollider.isHitW(this);
 	}
 	

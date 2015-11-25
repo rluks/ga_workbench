@@ -77,7 +77,7 @@ public class CircleColliderComponent extends ColliderComponent {
 	}
 	
 	public boolean isHitW(BoxColliderComponent otherCollider){
-		System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
+		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
 		
 		//update positions
 		this.getPosition();

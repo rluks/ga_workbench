@@ -42,7 +42,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		startingPos = origin2d;
 		
-		//System.out.println("touchdown: startingPos:" + startingPos);
+		System.out.println("touchdown: startingPos:" + startingPos);
 		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		//cs.test(origin2d);
