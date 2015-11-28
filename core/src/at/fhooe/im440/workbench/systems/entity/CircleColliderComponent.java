@@ -89,7 +89,10 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		//now use the matrix to translate, move the center of the circle
 		Vector2 translatedCenter = getPosition();
-		translatedCenter.mul(mat);
+		//translatedCenter.mul(mat);
+		translatedCenter.sub(translation);//TODO center thing..left corner issue
+		translatedCenter.rotate(-rotation);
+		
 		vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
 		
 		//why? how? help ...
