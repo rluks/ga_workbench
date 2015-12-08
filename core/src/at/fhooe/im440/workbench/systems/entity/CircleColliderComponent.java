@@ -115,13 +115,13 @@ public class CircleColliderComponent extends ColliderComponent {
 		Vector2 clampedV = new Vector2(bCenter.x+clmX, bCenter.y+clmY);
 		
 		//just to visualize, no computations with this one
-		Vector2 pos = otherCollider.getPosition();
-		//pos.add(new Vector2());
-		System.out.println(pos);
+		Vector2 pos = new Vector2(0,0);//otherCollider.getPosition();
+		//System.out.println(pos);
 		Vector2 clampedVOnPos = new Vector2(pos.x+clmX, pos.y+clmY);
-		pos.rotate(rotation);
+		//pos.rotate(rotation);
 		clampedVOnPos.rotate(rotation);
-		vrs.RenderVector(pos, clampedVOnPos, Color.GREEN);
+		clampedVOnPos.add(translation);
+		vrs.RenderVector(translation, clampedVOnPos, Color.GREEN);
 		
 		//distance between clampedV and the center of the circle
 		float distance = getDistance(cCenter, clampedV);
