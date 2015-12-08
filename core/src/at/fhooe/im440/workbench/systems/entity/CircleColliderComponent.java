@@ -72,33 +72,23 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		//translate the axis of the circle (aka. move circle to the space of box, so we can use simple axis aligned method)
 		//first create translation matrix using difference between bottom left corner of box and origin 0,0
-		Vector2 btmLeftCorn = otherCollider.getPosition();
-		SpriteComponent scG = otherCollider.Entity().GetComponent(SpriteComponent.class);
-		float boxHalfHeightG = scG.getHalfHeight();
-		float boxHalfWidthG = scG.getHalfWidth();
-		btmLeftCorn.x -= boxHalfWidthG;
-		btmLeftCorn.y -= boxHalfHeightG;
-		vrs.RenderVector(otherCollider.getPosition(), btmLeftCorn, Color.BLUE);
+		Vector2 anchorPoint = otherCollider.getPosition();
+			
+		Vector2 translation = new Vector2(0, 0).sub(anchorPoint).scl(-1);
+		float rotation = otherCollider.Entity().GetComponent(TransformComponent.class).Rotation;
 		
-		Vector2 translation = new Vector2(0, 0).sub(btmLeftCorn).scl(-1);
-		vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);
+		//move the center of the circle
+		Vector2 translatedCenter = getPosition();
+		translatedCenter.sub(translation);
 		
 		//and rotate it by the angle of box rotation
-		float rotation = otherCollider.Entity().GetComponent(TransformComponent.class).Rotation;
-		Matrix3 mat = new Matrix3().setToTranslation(translation).rotate(rotation);
+		translatedCenter.rotate(360-rotation);
 		
-		//now use the matrix to translate, move the center of the circle
-		Vector2 translatedCenter = getPosition();
-		//translatedCenter.mul(mat);
-		translatedCenter.sub(translation);//TODO center thing..left corner issue
-		translatedCenter.rotate(-rotation);
-		
+		//debug rendering
+		vrs.RenderVector(otherCollider.getPosition(), anchorPoint, Color.BLUE);
+		vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
 		vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
-		
-		//why? how? help ...
-		
-		
-		
+
 		
 		
 		
