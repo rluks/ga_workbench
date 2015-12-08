@@ -55,6 +55,7 @@ public class VectorRenderSystem extends BaseSystem {
 	    for(int i = 0; i < origins.size(); i++){
 	    	renderer.setColor(cs.get(i));
 	    	renderer.rectLine(origins.get(i), destinations.get(i), width);
+	    	renderer.circle(origins.get(i).x, origins.get(i).y, 5);
 	    }	
 	    
 	    renderer.end();
