@@ -95,11 +95,10 @@ public class CircleColliderComponent extends ColliderComponent {
 		//Vector from center of the circle to center of the bounding box
 		Vector2 V = new Vector2();
 		
-		Vector2 cCenter = translatedCenter;//getPosition();
-		Vector2 bCenter = new Vector2(0, 0);//otherCollider.getPosition();
+		Vector2 cCenter = translatedCenter;
+		Vector2 bCenter = new Vector2(0, 0);
 		
-		V.set(cCenter.cpy().sub(bCenter));
-		
+		V.set(cCenter.cpy().sub(bCenter));	
 
 		vrs.RenderVector(bCenter, V, Color.BLACK);
 		
@@ -115,10 +114,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		Vector2 clampedV = new Vector2(bCenter.x+clmX, bCenter.y+clmY);
 		
 		//just to visualize, no computations with this one
-		Vector2 pos = new Vector2(0,0);//otherCollider.getPosition();
-		//System.out.println(pos);
-		Vector2 clampedVOnPos = new Vector2(pos.x+clmX, pos.y+clmY);
-		//pos.rotate(rotation);
+		Vector2 clampedVOnPos = new Vector2(clmX, clmY);
 		clampedVOnPos.rotate(rotation);
 		clampedVOnPos.add(translation);
 		vrs.RenderVector(translation, clampedVOnPos, Color.GREEN);
@@ -128,8 +124,6 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		//and subtract the radius of the circle
 		distance -= this.radius;
-		
-		//System.out.println(distance);
 		
 		return (distance <= 0); 
 	}
