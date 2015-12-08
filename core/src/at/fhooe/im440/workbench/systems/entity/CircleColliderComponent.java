@@ -84,13 +84,11 @@ public class CircleColliderComponent extends ColliderComponent {
 		translatedCenter.rotate(360-rotation);
 		
 		//debug rendering
-		vrs.RenderVector(otherCollider.getPosition(), anchorPoint, Color.BLUE);
-		vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
-		vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
+		//vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
+		//vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
 
 		//now assume box coordinates are 0,0
-		//and test circle translated center with it
-		
+		//and test circle translated center with it		
 		
 		//Vector from center of the circle to center of the bounding box
 		Vector2 V = new Vector2();
@@ -100,7 +98,7 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		V.set(cCenter.cpy().sub(bCenter));	
 
-		vrs.RenderVector(bCenter, V, Color.BLACK);
+		//vrs.RenderVector(bCenter, V, Color.BLACK);
 		
 		//Clamp it to get projection of the center of the circle
 		//on boundary of the box

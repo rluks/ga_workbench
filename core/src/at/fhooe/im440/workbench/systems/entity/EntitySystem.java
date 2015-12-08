@@ -28,7 +28,7 @@ public class EntitySystem extends BaseSystem {
 		Entity e1 = new Entity()
 				.Name("Little red ridding box")
 				.AddComponent(tf1)
-				.AddComponent(new PhysicsComponent().setAngularVelocity(0))
+				.AddComponent(new PhysicsComponent().setAngularVelocity(14))
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		Entities.put(e1.Id, e1);
@@ -38,7 +38,7 @@ public class EntitySystem extends BaseSystem {
 		tf2.Rotation = 0;		
 		tf2.Position = new Vector2(0, 0);
 		BoxColliderComponent bcc2 = new BoxColliderComponent();
-		bcc2.skipTesting = true;
+		//bcc2.skipTesting = true;
 		Entity e2 = new Entity()
 				.Name("basic grey box")
 				.AddComponent(tf2)
@@ -77,7 +77,7 @@ public class EntitySystem extends BaseSystem {
 		
 		//tf2.Position.x += 60.0f;
 		 CircleColliderComponent ccc2 =  new CircleColliderComponent();
-		 ccc2.skipTesting = true;
+		 //ccc2.skipTesting = true;
 		Entity e2 = new Entity()
 				.Name("Another cog")
 				.AddComponent(tf2)
@@ -89,7 +89,7 @@ public class EntitySystem extends BaseSystem {
 		
 		//tf3.Position.x += 120.0f;
 		CircleColliderComponent ccc3 =  new CircleColliderComponent();
-		 ccc3.skipTesting = true;
+		 //ccc3.skipTesting = true;
 		Entity e3 = new Entity()
 				.Name("Third wheel")
 				.AddComponent(tf3)
