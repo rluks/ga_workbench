@@ -1,5 +1,7 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import com.badlogic.gdx.math.Vector2;
+
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.PhysicsSystem;
 
@@ -11,25 +13,30 @@ import at.fhooe.im440.workbench.systems.PhysicsSystem;
 public class PhysicsComponent extends Component{
 
 	public float AngularVelocity;
+	public Vector2 Velocity;
+	
+	public PhysicsComponent(){
+		this.Velocity = new Vector2(0, 0);
+	}
 	
 	public void Update(float delta){
 		if(Active){
 			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
-			//TODO check null
+			//TODO check null, keep reference
 			
 			float rotation = tc.Rotation + this.AngularVelocity * delta;
-
-			if(rotation > 360.0f){
-				rotation = rotation - 360.0f;
-			}
-			
-			if(rotation < 0.0f){
-				rotation = 360.0f + rotation;
-			}
-			
-			//System.out.println("PhysicsComponent: AngularVelocity:" + AngularVelocity);
-//			/System.out.println("PhysicsComponent: Rotation:" + tc.Rotation);
+			rotation = clampRotation(rotation);
 			tc.Rotation = rotation;
+			
+			Vector2 pos = tc.Position.cpy();
+			
+			pos.x = pos.x + this.Velocity.x * delta;
+			pos.y = pos.y + this.Velocity.y * delta;
+			
+			tc.Position = pos;
+			
+			System.out.println("PhysicsComponent: Velocity:" + Velocity);
+			System.out.println("PhysicsComponent: pos:" + tc.Position);
 		}
 		
 		
@@ -37,6 +44,11 @@ public class PhysicsComponent extends Component{
 	
 	public PhysicsComponent setAngularVelocity(float av){
 		this.AngularVelocity = av;
+		return this;
+	}
+	
+	public PhysicsComponent setVelocity(Vector2 v){
+		this.Velocity = v;
 		return this;
 	}
 
@@ -50,5 +62,16 @@ public class PhysicsComponent extends Component{
 	void Unregister() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	float clampRotation(float rotation){
+		if(rotation > 360.0f){
+			rotation = rotation - 360.0f;
+		}
+		
+		if(rotation < 0.0f){
+			rotation = 360.0f + rotation;
+		}
+		return rotation;
 	}
 }
