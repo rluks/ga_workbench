@@ -43,6 +43,7 @@ public class PhysicsComponent extends Component{
 			
 			VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
 			vrs.RenderVector(pos, pos.cpy().add(Velocity), Color.RED);
+			//
 
 		}
 		
