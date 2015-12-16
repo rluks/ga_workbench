@@ -17,9 +17,17 @@ public class PhysicsComponent extends Component{
 
 	public float AngularVelocity;
 	public Vector2 Velocity;
+	public float Mass;
+	
+	public Vector2 Acceleration;
+	private Vector2 _accelerationAccumulator;
 	
 	public PhysicsComponent(){
+		this.AngularVelocity = 0.0f;
 		this.Velocity = new Vector2(0, 0);
+		this.Mass = 1.0f;
+		this.Acceleration = new Vector2(0, 0);
+		this._accelerationAccumulator = new Vector2(0, 0);
 	}
 	
 	public void Update(float delta){
@@ -27,27 +35,56 @@ public class PhysicsComponent extends Component{
 			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			//TODO check null, keep reference
 			
-			float rotation = tc.Rotation + this.AngularVelocity * delta;
-			rotation = clampRotation(rotation);
-			tc.Rotation = rotation;
+			tc.Rotation = getNewRotation(tc, delta);
+			
+			
+			//clean it, apply forces (sum up resulting accelerations, and use it for calculation
+			Vector2 a = getNewAcceleration();	
+			
+			Vector2 v = this.Velocity.cpy();
+			v.x = v.x + a.x * delta;
+			v.y = v.y + a.y * delta;
 			
 			Vector2 pos = tc.Position.cpy();
+			pos.x = pos.x + v.x * delta;
+			pos.y = pos.y + v.y * delta;
 			
-			pos.x = pos.x + this.Velocity.x * delta;
-			pos.y = pos.y + this.Velocity.y * delta;
+			this.Acceleration.set(a);
+			this.Velocity.set(v);
+			tc.Position.set(pos);
 			
-			tc.Position = pos;
-			
+			//System.out.println("PhysicsComponent: Acceleration:" + Acceleration);
 			System.out.println("PhysicsComponent: Velocity:" + Velocity);
-			System.out.println("PhysicsComponent: pos:" + pos);
+			//System.out.println("PhysicsComponent: pos:" + pos);
 			
 			VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
 			vrs.RenderVector(pos, pos.cpy().add(Velocity), Color.RED);
-			//
+			
 
 		}
 		
 		
+	}
+	
+	public void ApplyForce(Vector2 f){
+		//F = m . a
+		//a = F/m
+		this._accelerationAccumulator.x += f.x/this.Mass;
+		this._accelerationAccumulator.y += f.y/this.Mass;
+		System.out.println("PhysicsComponent: _accelerationAccumulator:" + _accelerationAccumulator);
+	}
+	
+	private Vector2 getNewAcceleration(){
+		Vector2 a = new Vector2();
+		a.set(this._accelerationAccumulator);
+		this._accelerationAccumulator.set(0, 0);
+		return a;
+	}
+	
+	private float getNewRotation(TransformComponent tc, float delta){
+		float rotation = tc.Rotation + this.AngularVelocity * delta;
+		rotation = clampRotation(rotation);
+		return rotation;
 	}
 	
 	public PhysicsComponent setAngularVelocity(float av){

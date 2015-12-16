@@ -32,6 +32,7 @@ public class EntitySystem extends BaseSystem {
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		Entities.put(e1.Id, e1);
+		System.out.println(e1.Id);
 			
 		AtlasRegion ar2 = ta.findRegion("box_grey");		
 		TransformComponent tf2 = new TransformComponent();

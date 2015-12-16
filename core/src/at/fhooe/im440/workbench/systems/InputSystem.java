@@ -1,12 +1,15 @@
 package at.fhooe.im440.workbench.systems;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.entity.Entity;
+import at.fhooe.im440.workbench.systems.entity.EntitySystem;
+import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
 
 public class InputSystem extends BaseSystem implements InputProcessor {
 
@@ -18,6 +21,14 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
+		
+		if(keycode == Keys.V){
+			EntitySystem es = ServiceLocator.Get(EntitySystem.class);
+			Entity e = es.GetEntity(4);
+			System.out.println(e.Name);
+			PhysicsComponent p = e.GetComponent(PhysicsComponent.class);
+			p.ApplyForce(new Vector2(10, 0));
+		}
 		return false;
 	}
 
