@@ -19,6 +19,8 @@ public class PhysicsComponent extends Component{
 	public Vector2 Velocity;
 	public float Mass;
 	
+	Vector2 oldPosition;
+	
 	public Vector2 Acceleration;
 	private Vector2 _accelerationAccumulator;
 	
@@ -28,6 +30,8 @@ public class PhysicsComponent extends Component{
 		this.Mass = 1.0f;
 		this.Acceleration = new Vector2(0, 0);
 		this._accelerationAccumulator = new Vector2(0, 0);
+		
+		this.oldPosition = new Vector2(0, 0);
 	}
 	
 	public void Update(float delta){
@@ -42,12 +46,27 @@ public class PhysicsComponent extends Component{
 			Vector2 a = getNewAcceleration();	
 			
 			Vector2 v = this.Velocity.cpy();
-			v.x = v.x + a.x * delta;
-			v.y = v.y + a.y * delta;
-			
 			Vector2 pos = tc.Position.cpy();
-			pos.x = pos.x + v.x * delta;
-			pos.y = pos.y + v.y * delta;
+			
+			//euler
+			//v.x = v.x + a.x * delta;
+			//v.y = v.y + a.y * delta;			
+			//pos.x = pos.x + v.x * delta;
+			//pos.y = pos.y + v.y * delta;
+			
+			//velocity verlet
+			//v1 = v0 . (a0+a1)/2 . dt
+			//x1 = x0 + v0.delta + a0/2 . dt^2
+			//how do i get a1?
+			
+			//verlet integration
+			//x1 = 2x0 - x_old + a.dt^2
+			//x_old = x0
+			pos.scl(2);
+			pos.sub(this.oldPosition);
+			pos.add(a.scl(delta*delta));
+			this.oldPosition = tc.Position.cpy();
+			
 			
 			this.Acceleration.set(a);
 			this.Velocity.set(v);
