@@ -1,9 +1,12 @@
 package at.fhooe.im440.workbench.systems.entity;
 
+import com.badlogic.gdx.graphics.Color;
+
 import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.PhysicsSystem;
+import at.fhooe.im440.workbench.systems.VectorRenderSystem;
 
 /**
  * Moves objects according to their velocities
@@ -36,7 +39,11 @@ public class PhysicsComponent extends Component{
 			tc.Position = pos;
 			
 			System.out.println("PhysicsComponent: Velocity:" + Velocity);
-			System.out.println("PhysicsComponent: pos:" + tc.Position);
+			System.out.println("PhysicsComponent: pos:" + pos);
+			
+			VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+			vrs.RenderVector(pos, pos.cpy().add(Velocity), Color.RED);
+
 		}
 		
 		
