@@ -11,6 +11,7 @@ import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	
 	List<PhysicsComponent> physics;
+	List<IForce> forces;
 	
 	public PhysicsSystem(){
 		physics = new ArrayList<PhysicsComponent>();

@@ -19,7 +19,7 @@ public class PhysicsComponent extends Component{
 	public Vector2 Velocity;
 	public float Mass;
 	
-	Vector2 oldPosition;
+	Vector2 oldAcceleration;
 	
 	public Vector2 Acceleration;
 	private Vector2 _accelerationAccumulator;
@@ -31,7 +31,7 @@ public class PhysicsComponent extends Component{
 		this.Acceleration = new Vector2(0, 0);
 		this._accelerationAccumulator = new Vector2(0, 0);
 		
-		this.oldPosition = new Vector2(0, 0);
+		this.oldAcceleration = new Vector2(0, 0);;
 	}
 	
 	public void Update(float delta){
@@ -54,7 +54,7 @@ public class PhysicsComponent extends Component{
 			//pos.x = pos.x + v.x * delta;
 			//pos.y = pos.y + v.y * delta;
 			
-			//velocity verlet
+			//velocity verlet - use this one, store previous acceleration
 			//v1 = v0 . (a0+a1)/2 . dt
 			//x1 = x0 + v0.delta + a0/2 . dt^2
 			//how do i get a1?
@@ -62,6 +62,8 @@ public class PhysicsComponent extends Component{
 			//verlet integration
 			//x1 = 2x0 - x_old + a.dt^2
 			//x_old = x0
+			//since we are storing velocity we dont need this one
+			
 			pos.scl(2);
 			pos.sub(this.oldPosition);
 			pos.add(a.scl(delta*delta));
