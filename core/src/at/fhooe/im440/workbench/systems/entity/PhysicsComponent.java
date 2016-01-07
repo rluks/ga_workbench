@@ -39,14 +39,14 @@ public class PhysicsComponent extends Component{
 			TransformComponent tc = this.Entity().GetComponent(TransformComponent.class);
 			//TODO check null, keep reference
 			
-			tc.Rotation = getNewRotation(tc, delta);
-			
+			tc.Rotation = getNewRotation(tc, delta);		
 			
 			//clean it, apply forces (sum up resulting accelerations, and use it for calculation
+			this.oldAcceleration.set(this.Acceleration);
 			Vector2 a = getNewAcceleration();	
 			
-			Vector2 v = this.Velocity.cpy();
-			Vector2 pos = tc.Position.cpy();
+			Vector2 v0 = this.Velocity.cpy();
+			Vector2 pos0 = tc.Position.cpy();
 			
 			//euler
 			//v.x = v.x + a.x * delta;
@@ -55,27 +55,22 @@ public class PhysicsComponent extends Component{
 			//pos.y = pos.y + v.y * delta;
 			
 			//velocity verlet - use this one, store previous acceleration
-			//v1 = v0 . (a0+a1)/2 . dt
+			//v1 = v0 + (a0+a1)/2 . dt
 			//x1 = x0 + v0.delta + a0/2 . dt^2
-			//how do i get a1?
 			
-			//verlet integration
-			//x1 = 2x0 - x_old + a.dt^2
-			//x_old = x0
-			//since we are storing velocity we dont need this one
+			Vector2 accSum = this.oldAcceleration.cpy().add(a);
+			Vector2 v = (accSum.scl(0.5f)).scl(delta);
+			v.add(v0);
+			Vector2 pos = pos0.add(v0.scl(delta));
+			pos.add(this.oldAcceleration.cpy().scl(0.5f).scl(delta * delta));
 			
-			pos.scl(2);
-			pos.sub(this.oldPosition);
-			pos.add(a.scl(delta*delta));
-			this.oldPosition = tc.Position.cpy();
-			
-			
+			//set new values
 			this.Acceleration.set(a);
 			this.Velocity.set(v);
 			tc.Position.set(pos);
 			
 			//System.out.println("PhysicsComponent: Acceleration:" + Acceleration);
-			System.out.println("PhysicsComponent: Velocity:" + Velocity);
+			//System.out.println("PhysicsComponent: Velocity:" + Velocity);
 			//System.out.println("PhysicsComponent: pos:" + pos);
 			
 			VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
