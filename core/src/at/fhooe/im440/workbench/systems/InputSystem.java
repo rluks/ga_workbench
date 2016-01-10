@@ -27,7 +27,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 			Entity e = es.GetEntity(5);
 			System.out.println(e.Name);
 			PhysicsComponent p = e.GetComponent(PhysicsComponent.class);
-			p.ApplyForce(new Vector2(100, 0));
+			p.ApplyForce(new Vector2(1000, 0));
 		}
 		return false;
 	}

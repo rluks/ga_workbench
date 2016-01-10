@@ -64,6 +64,9 @@ public class PhysicsComponent extends Component{
 			Vector2 pos = pos0.add(v0.scl(delta));
 			pos.add(this.oldAcceleration.cpy().scl(0.5f).scl(delta * delta));
 			
+			//dampening
+			v.sub(v.cpy().scl(0.01f));//1%
+			
 			//set new values
 			this.Acceleration.set(a);
 			this.Velocity.set(v);
@@ -82,14 +85,17 @@ public class PhysicsComponent extends Component{
 		
 	}
 	
-	public void ApplyForce(Vector2 f){
+	public PhysicsComponent ApplyForce(Vector2 f){
 		//F = m . a
 		//a = F/m
+		if(this.Entity() != null)
+			System.out.println(this.Entity().Name + " received force " + f);
 		
-		System.out.println(this.Entity().Name + " received force " + f);
 		this._accelerationAccumulator.x += f.x/this.Mass;
 		this._accelerationAccumulator.y += f.y/this.Mass;
 		//System.out.println("PhysicsComponent: _accelerationAccumulator:" + _accelerationAccumulator);
+		
+		return this;
 	}
 	
 	private Vector2 getNewAcceleration(){

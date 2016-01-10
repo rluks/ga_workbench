@@ -30,10 +30,11 @@ public class SpringComponent extends PhysicsComponent {
 		
 		Vector2 pos1 = this.e1.GetComponent(TransformComponent.class).Position.cpy();
 		Vector2 pos2 = this.e2.GetComponent(TransformComponent.class).Position.cpy();
-		this.BaseLength = pos1.sub(pos2).len();
+		//this.BaseLength = pos1.sub(pos2).len();
+		this.BaseLength = pos1.dst(pos2);
 		this.CurrentLength = this.BaseLength;
 		
-		this.Stiffness = 1.0f;
+		this.Stiffness = 10.0f;
 		
 		this.vrs = ServiceLocator.Get(VectorRenderSystem.class);
 	}
@@ -43,13 +44,13 @@ public class SpringComponent extends PhysicsComponent {
 		Vector2 pos2 = this.e2.GetComponent(TransformComponent.class).Position.cpy();
 		vrs.RenderVector(pos1, pos2, Color.GREEN, 2);
 		
-		this.CurrentLength = pos1.cpy().sub(pos2).len();
+		this.CurrentLength = pos1.dst(pos2);
 		
 		//F = -kx
 		float force = -this.Stiffness * (this.BaseLength-this.CurrentLength);
-		System.out.println("spring force " + force);
-		this.pc1.ApplyForce(new Vector2(-force, 0));
-		this.pc2.ApplyForce(new Vector2(force, 0));
+		System.out.println("spring force " + force);//TODO normalize somehow position
+		this.pc1.ApplyForce(new Vector2(-force/2, 0));
+		this.pc2.ApplyForce(new Vector2(force/2, 0));
 		
 	}
 	
