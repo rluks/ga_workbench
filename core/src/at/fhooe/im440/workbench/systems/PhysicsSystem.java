@@ -38,7 +38,7 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	public void Debug(boolean b){
 		for(Component pc: physics){
 			pc.showDebug = b;
-			System.out.println("physics debug " + b);
+			//System.out.println("physics debug " + b);
 		}
 	}
 }

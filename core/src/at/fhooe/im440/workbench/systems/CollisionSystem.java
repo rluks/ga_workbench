@@ -116,5 +116,11 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 		return null;
 		
 	}
+	
+	public void Debug(boolean b){
+		for(Component pc: colliders){
+			pc.showDebug = b;
+		}
+	}
 
 }
