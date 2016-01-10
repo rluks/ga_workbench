@@ -24,6 +24,8 @@ public class PhysicsComponent extends Component{
 	public Vector2 Acceleration;
 	private Vector2 _accelerationAccumulator;
 	
+	private VectorRenderSystem vrs;
+	
 	public PhysicsComponent(){
 		this.AngularVelocity = 0.0f;
 		this.Velocity = new Vector2(0, 0);
@@ -32,6 +34,8 @@ public class PhysicsComponent extends Component{
 		this._accelerationAccumulator = new Vector2(0, 0);
 		
 		this.oldAcceleration = new Vector2(0, 0);;
+		
+		vrs = ServiceLocator.Get(VectorRenderSystem.class);
 	}
 	
 	public void Update(float delta){
@@ -65,7 +69,10 @@ public class PhysicsComponent extends Component{
 			pos.add(this.oldAcceleration.cpy().scl(0.5f).scl(delta * delta));
 			
 			//dampening
-			v.sub(v.cpy().scl(0.01f));//1%
+			Vector2 dampening = new Vector2();
+			dampening.set(v);
+			dampening.scl(0.01f);//1%
+			v.sub(dampening);
 			
 			//set new values
 			this.Acceleration.set(a);
@@ -76,7 +83,7 @@ public class PhysicsComponent extends Component{
 			//System.out.println("PhysicsComponent: Velocity:" + Velocity);
 			//System.out.println("PhysicsComponent: pos:" + pos);
 			
-			VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+			
 			vrs.RenderVector(pos, pos.cpy().add(Velocity), Color.RED);
 			
 

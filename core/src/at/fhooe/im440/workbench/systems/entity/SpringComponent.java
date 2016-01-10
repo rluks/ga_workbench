@@ -11,7 +11,7 @@ public class SpringComponent extends PhysicsComponent {
 
 	float BaseLength;
 	float CurrentLength;
-	float Stiffness;
+	float Stiffness;//What values are reasonable?
 	Entity e1;
 	PhysicsComponent pc1;
 	Entity e2;
@@ -34,7 +34,7 @@ public class SpringComponent extends PhysicsComponent {
 		this.BaseLength = pos1.dst(pos2);
 		this.CurrentLength = this.BaseLength;
 		
-		this.Stiffness = 10.0f;
+		this.Stiffness = 30f;
 		
 		this.vrs = ServiceLocator.Get(VectorRenderSystem.class);
 	}
@@ -44,13 +44,13 @@ public class SpringComponent extends PhysicsComponent {
 		Vector2 pos2 = this.e2.GetComponent(TransformComponent.class).Position.cpy();
 		vrs.RenderVector(pos1, pos2, Color.GREEN, 2);
 		Vector2 dir = new Vector2(pos1.cpy().sub(pos2));
-		dir.nor().scl(0.5f);
+		dir.nor().scl(0.5f);//half force for each entity
 		
 		this.CurrentLength = pos1.dst(pos2);
 		
 		//F = -kx
 		float force = -this.Stiffness * (this.BaseLength-this.CurrentLength);
-		System.out.println("spring force " + force);
+		//System.out.println("spring force " + force);
 		this.pc1.ApplyForce(dir.cpy().scl(-force));
 		this.pc2.ApplyForce(dir.cpy().scl(force));
 		
