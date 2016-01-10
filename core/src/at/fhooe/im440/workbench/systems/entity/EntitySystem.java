@@ -72,7 +72,7 @@ public class EntitySystem extends BaseSystem {
 				//.AddComponent(new PhysicsComponent())
 				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogTex));
-		//Entities.put(e.Id, e);
+		Entities.put(e.Id, e);
 			
 	
 		
@@ -80,7 +80,7 @@ public class EntitySystem extends BaseSystem {
 		 CircleColliderComponent ccc2 =  new CircleColliderComponent();
 		 //ccc2.skipTesting = true;
 		Entity e2 = new Entity()
-				.Name("Another cog")
+				.Name("white cog")
 				.AddComponent(tf2)
 				//.AddComponent(new PhysicsComponent())
 				.AddComponent(ccc2)
@@ -99,6 +99,15 @@ public class EntitySystem extends BaseSystem {
 				.AddComponent(new SpriteComponent(cogSTex))
 				;
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
+		
+		InitSpringTest(e.Id, e2.Id);
+	}
+	
+	void InitSpringTest(long id1, long id2){
+		Entity s = new Entity()
+				.Name("SpringTest")
+				.AddComponent(new SpringComponent(id1, id2));
+		Entities.put(s.Id, s);
 	}
 	
 	public Entity GetEntity(long id){

@@ -102,6 +102,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 			Label l = new Label(item.name(), style);
 			l.setPosition(item.ordinal()*labelDistance, 0, Align.center);
 			l.setName(item.name());
+			l.setFontScale(2);
 			menuLabels.add(l);
 			stage.addActor(l);
 		}
