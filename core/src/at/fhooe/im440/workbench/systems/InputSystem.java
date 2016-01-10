@@ -24,7 +24,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		
 		if(keycode == Keys.V){
 			EntitySystem es = ServiceLocator.Get(EntitySystem.class);
-			Entity e = es.GetEntity(5);
+			Entity e = es.GetEntity("Little red ridding box");
 			System.out.println(e.Name);
 			PhysicsComponent p = e.GetComponent(PhysicsComponent.class);
 			p.ApplyForce(new Vector2(1000, 0));

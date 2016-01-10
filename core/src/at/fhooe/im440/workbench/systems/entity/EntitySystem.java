@@ -2,6 +2,7 @@ package at.fhooe.im440.workbench.systems.entity;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -89,7 +90,7 @@ public class EntitySystem extends BaseSystem {
 		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?	
 		
 		
-		InitSpringTest(e.Id, e2.Id);
+		InitSpringTest(e.Id, e2.Id, "red and white");
 		
 		
 		//tf3.Position.x += 120.0f;
@@ -98,24 +99,34 @@ public class EntitySystem extends BaseSystem {
 		Entity e3 = new Entity()
 				.Name("Third wheel")
 				.AddComponent(tf3)
-				//.AddComponent(new PhysicsComponent())
+				.AddComponent(new PhysicsComponent())
 				.AddComponent(ccc3)
 				.AddComponent(new SpriteComponent(cogSTex))
 				;
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
 		
-		
+		InitSpringTest(e2.Id, e3.Id, "white and grey");
 	}
 	
-	void InitSpringTest(long id1, long id2){
+	void InitSpringTest(long id1, long id2, String springName){
 		Entity s = new Entity()
-				.Name("SpringTest")
+				.Name(springName)
 				.AddComponent(new SpringComponent(id1, id2));
 		Entities.put(s.Id, s);
 	}
 	
 	public Entity GetEntity(long id){
 		return Entities.get(id);
+	}
+	
+	public Entity GetEntity(String name){
+		for(Entry<Long, Entity> entry: Entities.entrySet()){
+			Entity currentEntity = entry.getValue();
+			if(name == currentEntity.Name)
+				return currentEntity;
+		}
+		
+		return null;	
 	}
 	
 	//TODO create Entitz
