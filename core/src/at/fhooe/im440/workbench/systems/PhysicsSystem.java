@@ -10,16 +10,16 @@ import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 
 public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	
-	List<PhysicsComponent> physics;
+	List<Component> physics;
 	List<IForce> forces;
 	
 	public PhysicsSystem(){
-		physics = new ArrayList<PhysicsComponent>();
+		physics = new ArrayList<Component>();
 	}
 	
 	@Override
 	public void Update(float delta){
-		for(PhysicsComponent pc: physics){
+		for(Component pc: physics){
 			//pc.AngularVelocity=14.5f;
 			pc.Update(delta);
 		}
@@ -27,12 +27,12 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	
 	@Override
 	public void Register(Component component) {
-		physics.add((PhysicsComponent) component);
+		physics.add((Component) component);
 	}
 
 
 	@Override
 	public void Unregister(Component component) {
-		physics.remove((PhysicsComponent) component);
+		physics.remove((Component) component);
 	}
 }

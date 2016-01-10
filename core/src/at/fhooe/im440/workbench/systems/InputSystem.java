@@ -24,10 +24,10 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		
 		if(keycode == Keys.V){
 			EntitySystem es = ServiceLocator.Get(EntitySystem.class);
-			Entity e = es.GetEntity(4);
+			Entity e = es.GetEntity(5);
 			System.out.println(e.Name);
 			PhysicsComponent p = e.GetComponent(PhysicsComponent.class);
-			p.ApplyForce(new Vector2(10, 0));
+			p.ApplyForce(new Vector2(100, 0));
 		}
 		return false;
 	}

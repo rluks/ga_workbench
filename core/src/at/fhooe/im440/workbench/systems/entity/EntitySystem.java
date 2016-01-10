@@ -32,7 +32,7 @@ public class EntitySystem extends BaseSystem {
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		Entities.put(e1.Id, e1);
-		System.out.println(e1.Id);
+		System.out.println("redbox id:" + e1.Id);
 			
 		AtlasRegion ar2 = ta.findRegion("box_grey");		
 		TransformComponent tf2 = new TransformComponent();
@@ -69,7 +69,7 @@ public class EntitySystem extends BaseSystem {
 		 e = new Entity()
 				.Name("Red cog wheel")
 				.AddComponent(tf1)
-				//.AddComponent(new PhysicsComponent())
+				.AddComponent(new PhysicsComponent())
 				.AddComponent(new CircleColliderComponent())
 				.AddComponent(new SpriteComponent(cogTex));
 		Entities.put(e.Id, e);
@@ -82,11 +82,15 @@ public class EntitySystem extends BaseSystem {
 		Entity e2 = new Entity()
 				.Name("white cog")
 				.AddComponent(tf2)
-				//.AddComponent(new PhysicsComponent())
+				.AddComponent(new PhysicsComponent())
 				.AddComponent(ccc2)
 				.AddComponent(new SpriteComponent(cogNTex))
 				;
-		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?		
+		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?	
+		
+		
+		InitSpringTest(e.Id, e2.Id);
+		
 		
 		//tf3.Position.x += 120.0f;
 		CircleColliderComponent ccc3 =  new CircleColliderComponent();
@@ -100,7 +104,7 @@ public class EntitySystem extends BaseSystem {
 				;
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
 		
-		InitSpringTest(e.Id, e2.Id);
+		
 	}
 	
 	void InitSpringTest(long id1, long id2){

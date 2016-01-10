@@ -38,6 +38,11 @@ abstract public class Component {
 	
 	static private long maxId = 0;
 
+	public void Update(float delta) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }

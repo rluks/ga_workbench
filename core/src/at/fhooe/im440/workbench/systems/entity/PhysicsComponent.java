@@ -85,9 +85,11 @@ public class PhysicsComponent extends Component{
 	public void ApplyForce(Vector2 f){
 		//F = m . a
 		//a = F/m
+		
+		System.out.println(this.Entity().Name + " received force " + f);
 		this._accelerationAccumulator.x += f.x/this.Mass;
 		this._accelerationAccumulator.y += f.y/this.Mass;
-		System.out.println("PhysicsComponent: _accelerationAccumulator:" + _accelerationAccumulator);
+		//System.out.println("PhysicsComponent: _accelerationAccumulator:" + _accelerationAccumulator);
 	}
 	
 	private Vector2 getNewAcceleration(){

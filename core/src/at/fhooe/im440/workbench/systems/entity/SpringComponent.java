@@ -13,7 +13,9 @@ public class SpringComponent extends PhysicsComponent {
 	float CurrentLength;
 	float Stiffness;
 	Entity e1;
+	PhysicsComponent pc1;
 	Entity e2;
+	PhysicsComponent pc2;
 	
 	VectorRenderSystem vrs;
 	
@@ -21,6 +23,8 @@ public class SpringComponent extends PhysicsComponent {
 		EntitySystem es = ServiceLocator.Get(EntitySystem.class);
 		this.e1 = es.GetEntity(id1);
 		this.e2 = es.GetEntity(id2);
+		this.pc1 = this.e1.GetComponent(PhysicsComponent.class);
+		this.pc2 = this.e2.GetComponent(PhysicsComponent.class);
 		
 		System.out.println("Creating spring entity between " + es.GetEntity(id1).Name + " and " + es.GetEntity(id2).Name);
 		
@@ -35,12 +39,18 @@ public class SpringComponent extends PhysicsComponent {
 	}
 	
 	public void Update(float delta){
-		
-		
-		
 		Vector2 pos1 = this.e1.GetComponent(TransformComponent.class).Position.cpy();
 		Vector2 pos2 = this.e2.GetComponent(TransformComponent.class).Position.cpy();
-		vrs.RenderVector(pos1, pos2, Color.GREEN);
+		vrs.RenderVector(pos1, pos2, Color.GREEN, 2);
+		
+		this.CurrentLength = pos1.cpy().sub(pos2).len();
+		
+		//F = -kx
+		float force = -this.Stiffness * (this.BaseLength-this.CurrentLength);
+		System.out.println("spring force " + force);
+		this.pc1.ApplyForce(new Vector2(-force, 0));
+		this.pc2.ApplyForce(new Vector2(force, 0));
+		
 	}
 	
 	@Override

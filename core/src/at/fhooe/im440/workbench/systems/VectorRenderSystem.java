@@ -18,7 +18,17 @@ public class VectorRenderSystem extends BaseSystem {
 
 	List<Vector2> origins;
 	List<Vector2> destinations;
-	List<Color> cs;
+	List<Params> cs;
+	
+	public class Params{
+		public Color color;
+		public float width;
+		
+		public Params(Color c, float w){
+			this.color = c;
+			this.width = w;
+		}
+	}
 	
 	ShapeRenderer renderer;
 	float width = 5.0f;
@@ -26,15 +36,23 @@ public class VectorRenderSystem extends BaseSystem {
 	public VectorRenderSystem(){
 		origins = new ArrayList<Vector2>();
 		destinations = new ArrayList<Vector2>();
-		cs = new ArrayList<Color>();
+		cs = new ArrayList<Params>();
 		
 		this.renderer = new ShapeRenderer();
 	}
 	
 	public void RenderVector(Vector2 o, Vector2 d, com.badlogic.gdx.graphics.Color color){
+		//origins.add(o);
+		//destinations.add(d);
+		//cs.add(new Params(color, this.width));
+		
+		RenderVector(o, d, color, this.width);
+	}
+	
+	public void RenderVector(Vector2 o, Vector2 d, com.badlogic.gdx.graphics.Color color, float width){
 		origins.add(o);
 		destinations.add(d);
-		cs.add(color);
+		cs.add(new Params(color, width));
 	}
 	
 	void Cleanup(){
@@ -53,8 +71,8 @@ public class VectorRenderSystem extends BaseSystem {
 	    renderer.begin(ShapeType.Filled);
 	    
 	    for(int i = 0; i < origins.size(); i++){
-	    	renderer.setColor(cs.get(i));
-	    	renderer.rectLine(origins.get(i), destinations.get(i), width);
+	    	renderer.setColor(cs.get(i).color);
+	    	renderer.rectLine(origins.get(i), destinations.get(i), cs.get(i).width);
 	    	renderer.circle(origins.get(i).x, origins.get(i).y, 5);
 	    }	
 	    
