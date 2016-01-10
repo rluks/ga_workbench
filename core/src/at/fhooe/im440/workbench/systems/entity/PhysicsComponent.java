@@ -79,12 +79,11 @@ public class PhysicsComponent extends Component{
 			this.Velocity.set(v);
 			tc.Position.set(pos);
 			
-			//System.out.println("PhysicsComponent: Acceleration:" + Acceleration);
-			//System.out.println("PhysicsComponent: Velocity:" + Velocity);
-			//System.out.println("PhysicsComponent: pos:" + pos);
-			
-			
-			vrs.RenderVector(pos, pos.cpy().add(Velocity), Color.RED);
+			if(showDebug)
+				//System.out.println("PhysicsComponent: Acceleration:" + Acceleration);
+				//System.out.println("PhysicsComponent: Velocity:" + Velocity);
+				//System.out.println("PhysicsComponent: pos:" + pos);
+				vrs.RenderVector(pos, pos.cpy().add(Velocity), Color.RED);
 			
 
 		}
@@ -95,8 +94,10 @@ public class PhysicsComponent extends Component{
 	public PhysicsComponent ApplyForce(Vector2 f){
 		//F = m . a
 		//a = F/m
-		if(this.Entity() != null)
-			System.out.println(this.Entity().Name + " received force " + f);
+		if(this.Entity() != null){
+			if(showDebug)
+				System.out.println(this.Entity().Name + " received force " + f);
+		}		
 		
 		this._accelerationAccumulator.x += f.x/this.Mass;
 		this._accelerationAccumulator.y += f.y/this.Mass;

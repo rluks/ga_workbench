@@ -20,7 +20,6 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	@Override
 	public void Update(float delta){
 		for(Component pc: physics){
-			//pc.AngularVelocity=14.5f;
 			pc.Update(delta);
 		}
 	}
@@ -34,5 +33,12 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 	@Override
 	public void Unregister(Component component) {
 		physics.remove((Component) component);
+	}
+	
+	public void Debug(boolean b){
+		for(Component pc: physics){
+			pc.showDebug = b;
+			System.out.println("physics debug " + b);
+		}
 	}
 }

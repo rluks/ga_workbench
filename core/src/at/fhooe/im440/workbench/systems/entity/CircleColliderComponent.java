@@ -68,7 +68,7 @@ public class CircleColliderComponent extends ColliderComponent {
 	@Override
 	public boolean isHitW(BoxColliderComponent otherCollider){
 		//System.out.println(this.Entity().Name + " vs " + otherCollider.Entity().Name + " CircleCollider:isHit(CircleCollider)");
-		//VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
+		VectorRenderSystem vrs = ServiceLocator.Get(VectorRenderSystem.class);
 		
 		//translate the axis of the circle (aka. move circle to the space of box, so we can use simple axis aligned method)
 		Vector2 anchorPoint = otherCollider.getPosition();
@@ -84,8 +84,11 @@ public class CircleColliderComponent extends ColliderComponent {
 		translatedCenter.rotate(360-rotation);
 		
 		//debug rendering
-		//vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
-		//vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
+		if(showDebug){			
+			vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
+			vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
+		}
+
 
 		//now assume box coordinates are 0,0
 		//and test circle translated center with it		
@@ -98,7 +101,8 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		V.set(cCenter.cpy().sub(bCenter));	
 
-		//vrs.RenderVector(bCenter, V, Color.BLACK);
+		if(showDebug)
+			vrs.RenderVector(bCenter, V, Color.BLACK);
 		
 		//Clamp it to get projection of the center of the circle
 		//on boundary of the box
@@ -115,7 +119,9 @@ public class CircleColliderComponent extends ColliderComponent {
 		Vector2 clampedVOnPos = new Vector2(clmX, clmY);
 		clampedVOnPos.rotate(rotation);
 		clampedVOnPos.add(translation);
-		//vrs.RenderVector(translation, clampedVOnPos, Color.GREEN);
+		
+		if(showDebug)
+			vrs.RenderVector(translation, clampedVOnPos, Color.GREEN);
 		
 		//distance between clampedV and the center of the circle
 		float distance = getDistance(cCenter, clampedV);

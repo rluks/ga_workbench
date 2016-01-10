@@ -13,12 +13,14 @@ public class ServiceLocator {
 	//TODO singleton? 
 	static{}//TODO static constructor
 	
+	static int debugIndex;
+	
 	public static void Init(){
 		systems = new LinkedHashMap<String, BaseSystem>();
-
+		debugIndex = 0;
 	}
 	
-	//TODO should we update all of systems here? yy
+	//update all systems here
 	public static void Update(float delta){
 		for(Entry<String, BaseSystem> entry: systems.entrySet()){
 			BaseSystem system = entry.getValue();
@@ -26,8 +28,8 @@ public class ServiceLocator {
 		}
 	}
 	
-	//TODO where will i initialize systems? 
-	//TODO from where i call register? - in each screen differently
+	//where will i initialize systems? - in each individual screen differently
+	//TODO from where i call register? 
 	public static void Register(BaseSystem system){
 		System.out.println("ServiceLocator Register:" + system.getClass().getSimpleName());
 		systems.put(system.getClass().getSimpleName(), system);
@@ -52,6 +54,31 @@ public class ServiceLocator {
 		
 		throw new IllegalArgumentException("ServiceLocator>>System not found");
 		//return null;
+		
+	}
+
+	public static void DebugNextSystem() {
+		
+		debugIndex++;
+		debugIndex %= systems.size();
+		
+		//String selected = "PhysicsSystem";
+		int index = 0;
+		for(Entry<String, BaseSystem> entry: systems.entrySet()){
+			BaseSystem system = entry.getValue();
+			if(index == debugIndex){
+				system.Debug(true);
+				System.out.println("Debugging " + entry.getKey());
+			}else
+				system.Debug(false);
+			
+			//if(entry.getKey() == selected){
+			//	system.Debug(true);
+			//}else{
+			//	system.Debug(false);
+			//}
+			index++;
+		}
 		
 	}
 }

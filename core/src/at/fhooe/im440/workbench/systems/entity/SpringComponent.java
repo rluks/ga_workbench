@@ -42,7 +42,10 @@ public class SpringComponent extends PhysicsComponent {
 	public void Update(float delta){
 		Vector2 pos1 = this.e1.GetComponent(TransformComponent.class).Position.cpy();
 		Vector2 pos2 = this.e2.GetComponent(TransformComponent.class).Position.cpy();
-		vrs.RenderVector(pos1, pos2, Color.GREEN, 2);
+		
+		if(showDebug)
+			vrs.RenderVector(pos1, pos2, Color.GREEN, 2);
+		
 		Vector2 dir = new Vector2(pos1.cpy().sub(pos2));
 		dir.nor().scl(0.5f);//half force for each entity
 		
@@ -50,7 +53,10 @@ public class SpringComponent extends PhysicsComponent {
 		
 		//F = -kx
 		float force = -this.Stiffness * (this.BaseLength-this.CurrentLength);
-		//System.out.println("spring force " + force);
+		
+		if(showDebug)
+			System.out.println("spring force " + force);
+		
 		this.pc1.ApplyForce(dir.cpy().scl(-force));
 		this.pc2.ApplyForce(dir.cpy().scl(force));
 		

@@ -5,13 +5,14 @@ abstract public class Component {
 	public final long Id;
 	public boolean Active;
 	private Entity entity;
+	public boolean showDebug;
 	
 	public Component() {
-		maxId++;//TODO might theoretically overflow - is this safe? y
+		maxId++;//theoretically overflow - is this safe? y (long is very large number)
 		Id = maxId;
-		//System.out.println("Component: Id:" + Id);
 		Active = true;
 		Register();
+		showDebug = false;
 	}
 	
 	public Component SetActive(boolean activeState){
