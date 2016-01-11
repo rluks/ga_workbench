@@ -19,6 +19,8 @@ public class SpringComponent extends PhysicsComponent {
 	
 	VectorRenderSystem vrs;
 	
+	float _dampening = 0.1f;
+	
 	public SpringComponent(long id1, long id2){
 		EntitySystem es = ServiceLocator.Get(EntitySystem.class);
 		this.e1 = es.GetEntity(id1);
@@ -35,6 +37,7 @@ public class SpringComponent extends PhysicsComponent {
 		this.CurrentLength = this.BaseLength;
 		
 		this.Stiffness = 30f;
+		//this.Stiffness = 2f;
 		
 		this.vrs = ServiceLocator.Get(VectorRenderSystem.class);
 	}
@@ -54,8 +57,20 @@ public class SpringComponent extends PhysicsComponent {
 		//F = -kx
 		float force = -this.Stiffness * (this.BaseLength-this.CurrentLength);
 		
+		//dampening
+		float nodesVelocity = this.pc1.Velocity.len() + this.pc2.Velocity.len();
+		nodesVelocity /= 2;
+		float dampForce = nodesVelocity * nodesVelocity * _dampening;
+		
+		if(force > 0){
+			force -= dampForce;
+			//force = (force < 0) ? 0f : force;
+		}else{
+			force += dampForce;
+		}
+		
 		if(showDebug)
-			System.out.println("spring force " + force);
+			System.out.println("spring force " + force + " (reduced by " + dampForce + ")");
 		
 		this.pc1.ApplyForce(dir.cpy().scl(-force));
 		this.pc2.ApplyForce(dir.cpy().scl(force));

@@ -15,6 +15,7 @@ import at.fhooe.im440.workbench.systems.VectorRenderSystem;
  */
 public class PhysicsComponent extends Component{
 
+	
 	public float AngularVelocity;
 	public Vector2 Velocity;
 	public float Mass;
@@ -23,6 +24,7 @@ public class PhysicsComponent extends Component{
 	
 	public Vector2 Acceleration;
 	private Vector2 _accelerationAccumulator;
+	float _dampening = 0.01f;
 	
 	private VectorRenderSystem vrs;
 	
@@ -71,7 +73,7 @@ public class PhysicsComponent extends Component{
 			//dampening
 			Vector2 dampening = new Vector2();
 			dampening.set(v);
-			dampening.scl(0.01f);//1%
+			dampening.scl(_dampening);
 			v.sub(dampening);
 			
 			//set new values
@@ -94,10 +96,11 @@ public class PhysicsComponent extends Component{
 	public PhysicsComponent ApplyForce(Vector2 f){
 		//F = m . a
 		//a = F/m
-		if(this.Entity() != null){
-			if(showDebug)
-				System.out.println(this.Entity().Name + " received force " + f);
-		}		
+		
+		//if(this.Entity() != null){
+		//	if(showDebug)
+		//		System.out.println(this.Entity().Name + " received force " + f);
+		//}		
 		
 		this._accelerationAccumulator.x += f.x/this.Mass;
 		this._accelerationAccumulator.y += f.y/this.Mass;

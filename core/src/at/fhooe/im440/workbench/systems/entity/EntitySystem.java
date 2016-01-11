@@ -106,6 +106,8 @@ public class EntitySystem extends BaseSystem {
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
 		
 		InitSpringTest(e2.Id, e3.Id, "white and grey");
+		
+		InitSpringChain();
 	}
 	
 	void InitSpringTest(long id1, long id2, String springName){
@@ -113,6 +115,39 @@ public class EntitySystem extends BaseSystem {
 				.Name(springName)
 				.AddComponent(new SpringComponent(id1, id2));
 		Entities.put(s.Id, s);
+	}
+	
+	void InitSpringChain(){
+		TextureAtlas ta = new TextureAtlas("mycogs.pack");
+		AtlasRegion cogTex = ta.findRegion("cog_red");
+		
+		TransformComponent tf = new TransformComponent();
+		tf.Position = new Vector2(0, -50);
+		Entity e0 = new Entity()
+				.Name("chain cog" + 0)
+				.AddComponent(tf)
+				.AddComponent(new PhysicsComponent())
+				.AddComponent(new CircleColliderComponent())
+				.AddComponent(new SpriteComponent(cogTex))
+				;
+		Entities.put(e0.Id, e0);
+		
+		for(int i = 0; i < 10; i ++){
+			TransformComponent tf1 = new TransformComponent();
+			tf1.Position = new Vector2(0, i*50);
+			Entity e1 = new Entity()
+					.Name("chain cog" + i)
+					.AddComponent(tf1)
+					.AddComponent(new PhysicsComponent())
+					.AddComponent(new CircleColliderComponent())
+					.AddComponent(new SpriteComponent(cogTex))
+					;
+			Entities.put(e1.Id, e1);
+			
+			InitSpringTest(e0.Id, e1.Id, "chain" + i);
+			
+			e0 = e1;
+		}
 	}
 	
 	public Entity GetEntity(long id){
