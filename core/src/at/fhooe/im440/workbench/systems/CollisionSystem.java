@@ -47,7 +47,7 @@ public class CollisionSystem extends BaseSystem implements IComponentSystem {
 	}
 	
 	float timeaccumulator = 0;
-	float fixedtimestep = 0.01f;//60 fps
+	float fixedtimestep = 0.01f;
 
 	@Override
 	public void Update(float delta) {

@@ -40,7 +40,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 
 	
 	public enum MenuItem {
-	    TestES, Play, Splash, Splash1, Exit;
+	    TestES, Play, Splash, Splash1, Exit, AddItemInMenuItem;
 		
 		//source: http://digitaljoel.nerd-herders.com/2011/04/05/get-the-next-value-in-a-java-enum/
 	    public MenuItem getNext() {
@@ -69,6 +69,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
     	case Splash: return new SplashScreen2(workbench);
     	case Splash1: return new SplashScreen2(workbench);
     	case Exit: Gdx.app.exit();
+    	case AddItemInMenuItem: System.out.println("And its action in getScreen");
     	default: return new SplashScreen2(workbench);
     	}
     	
