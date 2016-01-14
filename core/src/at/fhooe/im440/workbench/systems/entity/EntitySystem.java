@@ -44,7 +44,7 @@ public class EntitySystem extends BaseSystem {
 		Entity e2 = new Entity()
 				.Name("basic grey box")
 				.AddComponent(tf2)
-				//.AddComponent(new PhysicsComponent().setAngularVelocity(0))
+				.AddComponent(new PhysicsComponent().setAngularVelocity(15))
 				.AddComponent(bcc2)
 				.AddComponent(new SpriteComponent(ar2));
 		Entities.put(e2.Id, e2);
@@ -123,11 +123,13 @@ public class EntitySystem extends BaseSystem {
 		
 		TransformComponent tf = new TransformComponent();
 		tf.Position = new Vector2(0, -50);
+		CircleColliderComponent ccc0 =  new CircleColliderComponent();
+		ccc0.skipTesting = true;
 		Entity e0 = new Entity()
 				.Name("chain cog" + 0)
 				.AddComponent(tf)
 				.AddComponent(new PhysicsComponent())
-				.AddComponent(new CircleColliderComponent())
+				.AddComponent(ccc0)
 				.AddComponent(new SpriteComponent(cogTex))
 				;
 		Entities.put(e0.Id, e0);
@@ -135,11 +137,13 @@ public class EntitySystem extends BaseSystem {
 		for(int i = 0; i < 10; i ++){
 			TransformComponent tf1 = new TransformComponent();
 			tf1.Position = new Vector2(0, i*50);
+			CircleColliderComponent ccc1 =  new CircleColliderComponent();
+			ccc1.skipTesting = true;
 			Entity e1 = new Entity()
 					.Name("chain cog" + i)
 					.AddComponent(tf1)
 					.AddComponent(new PhysicsComponent())
-					.AddComponent(new CircleColliderComponent())
+					.AddComponent(ccc1)
 					.AddComponent(new SpriteComponent(cogTex))
 					;
 			Entities.put(e1.Id, e1);
