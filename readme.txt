@@ -50,3 +50,6 @@ just add item in enum MenuItem and its action in getScreen switch
 message system - for invoking methods across different entities, for replays and debugging
 collision handling - MTV, bounciness, etc.
 menu - encapsulate items and their actions (to easily change, replace items)
+actual game!
+on screen in-game info text (like Gustav Dahl) for debugging/UI
+more advanced editor with ability to add/remove components and entities
