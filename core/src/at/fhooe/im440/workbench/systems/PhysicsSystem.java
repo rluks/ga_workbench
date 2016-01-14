@@ -17,11 +17,23 @@ public class PhysicsSystem extends BaseSystem implements IComponentSystem {
 		physics = new ArrayList<Component>();
 	}
 	
+	float timeaccumulator = 0;
+	float fixedtimestep = 0.01f;
+	
 	@Override
 	public void Update(float delta){
-		for(Component pc: physics){
-			pc.Update(delta);
+		
+		timeaccumulator+=delta;
+		while(timeaccumulator >= fixedtimestep){
+			
+			//update
+			for(Component pc: physics){
+				pc.Update(fixedtimestep);
+			}
+			
+			timeaccumulator-=fixedtimestep;
 		}
+		
 	}
 	
 	@Override
