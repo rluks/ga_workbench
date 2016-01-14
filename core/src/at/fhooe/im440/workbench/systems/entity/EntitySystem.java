@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.math.Vector2;
 
+import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.BaseSystem;
+import at.fhooe.im440.workbench.systems.EntityFactorySystem;
 
 public class EntitySystem extends BaseSystem {
 	
@@ -21,32 +23,16 @@ public class EntitySystem extends BaseSystem {
 	
 	public void InitBoxEntities(){
 	
+		EntityFactorySystem efs = ServiceLocator.Get(EntityFactorySystem.class);
 		TextureAtlas ta = new TextureAtlas("boxes.pack");
-		AtlasRegion ar1 = ta.findRegion("box_red");		
-		TransformComponent tf1 = new TransformComponent();
-		tf1.Rotation = 30;		
-		tf1.Position = new Vector2(-20, 75);		
-		Entity e1 = new Entity()
-				.Name("Little red ridding box")
-				.AddComponent(tf1)
-				.AddComponent(new PhysicsComponent().ApplyForce(new Vector2(100, 0)))
-				.AddComponent(new BoxColliderComponent())
-				.AddComponent(new SpriteComponent(ar1));
+		
+		Entity e1 = efs.GetBox(new Vector2(-20, 75)).Name("Little red ridding box");
+		e1.GetComponent(TransformComponent.class).Rotation = 30.0f;
 		Entities.put(e1.Id, e1);
-		System.out.println("redbox id:" + e1.Id);
-			
-		AtlasRegion ar2 = ta.findRegion("box_grey");		
-		TransformComponent tf2 = new TransformComponent();
-		tf2.Rotation = 0;		
-		tf2.Position = new Vector2(0, 0);
-		BoxColliderComponent bcc2 = new BoxColliderComponent();
-		//bcc2.skipTesting = true;
-		Entity e2 = new Entity()
-				.Name("basic grey box")
-				.AddComponent(tf2)
-				.AddComponent(new PhysicsComponent().setAngularVelocity(15))
-				.AddComponent(bcc2)
-				.AddComponent(new SpriteComponent(ar2));
+		
+		Entity e2 = efs.GetBox(new Vector2(0, 0)).Name("basic grey box");		
+		e2.GetComponent(SpriteComponent.class).setTexture(ta.findRegion("box_grey"));	
+		e2.GetComponent(PhysicsComponent.class).setAngularVelocity(15);
 		Entities.put(e2.Id, e2);
 		
 		

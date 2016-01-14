@@ -10,12 +10,11 @@ import at.fhooe.im440.workbench.systems.RenderSystem;
 
 public class SpriteComponent extends Component {
 
-	public AtlasRegion Texture;
+	AtlasRegion Texture;
 	public Sprite Sprite;
 	
 	public SpriteComponent(AtlasRegion texture) {
-		this.Texture = texture;
-		this.Sprite = new Sprite(texture);
+		setTexture(texture);
 	}
 	
 	public float getHalfHeight(){
@@ -24,6 +23,11 @@ public class SpriteComponent extends Component {
 	
 	public float getHalfWidth(){
 		return this.Sprite.getWidth()/2;
+	}
+	
+	public void setTexture(AtlasRegion texture){
+		this.Texture = texture;
+		this.Sprite = new Sprite(texture);
 	}
 
 	public void Render(Batch batch){
