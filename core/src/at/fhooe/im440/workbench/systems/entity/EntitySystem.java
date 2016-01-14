@@ -43,94 +43,40 @@ public class EntitySystem extends BaseSystem {
 		EntityFactorySystem efs = ServiceLocator.Get(EntityFactorySystem.class);
 		
 		TextureAtlas ta = new TextureAtlas("mycogs.pack");
-		AtlasRegion cogTex = ta.findRegion("cog_red");
 		AtlasRegion cogNTex = ta.findRegion("cog_white");
 		AtlasRegion cogSTex = ta.findRegion("cog_grey");
 		
-		TransformComponent tf1 = new TransformComponent();
-		TransformComponent tf2 = new TransformComponent();
-		TransformComponent tf3 = new TransformComponent();
+		Entity e = efs.GetCircle(new Vector2(100, 100)).Name("Red cog wheel");
+		Entities.put(e.Id, e);//TODO only register components when putting in the list?	
 		
-		tf1.Position = new Vector2(100, 100);
-		tf2.Position = new Vector2(-100, 100);
-		tf3.Position = new Vector2(200, 100);
+		Entity e2 = efs.GetCircle(new Vector2(-100, 100)).Name("white cog");
+		e2.GetComponent(SpriteComponent.class).setTexture(cogNTex);
+		Entities.put(e2.Id, e2);	
 		
-
-		 e = new Entity()
-				.Name("Red cog wheel")
-				.AddComponent(tf1)
-				.AddComponent(new PhysicsComponent())
-				.AddComponent(new CircleColliderComponent())
-				.AddComponent(new SpriteComponent(cogTex));
-		Entities.put(e.Id, e);
-			
-	
+		//efs.CreateSpring(e.Id, e2.Id, "red and white");	
 		
-		//tf2.Position.x += 60.0f;
-		 CircleColliderComponent ccc2 =  new CircleColliderComponent();
-		 //ccc2.skipTesting = true;
-		Entity e2 = new Entity()
-				.Name("white cog")
-				.AddComponent(tf2)
-				.AddComponent(new PhysicsComponent())
-				.AddComponent(ccc2)
-				.AddComponent(new SpriteComponent(cogNTex))
-				;
-		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?		
-		
-		efs.CreateSpring(e.Id, e2.Id, "red and white");
-		
-		
-		//tf3.Position.x += 120.0f;
-		CircleColliderComponent ccc3 =  new CircleColliderComponent();
-		 //ccc3.skipTesting = true;
-		Entity e3 = new Entity()
-				.Name("Third wheel")
-				.AddComponent(tf3)
-				.AddComponent(new PhysicsComponent())
-				.AddComponent(ccc3)
-				.AddComponent(new SpriteComponent(cogSTex))
-				;
-		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
+		Entity e3 = efs.GetCircle(new Vector2(200, 100)).Name("Third wheel");
+		e3.GetComponent(SpriteComponent.class).setTexture(cogSTex);
+		Entities.put(e3.Id, e3);
 		
 		efs.CreateSpring(e2.Id, e3.Id, "white and grey");
 		
-		InitSpringChain();
+		InitSpringChain(-100, 10);
 	}
 	
 	
 	
-	void InitSpringChain(){
+	void InitSpringChain(int x, int length){
 		EntityFactorySystem efs = ServiceLocator.Get(EntityFactorySystem.class);
 		
-		TextureAtlas ta = new TextureAtlas("mycogs.pack");
-		AtlasRegion cogTex = ta.findRegion("cog_red");
-		
-		TransformComponent tf = new TransformComponent();
-		tf.Position = new Vector2(0, -50);
-		CircleColliderComponent ccc0 =  new CircleColliderComponent();
-		ccc0.skipTesting = true;
-		Entity e0 = new Entity()
-				.Name("chain cog" + 0)
-				.AddComponent(tf)
-				.AddComponent(new PhysicsComponent())
-				.AddComponent(ccc0)
-				.AddComponent(new SpriteComponent(cogTex))
-				;
+		Entity e0 = efs.GetCircle(new Vector2(x, -50));
+		e0.GetComponent(CircleColliderComponent.class).skipTesting = true;
 		Entities.put(e0.Id, e0);
 		
-		for(int i = 0; i < 10; i ++){
-			TransformComponent tf1 = new TransformComponent();
-			tf1.Position = new Vector2(0, i*50);
-			CircleColliderComponent ccc1 =  new CircleColliderComponent();
-			ccc1.skipTesting = true;
-			Entity e1 = new Entity()
-					.Name("chain cog" + i)
-					.AddComponent(tf1)
-					.AddComponent(new PhysicsComponent())
-					.AddComponent(ccc1)
-					.AddComponent(new SpriteComponent(cogTex))
-					;
+		for(int i = 0; i < length; i ++){
+			
+			Entity e1 = efs.GetCircle(new Vector2(x, i*50)).Name("chain cog" + i);
+			e1.GetComponent(CircleColliderComponent.class).skipTesting = true;
 			Entities.put(e1.Id, e1);
 			
 			efs.CreateSpring(e0.Id, e1.Id, "chain" + i);
