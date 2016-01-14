@@ -6,16 +6,21 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import at.fhooe.im440.workbench.MenuScreen;
 import at.fhooe.im440.workbench.ServiceLocator;
+import at.fhooe.im440.workbench.TestESScreen;
+import at.fhooe.im440.workbench.Workbench;
 import at.fhooe.im440.workbench.systems.entity.Entity;
 import at.fhooe.im440.workbench.systems.entity.EntitySystem;
 import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
 
 public class InputSystem extends BaseSystem implements InputProcessor {
 
+	private Workbench workbench;
 	Vector2 startingPos;
-	public InputSystem(){
+	public InputSystem(Workbench workbench){
 		Gdx.input.setInputProcessor(this);//required for InputProcessor
+		this.workbench = workbench;
 	}
 	
 	@Override
@@ -32,6 +37,12 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		
 		if(keycode == Keys.D){
 			ServiceLocator.DebugNextSystem();
+		}
+		if(keycode == Keys.R){//reset
+			workbench.setScreen(new TestESScreen(workbench));
+		}
+		if(keycode == Keys.ESCAPE){
+			workbench.setScreen(new MenuScreen(workbench));
 		}
 		return false;
 	}

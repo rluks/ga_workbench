@@ -46,7 +46,7 @@ public class TestESScreen extends ScreenAdapter {
 		ServiceLocator.Register(new RenderSystem());
 		ServiceLocator.Register(new ColliderRenderSystem());
 		ServiceLocator.Register(new CollisionSystem());
-		ServiceLocator.Register(new InputSystem());
+		ServiceLocator.Register(new InputSystem(workbench));
 		ServiceLocator.Register(new VectorRenderSystem());
 		
 		es.InitTestEntities();	

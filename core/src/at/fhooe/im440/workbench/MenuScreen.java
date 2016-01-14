@@ -67,8 +67,8 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
     	case TestES: return new TestESScreen(workbench);
     	case Play: return new SplashScreen2(workbench);
     	case Splash: return new SplashScreen2(workbench);
-    	case Splash1: return new SplashScreen1(workbench);
-    	case Exit: return new SplashScreen2(workbench);
+    	case Splash1: return new SplashScreen2(workbench);
+    	case Exit: Gdx.app.exit();
     	default: return new SplashScreen2(workbench);
     	}
     	
@@ -142,7 +142,7 @@ public class MenuScreen extends ScreenAdapter implements InputProcessor {
 		stage.act();
 		stage.draw();
 		
-		workbench.setScreen(getScreen(currentMenuItem));//JUMP immediately
+		//workbench.setScreen(getScreen(currentMenuItem));//JUMP immediately
 	}
 
 	@Override
