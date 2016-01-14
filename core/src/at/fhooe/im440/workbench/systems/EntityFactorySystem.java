@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import at.fhooe.im440.workbench.systems.entity.BoxColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.Entity;
 import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
+import at.fhooe.im440.workbench.systems.entity.SpringComponent;
 import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 import at.fhooe.im440.workbench.systems.entity.TransformComponent;
 
@@ -31,6 +32,15 @@ public class EntityFactorySystem extends BaseSystem {
 				.AddComponent(new BoxColliderComponent())
 				.AddComponent(new SpriteComponent(ar1));
 		return e1;
+	}
+	
+	
+	
+	public Entity CreateSpring(long id1, long id2, String springName){
+		Entity s = new Entity()
+				.Name(springName)
+				.AddComponent(new SpringComponent(id1, id2));
+		return s;
 	}
 	
 	@Override

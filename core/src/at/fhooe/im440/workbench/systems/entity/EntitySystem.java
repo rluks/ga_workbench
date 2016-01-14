@@ -39,6 +39,9 @@ public class EntitySystem extends BaseSystem {
 	}
 	
 	public void InitTestEntities(){
+		
+		EntityFactorySystem efs = ServiceLocator.Get(EntityFactorySystem.class);
+		
 		TextureAtlas ta = new TextureAtlas("mycogs.pack");
 		AtlasRegion cogTex = ta.findRegion("cog_red");
 		AtlasRegion cogNTex = ta.findRegion("cog_white");
@@ -73,10 +76,9 @@ public class EntitySystem extends BaseSystem {
 				.AddComponent(ccc2)
 				.AddComponent(new SpriteComponent(cogNTex))
 				;
-		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?	
+		Entities.put(e2.Id, e2);//TODO only register components when putting in the list?		
 		
-		
-		InitSpringTest(e.Id, e2.Id, "red and white");
+		efs.CreateSpring(e.Id, e2.Id, "red and white");
 		
 		
 		//tf3.Position.x += 120.0f;
@@ -91,19 +93,16 @@ public class EntitySystem extends BaseSystem {
 				;
 		Entities.put(e3.Id, e3);//TODO only register components when putting in the list?
 		
-		InitSpringTest(e2.Id, e3.Id, "white and grey");
+		efs.CreateSpring(e2.Id, e3.Id, "white and grey");
 		
 		InitSpringChain();
 	}
 	
-	void InitSpringTest(long id1, long id2, String springName){
-		Entity s = new Entity()
-				.Name(springName)
-				.AddComponent(new SpringComponent(id1, id2));
-		Entities.put(s.Id, s);
-	}
+	
 	
 	void InitSpringChain(){
+		EntityFactorySystem efs = ServiceLocator.Get(EntityFactorySystem.class);
+		
 		TextureAtlas ta = new TextureAtlas("mycogs.pack");
 		AtlasRegion cogTex = ta.findRegion("cog_red");
 		
@@ -134,7 +133,7 @@ public class EntitySystem extends BaseSystem {
 					;
 			Entities.put(e1.Id, e1);
 			
-			InitSpringTest(e0.Id, e1.Id, "chain" + i);
+			efs.CreateSpring(e0.Id, e1.Id, "chain" + i);
 			
 			e0 = e1;
 		}
