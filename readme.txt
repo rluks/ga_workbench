@@ -3,6 +3,9 @@ Workbench - Project in Game Architecture 2015/2016 using Java/libGDX
 Team: 
 Roman Luks
 
+Source:
+https://bitbucket.org/rluks/ga_workbench
+
 Keys: 
 R restart TestES
 Esc go back to menu
@@ -52,6 +55,7 @@ just add item in enum MenuItem and its action in getScreen switch
 
 
 "Features which would be nice to have (however they are not implemented"
+persistance system - loading and saving state of entites/components (with command pattern)
 message system - for invoking methods across different entities, for replays and debugging
 collision handling - MTV, bounciness, etc.
 menu - encapsulate items and their actions (to easily change, replace items)
