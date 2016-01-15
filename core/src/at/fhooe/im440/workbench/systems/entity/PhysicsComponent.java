@@ -1,7 +1,6 @@
 package at.fhooe.im440.workbench.systems.entity;
 
 import com.badlogic.gdx.graphics.Color;
-
 import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;

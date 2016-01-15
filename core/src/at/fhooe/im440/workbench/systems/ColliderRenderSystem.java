@@ -5,16 +5,13 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import at.fhooe.im440.workbench.ServiceLocator;
-import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.Component;
-import at.fhooe.im440.workbench.systems.entity.SpriteComponent;
 
 public class ColliderRenderSystem extends BaseSystem implements IComponentSystem{
 

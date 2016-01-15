@@ -9,7 +9,6 @@ import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
 import at.fhooe.im440.workbench.systems.entity.Component;
 import at.fhooe.im440.workbench.systems.entity.Entity;
-import at.fhooe.im440.workbench.systems.entity.PhysicsComponent;
 
 public class CollisionSystem extends BaseSystem implements IComponentSystem {
 

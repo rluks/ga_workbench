@@ -11,8 +11,6 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 
 import at.fhooe.im440.workbench.ServiceLocator;
-import at.fhooe.im440.workbench.systems.entity.CircleColliderComponent;
-import at.fhooe.im440.workbench.systems.entity.ColliderComponent;
 
 public class VectorRenderSystem extends BaseSystem {
 

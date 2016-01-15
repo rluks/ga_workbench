@@ -10,11 +10,8 @@ package at.fhooe.im440.workbench;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
-import at.fhooe.im440.workbench.systems.*;
 
 public class Workbench extends Game {
 	

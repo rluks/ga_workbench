@@ -1,6 +1,5 @@
 package at.fhooe.im440.workbench.systems.entity;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 

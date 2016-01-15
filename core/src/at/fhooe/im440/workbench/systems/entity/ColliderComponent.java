@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 import at.fhooe.im440.workbench.ServiceLocator;
 import at.fhooe.im440.workbench.systems.ColliderRenderSystem;
 import at.fhooe.im440.workbench.systems.CollisionSystem;
-import at.fhooe.im440.workbench.systems.RenderSystem;
 
 public abstract class ColliderComponent extends Component {
 
