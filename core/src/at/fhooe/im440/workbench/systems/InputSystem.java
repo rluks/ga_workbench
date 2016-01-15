@@ -30,7 +30,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 		if(keycode == Keys.V){
 			Entity e = es.GetEntity("Little red ridding box");
-			System.out.println(e.Name);
+			System.out.println("force has been apllied on" + e.Name + "");
 			PhysicsComponent p = e.GetComponent(PhysicsComponent.class);
 			p.ApplyForce(new Vector2(1000, 0));
 		}
@@ -43,6 +43,10 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		}
 		if(keycode == Keys.ESCAPE){
 			workbench.setScreen(new MenuScreen(workbench));
+		}
+		if(keycode == Keys.S){
+			EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
+			editSys.switchTool();
 		}
 		return false;
 	}

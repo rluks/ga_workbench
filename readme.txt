@@ -8,11 +8,13 @@ R restart TestES
 Esc go back to menu
 V add fixed amount of acceleration to red box
 D switch debug views for different systems (most systems have none - see console output)
+S switch between move and rotation tool
 
 left mouse click on entity to select it, 
 multiple entities can be selected
 left click elswhere to unselect all
 drag entities when selected
+(for rotation tool drag upwards/downwards for up/down direction of rotation applied)
 
 "Features":
 Entities and components
@@ -25,6 +27,9 @@ it will then invoke components update method regulary)
 
 Service Locator (for locating desired systems)
 Elegant way to decouple code and get rid of static/singletons.
+
+Editor tools (just move and rotate)
+using state pattern here (each tool handles input on its own, for editor tool is a black box)
 
 Physics system (basic velocity, acceleration, spring physics) with fixed timestep
 F=m.a, F=-k.x, verlet integration (springs are however not stable and break - use restart key R)

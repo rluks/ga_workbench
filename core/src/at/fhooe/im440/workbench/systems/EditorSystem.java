@@ -25,6 +25,7 @@ public class EditorSystem extends BaseSystem {
 	EntitySystem es;
 	ShapeRenderer renderer;
 	Color color;
+	EditorTool currentTool;
 	
 	public EditorSystem(){
 		entities = new LinkedHashMap<Entity, Boolean>();
@@ -37,6 +38,8 @@ public class EditorSystem extends BaseSystem {
 		this.renderer = new ShapeRenderer();
 		this.color = Color.FOREST;
 		this.color.a = 0.2f;
+		
+		this.currentTool = new EditorMove();
 	}
 	
 	List<Entity> getSelected(){
@@ -66,9 +69,14 @@ public class EditorSystem extends BaseSystem {
 	}
 	
 	public void applyDrag(Vector2 v){
+		//call currently selected editor tool with drag vector
+		//eg. rotate
+		//use state pattern
+		//each tool will handle it on its own
+		//for each entity <- or whole selection? what is better?
 		for(Entity e : this.getSelected()){
-			TransformComponent tf = e.GetComponent(TransformComponent.class);		
-			tf.Position.add(v);
+			this.currentTool.applyDrag(e, v);
+			
 		}
 	}
 	
@@ -86,8 +94,6 @@ public class EditorSystem extends BaseSystem {
 	    for(Entity e : getSelected()){
 	    	ColliderComponent ccc = e.GetComponent(ColliderComponent.class);
 	    	ccc.Render(renderer);
-			//
-			//renderer.circle(ccc.getPosition().x, ccc.getPosition().y, ccc.radius);
 	    }
 	    
     	renderer.end();
@@ -99,6 +105,21 @@ public class EditorSystem extends BaseSystem {
 	@Override
 	public void Update(float delta) {
 		Render();
+	}
+
+	public void switchTool() {
+		if(this.currentTool.getClass() == EditorMove.class){
+			System.out.println("Editor - Rotation tool");
+			this.currentTool = new EditorRotate();
+		}else{
+			this.currentTool = new EditorMove();
+			System.out.println("Editor - Move tool");
+			//TODO not clean creating new instances
+			//each tool stores its name, welcome message, etc.
+			//config params like amount of effect applied (eg. for zoom tool)
+		}
+			
+		
 	}
 
 }
