@@ -61,7 +61,7 @@ public class EntitySystem extends BaseSystem {
 		
 		efs.CreateSpring(e2.Id, e3.Id, "white and grey");
 		
-		InitSpringChain(-100, 10);
+		InitSpringChain(-200, 10);
 	}
 	
 	

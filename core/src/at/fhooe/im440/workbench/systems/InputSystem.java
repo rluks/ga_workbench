@@ -65,7 +65,7 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
+		//RenderSystem rs = ServiceLocator.Get(RenderSystem.class);
 		CameraSystem cam = ServiceLocator.Get(CameraSystem.class);
 
 		Vector3 origin3d = cam.camera.unproject(new Vector3(screenX, screenY, 0));

@@ -83,8 +83,8 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		//debug rendering
 		if(showDebug){			
-			vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
-			vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
+			//vrs.RenderVector( Vector2.Zero, translation, Color.YELLOW);	
+			//vrs.RenderVector(getPosition(), translatedCenter, Color.WHITE);
 		}
 
 
@@ -99,8 +99,8 @@ public class CircleColliderComponent extends ColliderComponent {
 		
 		V.set(cCenter.cpy().sub(bCenter));	
 
-		if(showDebug)
-			vrs.RenderVector(bCenter, V, Color.BLACK);
+		//if(showDebug)
+		//	vrs.RenderVector(bCenter, V, Color.BLACK);
 		
 		//Clamp it to get projection of the center of the circle
 		//on boundary of the box

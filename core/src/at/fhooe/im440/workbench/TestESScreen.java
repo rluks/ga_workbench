@@ -18,7 +18,8 @@ public class TestESScreen extends ScreenAdapter {
 	private Workbench workbench;
 	//private Stage stage;//TODO is stage useful in Workbench at all? if so...where should stage be? in some system? passed around?
 	//stage just for UI, perhaps
-	private boolean dead;
+	
+	//private boolean dead;
 	
 	public TestESScreen(Workbench workbench) {
 		this.workbench = workbench;
@@ -27,7 +28,7 @@ public class TestESScreen extends ScreenAdapter {
 	@Override
 	public void show() {
 		// initialize control variables
-		dead = false;
+		//dead = false;
 		
 		//Note: init systems, then create entities		
 		ServiceLocator.Init();
@@ -50,10 +51,10 @@ public class TestESScreen extends ScreenAdapter {
 		
 	}
 	
-	private void endOfState() {
-		dead = true;
-		workbench.setScreen(new MenuScreen(workbench));
-	}
+	//private void endOfState() {
+		//dead = true;
+	//	workbench.setScreen(new MenuScreen(workbench));
+	//}
 	
 	@Override
 	public void render(float delta) {	
