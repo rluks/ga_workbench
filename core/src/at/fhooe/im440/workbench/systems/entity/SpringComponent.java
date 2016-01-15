@@ -64,9 +64,14 @@ public class SpringComponent extends PhysicsComponent {
 		
 		if(force > 0){
 			force -= dampForce;
-			//force = (force < 0) ? 0f : force;
+			force = (force < 0) ? 0f : force;
+			//if(force < 0)
+			//	System.out.println("Too much ! not its below zero");
 		}else{
 			force += dampForce;
+			force = (force > 0) ? 0f : force;
+			//if(force >= 0)
+			//	System.out.println("Nah above zero..");
 		}
 		
 		if(showDebug)
