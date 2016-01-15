@@ -18,9 +18,12 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 	private Workbench workbench;
 	Vector2 startingPos;
+	boolean debug;
+	
 	public InputSystem(Workbench workbench){
 		Gdx.input.setInputProcessor(this);//required for InputProcessor
 		this.workbench = workbench;
+		this.debug = false;
 	}
 	
 	@Override
@@ -30,7 +33,8 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 
 		if(keycode == Keys.V){
 			Entity e = es.GetEntity("Little red ridding box");
-			System.out.println("force has been apllied on" + e.Name + "");
+			if(this.debug)
+				System.out.println("force has been apllied on" + e.Name + "");
 			PhysicsComponent p = e.GetComponent(PhysicsComponent.class);
 			p.ApplyForce(new Vector2(1000, 0));
 		}
@@ -72,7 +76,8 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		startingPos = origin2d;
 		
-		System.out.println("touchdown: startingPos:" + startingPos);
+		if(this.debug)
+			System.out.println("touchdown: startingPos:" + startingPos);
 		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		//cs.test(origin2d);
@@ -101,19 +106,22 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		Vector2 origin2d = new Vector2(origin3d.x, origin3d.y);
 		Vector2 origin_backup = new Vector2(origin3d.x, origin3d.y);
 		
-		//System.out.println("drag");
-		//System.out.println("drag: origin2d:" + origin2d);
+		if(this.debug)
+			System.out.println("drag: origin2d:" + origin2d);
 		
 		EditorSystem editSys = ServiceLocator.Get(EditorSystem.class);
 		
-		//System.out.println("drag: startingPos:" + startingPos);
+		if(this.debug)
+			System.out.println("drag: startingPos:" + startingPos);
 		
 		// sqr(xd,yd)
 		double distance = Math.sqrt(Math.pow(origin2d.x - startingPos.x, 2) + Math.pow(origin2d.y - startingPos.y, 2));
 		Vector2 deltaPos = origin2d.sub(startingPos).nor().scl((float) distance);//this changes the original vector!!!
 		
-		//System.out.println("drag: distance:" + distance);
-		//System.out.println("drag: deltaPos:" + deltaPos);
+		if(this.debug){
+			System.out.println("drag: distance:" + distance);
+			System.out.println("drag: deltaPos:" + deltaPos);
+		}
 		
 		editSys.applyDrag(deltaPos);
 		startingPos = new Vector2(origin_backup.x, origin_backup.y);//TODO so backup vector is needed, or is there a better way?
@@ -137,6 +145,11 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 	public void Update(float delta) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void Debug(boolean b) {
+		this.debug = b;
+		
 	}
 
 }

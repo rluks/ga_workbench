@@ -68,12 +68,6 @@ public class ServiceLocator {
 				System.out.println("Debugging " + entry.getKey());
 			}else
 				system.Debug(false);
-			
-			//if(entry.getKey() == selected){
-			//	system.Debug(true);
-			//}else{
-			//	system.Debug(false);
-			//}
 			index++;
 		}
 		
