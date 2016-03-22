@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.math.collision.Ray;
 
 import at.fhooe.im440.workbench.MenuScreen;
 import at.fhooe.im440.workbench.ServiceLocator;
@@ -78,6 +79,14 @@ public class InputSystem extends BaseSystem implements InputProcessor {
 		
 		if(this.debug)
 			System.out.println("touchdown: startingPos:" + startingPos);
+		
+		Ray r = cam.camera.getPickRay(screenX, screenY);
+		
+		System.out.println("screen coord:" + screenX + ", " + screenY);
+		System.out.println("unproject:" + origin2d.x + ", " + origin2d.y);
+		System.out.println("ray:" + r.origin.x + ", " + r.origin.y);
+		
+		//sysout ctrl+space autocomplete system.out.println
 		
 		CollisionSystem cs = ServiceLocator.Get(CollisionSystem.class);
 		//cs.test(origin2d);

@@ -3,7 +3,7 @@ package at.fhooe.im440.workbench.systems.entity;
 abstract public class Component {
 	
 	public final long Id;
-	public boolean Active;
+	public boolean Active;//TODO automate not calling stuff when not active
 	private Entity entity;
 	public boolean showDebug;
 	
